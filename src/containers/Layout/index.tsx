@@ -1,5 +1,5 @@
 import React from "react";
-import { RiSearch2Fill, RiNotification2Line } from "react-icons/ri";
+import { RiNotification2Line } from "react-icons/ri";
 import { FaSearch } from "react-icons/fa";
 import { IconButton } from "../../components/IconButton";
 import {BiCog} from 'react-icons/bi'
@@ -11,8 +11,6 @@ import {
   Wrapper,
   NotificationsBadge,
 } from "./style";
-import { Badge } from "antd";
-import ButtonGroup from "antd/lib/button/button-group";
 
 interface Props{
   children?: unknown
