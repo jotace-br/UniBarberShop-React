@@ -25,7 +25,7 @@ export const ButtonPrimary = styled(ExtendButton)`
   -moz-box-shadow: 0px 4px 15px 0px rgba(252,215,74,0.25);
   box-shadow: 0px 4px 15px 0px rgba(252,215,74,0.25);
   :hover{
-    background-color: #e7ca60;
+    background-color: #EDD168;
     color: #FFF;
   }
 `
@@ -37,18 +37,19 @@ export const ButtonOutline = styled(ExtendButton)`
   -moz-box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.15);
   box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.15);
   :hover{
+    border: 1.5px solid #A4A4A4;
     background-color: transparent;
     color: #FFF;
   }
 `
 export const ButtonSecondary = styled(ExtendButton)`
   background-color: #4A4A4A;
-  color: #E6BE27;
+  color: #fff;
   -webkit-box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.15);
   -moz-box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.15);
   box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.15);
   :hover{
-    background-color: #6e6e6e;
-    color: #E6BE27;
+    background-color: #777777;
+    color: #fff;
   }
 `

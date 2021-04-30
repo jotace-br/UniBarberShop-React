@@ -33,7 +33,7 @@ const Routes: React.FC = () => (
     <Route exact path="/registrations/page1" component={Registrations} />
     <Route exact path="/registrations/page2" component={Registrations} />
     <Route exact path="/registrations/page3" component={Registrations} />
-    <Redirect to='/'/>
+    <Redirect to='/dashboard'/>
   </Switch>
 );
 export default Routes;

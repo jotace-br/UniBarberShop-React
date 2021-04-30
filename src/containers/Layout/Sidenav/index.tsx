@@ -8,13 +8,16 @@ import {
   Divider,
   UserInfo,
 } from "./style";
-import Pxpaylogo from "../../assets/logo.svg";
+import Pxpaylogo from "../../../assets/logo_principal.svg";
 import SidebarItems from "./SidebarItems";
 import { Link, useLocation } from "react-router-dom";
-import { RiVipCrownFill } from "react-icons/ri";
 
-import UserImg from '../../assets/user.jpg'
+import { Icon } from '@iconify/react';
+import crownIcon from '@iconify/icons-mdi/crown';
+
+import UserImg from "../../../assets/user.jpg";
 import { FaEllipsisV } from "react-icons/fa";
+import menuOpen from '@iconify/icons-mdi/menu-open';
 // import { Container } from './styles';
 const Sidenav: React.FC = () => {
   const location = useLocation();
@@ -29,7 +32,6 @@ const Sidenav: React.FC = () => {
   }, [location.pathname, selectedKey]);
   return (
     <StyledSider
-      breakpoint="lg"
       collapsedWidth="80"
       onBreakpoint={(broken) => {
         console.log(broken);
@@ -44,6 +46,9 @@ const Sidenav: React.FC = () => {
         defaultOpenKeys={[`${selectedKey}`]}
         mode="inline"
       >
+        <StyledMenu.Item icon={<Icon icon={menuOpen} />}>
+          Menu
+        </StyledMenu.Item>
         {SidebarItems.map(({ isDrop, route, icon, name, labels }) => {
           return isDrop ? (
             <StyledSubMenu key={route} icon={icon} title={name}>
@@ -61,15 +66,15 @@ const Sidenav: React.FC = () => {
         })}
       </StyledMenu>
       <UpgradeButton>
-        <RiVipCrownFill />
+        <Icon icon={crownIcon} />
         <div className="text-container">
           <p>Faça um upgrade</p>
-          <p>Em seu plano</p>
+          <p>em seu plano</p>
         </div>
       </UpgradeButton>
       <Divider />
       <UserInfo>
-        <img src={UserImg} alt="user"/>
+        <img src={UserImg} alt="user" />
         <div className="text-container">
           <p>Jéssica Ramos</p>
           <p>Administrador(a)</p>

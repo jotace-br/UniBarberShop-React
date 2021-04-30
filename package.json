@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^4.11.2",
     "@testing-library/dom": "^7.30.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -49,6 +50,8 @@
     ]
   },
   "devDependencies": {
+    "@iconify/icons-mdi": "^1.1.15",
+    "@iconify/react": "^1.1.4",
     "@types/react-router": "^5.1.13",
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.9"

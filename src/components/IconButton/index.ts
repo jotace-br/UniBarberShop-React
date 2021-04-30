@@ -2,6 +2,9 @@ import { Button } from "antd";
 import styled from "styled-components";
 
 export const IconButton = styled(Button)`
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
   padding: 0 !important;
   margin: 0 10px !important;
   width: 42px;
@@ -13,8 +16,13 @@ export const IconButton = styled(Button)`
   background-color: rgba(255,255,255,.25);
   border: 0;
   svg{
-    width: 18px;
-    height: 18px;
+    width: 25px;
+    height: 25px;
     color: #fff;
+  }
+  &:hover,
+  &:active,
+  &:focus{
+    background-color: #FFFFFF82;
   }
 `
