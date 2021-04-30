@@ -159,7 +159,12 @@ export const StyledMenu = styled(Menu)`
       width: 24px;
       height: 24px;
     }
+   
+    
   }
+  .ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-arrow{
+      color: #fff;
+    }
   .ant-menu-item:active,
   .ant-menu-submenu-title:active {
     background-color: transparent;
@@ -176,6 +181,7 @@ export const StyledMenu = styled(Menu)`
       width: 4px;
       background: #e6be27;
       margin-top: 13px;
+      border: 0;
     }
   }
 `;
