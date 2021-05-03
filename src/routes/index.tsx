@@ -18,21 +18,21 @@ const Routes: React.FC = () => (
     <Route exact path="/login" component={Dashboard} />
     <Route exact path="/cadastro" component={Dashboard} />
     <Route exact path="/dashboard" component={Dashboard} />
-    <Route exact path="/financial" component={Financial} />
-    <Route exact path="/customers/page1" component={Customers} />
-    <Route exact path="/customers/page2" component={Customers} />
-    <Route exact path="/customers/page3" component={Customers} />
-    <Route exact path="/products/page1" component={Products} />
-    <Route exact path="/products/page2" component={Products} />
-    <Route exact path="/products/page3" component={Products} />
-    <Route exact path="/reports" component={Reports} />
-    <Route exact path="/tools/page1" component={Tools} />
-    <Route exact path="/tools/page2" component={Tools} />
-    <Route exact path="/tools/page3" component={Tools} />
+    <Route exact path="/vendas" component={Financial} />
+    <Route exact path="/clientes/page1" component={Customers} />
+    <Route exact path="/clientes/page2" component={Customers} />
+    <Route exact path="/clientes/page3" component={Customers} />
+    <Route exact path="/produtos/page1" component={Products} />
+    <Route exact path="/produtos/page2" component={Products} />
+    <Route exact path="/produtos/page3" component={Products} />
+    <Route exact path="/relatorios" component={Reports} />
+    <Route exact path="/ferramentas/page1" component={Tools} />
+    <Route exact path="/ferramentas/page2" component={Tools} />
+    <Route exact path="/ferramentas/page3" component={Tools} />
     <Route exact path="/emails" component={Emails} />
-    <Route exact path="/registrations/page1" component={Registrations} />
-    <Route exact path="/registrations/page2" component={Registrations} />
-    <Route exact path="/registrations/page3" component={Registrations} />
+    <Route exact path="/cadastros/page1" component={Registrations} />
+    <Route exact path="/cadastros/page2" component={Registrations} />
+    <Route exact path="/cadastros/page3" component={Registrations} />
     <Redirect to='/dashboard'/>
   </Switch>
 );

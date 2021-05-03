@@ -25,10 +25,7 @@ const Sidenav: React.FC = () => {
   const [selectedKey] = useState<string>(
     index.slice(0, index.lastIndexOf("/"))
   );
-
   useEffect(() => {
-    console.log(location.pathname);
-    console.log(selectedKey);
   }, [location.pathname, selectedKey]);
   return (
     <StyledSider

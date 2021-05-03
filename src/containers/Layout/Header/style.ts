@@ -14,12 +14,7 @@ justify-content: space-between;
 .icon-wrapper{
   display: flex;
 }
-h4 {
-  font-size: 26px;
-  font-weight: 700;
-  color: #fff;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
+
 `;
 export const NotificationsBadge = styled(Badge)`
 sup{
@@ -33,4 +28,11 @@ sup{
   }
 }
 
+`
+export const Title = styled.p`
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-transform: capitalize;
 `

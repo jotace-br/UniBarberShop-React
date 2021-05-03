@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
+  width: 100%;
+  margin-bottom: 26px;
   background: ${props => props.theme.colors.black100};
   padding: 30px;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
@@ -31,4 +33,16 @@ export const CardSubTitle = styled.p`
   margin-top: 6px;
   font: ${props => props.theme.text.text_medium};
   color: ${props => props.theme.colors.black20};
+`
+export const CardHeader = styled.div`
+  margin-top: 6px;
+  font: ${props => props.theme.text.text_medium};
+  color: ${props => props.theme.colors.black20};
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+`
+export const CardContent = styled.div`
+  padding: 8px 0;
+  
 `
