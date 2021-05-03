@@ -3,10 +3,8 @@ import { StyledDatepicker, StyledRangePicker } from "./style";
 import "moment/locale/pt-br";
 import moment from 'moment';
 import locale from "antd/lib/locale/pt_BR";
-import { DatePicker, Space } from "antd";
+import { Space } from "antd";
 import { ConfigProvider } from "antd";
-const { RangePicker } = DatePicker;
-
 // import { Container } from './styles';
 
 const Datepicker: React.FC = () => {

@@ -7,10 +7,10 @@ import {
   CardHeader,
   CardContent,
 } from "../../components/Card";
-import Datepicker, { Rangepicker } from "../../components/Datepicker";
-import Select, { StyledOption } from "../../components/Select";
+import { Rangepicker } from "../../components/Datepicker";
+import Select from "../../components/Select";
 import { FilterContainer, ExportContainer, TwoCardContainer } from "./style";
-import { Chart, Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 const { Option } = Select;
 
 const data = {

@@ -1,4 +1,4 @@
-import { DatePicker, Space } from "antd";
+import { DatePicker } from "antd";
 import styled from "styled-components";
 const { RangePicker } = DatePicker;
 
