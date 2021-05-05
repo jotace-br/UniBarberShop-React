@@ -1,272 +1,47 @@
 [
   {
-    "id": "japan",
-    "color": "hsl(146, 70%, 50%)",
-    "data": [
-      {
-        "x": "plane",
-        "y": 173
-      },
-      {
-        "x": "helicopter",
-        "y": 222
-      },
-      {
-        "x": "boat",
-        "y": 278
-      },
-      {
-        "x": "train",
-        "y": 282
-      },
-      {
-        "x": "subway",
-        "y": 159
-      },
-      {
-        "x": "bus",
-        "y": 268
-      },
-      {
-        "x": "car",
-        "y": 239
-      },
-      {
-        "x": "moto",
-        "y": 144
-      },
-      {
-        "x": "bicycle",
-        "y": 242
-      },
-      {
-        "x": "horse",
-        "y": 184
-      },
-      {
-        "x": "skateboard",
-        "y": 58
-      },
-      {
-        "x": "others",
-        "y": 151
-      }
-    ]
+    "name": "Cartão de crédito",
+    "year": "1",
+    "gdp": 0
   },
   {
-    "id": "france",
-    "color": "hsl(236, 70%, 50%)",
-    "data": [
-      {
-        "x": "plane",
-        "y": 176
-      },
-      {
-        "x": "helicopter",
-        "y": 207
-      },
-      {
-        "x": "boat",
-        "y": 43
-      },
-      {
-        "x": "train",
-        "y": 4
-      },
-      {
-        "x": "subway",
-        "y": 127
-      },
-      {
-        "x": "bus",
-        "y": 29
-      },
-      {
-        "x": "car",
-        "y": 112
-      },
-      {
-        "x": "moto",
-        "y": 76
-      },
-      {
-        "x": "bicycle",
-        "y": 19
-      },
-      {
-        "x": "horse",
-        "y": 237
-      },
-      {
-        "x": "skateboard",
-        "y": 228
-      },
-      {
-        "x": "others",
-        "y": 45
-      }
-    ]
+    "name": "Cartão de crédito",
+    "year": "2",
+    "gdp": 34
   },
   {
-    "id": "us",
-    "color": "hsl(106, 70%, 50%)",
-    "data": [
-      {
-        "x": "plane",
-        "y": 34
-      },
-      {
-        "x": "helicopter",
-        "y": 112
-      },
-      {
-        "x": "boat",
-        "y": 296
-      },
-      {
-        "x": "train",
-        "y": 119
-      },
-      {
-        "x": "subway",
-        "y": 205
-      },
-      {
-        "x": "bus",
-        "y": 167
-      },
-      {
-        "x": "car",
-        "y": 206
-      },
-      {
-        "x": "moto",
-        "y": 53
-      },
-      {
-        "x": "bicycle",
-        "y": 31
-      },
-      {
-        "x": "horse",
-        "y": 123
-      },
-      {
-        "x": "skateboard",
-        "y": 123
-      },
-      {
-        "x": "others",
-        "y": 178
-      }
-    ]
+    "name": "Cartão de crédito",
+    "year": "3",
+    "gdp": 100
   },
   {
-    "id": "germany",
-    "color": "hsl(16, 70%, 50%)",
-    "data": [
-      {
-        "x": "plane",
-        "y": 65
-      },
-      {
-        "x": "helicopter",
-        "y": 251
-      },
-      {
-        "x": "boat",
-        "y": 208
-      },
-      {
-        "x": "train",
-        "y": 0
-      },
-      {
-        "x": "subway",
-        "y": 76
-      },
-      {
-        "x": "bus",
-        "y": 189
-      },
-      {
-        "x": "car",
-        "y": 150
-      },
-      {
-        "x": "moto",
-        "y": 198
-      },
-      {
-        "x": "bicycle",
-        "y": 232
-      },
-      {
-        "x": "horse",
-        "y": 161
-      },
-      {
-        "x": "skateboard",
-        "y": 289
-      },
-      {
-        "x": "others",
-        "y": 209
-      }
-    ]
+    "name": "Boleto",
+    "year": "1",
+    "gdp": 46
   },
   {
-    "id": "norway",
-    "color": "hsl(141, 70%, 50%)",
-    "data": [
-      {
-        "x": "plane",
-        "y": 284
-      },
-      {
-        "x": "helicopter",
-        "y": 75
-      },
-      {
-        "x": "boat",
-        "y": 91
-      },
-      {
-        "x": "train",
-        "y": 104
-      },
-      {
-        "x": "subway",
-        "y": 52
-      },
-      {
-        "x": "bus",
-        "y": 79
-      },
-      {
-        "x": "car",
-        "y": 92
-      },
-      {
-        "x": "moto",
-        "y": 130
-      },
-      {
-        "x": "bicycle",
-        "y": 298
-      },
-      {
-        "x": "horse",
-        "y": 233
-      },
-      {
-        "x": "skateboard",
-        "y": 182
-      },
-      {
-        "x": "others",
-        "y": 172
-      }
-    ]
+    "name": "Boleto",
+    "year": "2",
+    "gdp": 83
+  },
+  {
+    "name": "Boleto",
+    "year": "3",
+    "gdp": 21
+  },
+  {
+    "name": "PIX",
+    "year": "1",
+    "gdp": 24
+  },
+  {
+    "name": "PIX",
+    "year": "2",
+    "gdp": 12
+  },
+  {
+    "name": "PIX",
+    "year": "3",
+    "gdp": 56
   }
 ]
