@@ -74,9 +74,9 @@ const SidebarItems = [
     icon: <RiGridFill />,
     route: "/ferramentas",
     labels: [
-      { name: "Página 1", route: "/ferramentas/page1" },
-      { name: "Página 2", route: "/ferramentas/page2" },
-      { name: "Página 3", route: "/ferramentas/page3" },
+      { name: "Integrações", route: "/ferramentas/integracoes" },
+      { name: "API", route: "/ferramentas/api" },
+      { name: "Webhooks", route: "/ferramentas/webhooks" },
     ],
   },
   {

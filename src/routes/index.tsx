@@ -3,14 +3,18 @@ import { Redirect, Route, Switch } from "react-router-dom";
 
 //Páginas
 import Customers from "../pages/Customers";
-import Dashboard from '../pages/Dashboard'
+import Dashboard from "../pages/Dashboard";
 import Emails from "../pages/Emails";
 import Financial from "../pages/Financial";
 import Home from "../pages/Home";
 import Products from "../pages/Products";
 import Registrations from "../pages/Registrations";
 import Reports from "../pages/Reports";
-import Tools from "../pages/Tools";
+
+//ferramentas
+import Integrations from "../pages/Tools/Integrations";
+import Api from "../pages/Tools/Api";
+import Webhooks from "../pages/Tools/Webhooks";
 
 const Routes: React.FC = () => (
   <Switch>
@@ -26,14 +30,14 @@ const Routes: React.FC = () => (
     <Route exact path="/produtos/page2" component={Products} />
     <Route exact path="/produtos/page3" component={Products} />
     <Route exact path="/relatorios" component={Reports} />
-    <Route exact path="/ferramentas/page1" component={Tools} />
-    <Route exact path="/ferramentas/page2" component={Tools} />
-    <Route exact path="/ferramentas/page3" component={Tools} />
+    <Route exact path="/ferramentas/integracoes" component={Integrations} />
+    <Route exact path="/ferramentas/api" component={Api} />
+    <Route exact path="/ferramentas/webhooks" component={Webhooks} />
     <Route exact path="/emails" component={Emails} />
     <Route exact path="/cadastros/page1" component={Registrations} />
     <Route exact path="/cadastros/page2" component={Registrations} />
     <Route exact path="/cadastros/page3" component={Registrations} />
-    <Redirect to='/dashboard'/>
+    <Redirect to="/dashboard" />
   </Switch>
 );
 export default Routes;
