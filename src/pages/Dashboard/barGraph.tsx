@@ -37,14 +37,9 @@ const BarGraph: React.FC = () => {
     seriesField: 'country',
    
     label: false,
+    width: 500,
     height: 224,
-    autoFit: true,
-    columnBackground: {
-      style: {
-        fill: '#000',
-        fillOpacity: 0.25,
-      }
-    },
+    autoFit: false,
     columnStyle:{
       shadowColor: 'rgba(120,54,172,0.5)',
       shadowBlur: 10,
@@ -53,7 +48,6 @@ const BarGraph: React.FC = () => {
       borderRadius: 5
     },
     legend: {
-      itemWidth: 200,
       position: 'left',
       layout: 'vertical',
       itemSpacing: 30,
@@ -74,7 +68,6 @@ const BarGraph: React.FC = () => {
         }
       },
     } as const,
-    // paddingX: 190,
     color: ['#C284F3', '#7836AC', '#571D85'],
   };
   return <Column {...config} />;

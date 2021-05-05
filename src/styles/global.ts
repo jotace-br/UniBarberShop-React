@@ -24,6 +24,9 @@ export const GlobalStyles = createGlobalStyle`
   *, input, button{
     font-family: Poppins, sans-serif;
   }
+  html{
+    overflow-x: hidden;
+  }
   p{
     margin-bottom: 0;
     color: ${(props) => props.theme.colors.black10} !important;

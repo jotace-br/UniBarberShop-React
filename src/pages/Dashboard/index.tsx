@@ -12,6 +12,7 @@ import { Rangepicker } from "../../components/Datepicker";
 import Select from "../../components/Select";
 import { FilterContainer, ExportContainer, TwoCardContainer } from "./style";
 import LineGraph from './lineGraph'
+import OneLineGraph from './oneLineGraph'
 import BarGraph from "./barGraph";
 
 const { Option } = Select;
@@ -45,8 +46,9 @@ const Dashboard: React.FC = () => {
           <p>Exportar em:</p>
           <Select defaultValue={"pdf"}>
             <Option value="pdf">PDF</Option>
-            <Option value="excel">Excel</Option>
-            <Option value="odf">ODF</Option>
+            <Option value="excel">XLS</Option>
+            <Option value="excel">DOC.X</Option>
+            <Option value="odf">TXT</Option>
           </Select>
         </ExportContainer>
       </Card>
@@ -99,7 +101,9 @@ const Dashboard: React.FC = () => {
               <FaEllipsisV />
             </ActionsBtn>
           </CardHeader>
-          <CardContent></CardContent>
+          <CardContent>
+            <OneLineGraph />
+          </CardContent>
           <ExportContainer>
             <p>Exportar em:</p>
             <Select defaultValue={"pdf"}>

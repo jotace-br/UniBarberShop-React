@@ -2,7 +2,7 @@ import { Line } from '@ant-design/charts';
 import React, { useEffect, useState } from 'react';
 // import data from './graphData.json'
 
-const Dashboard: React.FC = () => {
+const LineGraph: React.FC = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     asyncFetch();
@@ -90,4 +90,4 @@ const Dashboard: React.FC = () => {
   return <Line {...config} />;
 }
 
-export default Dashboard;
+export default LineGraph;

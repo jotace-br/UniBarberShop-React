@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  AiFillDollarCircle,
   AiFillHome,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
@@ -31,6 +32,12 @@ const SidebarItems = [
     name: "Vendas",
     isDrop: false,
     icon: <RiBarChartBoxFill />,
+    route: "/vendas",
+  },
+  {
+    name: "Gestor Financeiro",
+    isDrop: false,
+    icon: <AiFillDollarCircle />,
     route: "/vendas",
   },
   {
