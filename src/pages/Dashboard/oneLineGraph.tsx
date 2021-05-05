@@ -30,6 +30,9 @@ const OneLineGraph: React.FC = () => {
     data: data,
     xField: 'month',
     yField: 'amount',
+    width: 500,
+    height: 224,
+    autoFit: true,
     lineStyle:{
       lineWidth: 6,
       stroke: '#F28792',

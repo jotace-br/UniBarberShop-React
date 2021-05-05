@@ -39,7 +39,7 @@ const BarGraph: React.FC = () => {
     label: false,
     width: 500,
     height: 224,
-    autoFit: false,
+    autoFit: true,
     columnStyle:{
       shadowColor: 'rgba(120,54,172,0.5)',
       shadowBlur: 10,
@@ -48,8 +48,8 @@ const BarGraph: React.FC = () => {
       borderRadius: 5
     },
     legend: {
-      position: 'left',
-      layout: 'vertical',
+      position: 'top-left',
+      layout: 'horizontal',
       itemSpacing: 30,
       background:{
         style:{
