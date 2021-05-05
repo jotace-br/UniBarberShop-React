@@ -1,47 +1,47 @@
 [
   {
     "name": "Cartão de crédito",
-    "year": "1",
-    "gdp": 0
+    "month": "Janeiro",
+    "amount": 92
   },
   {
     "name": "Cartão de crédito",
-    "year": "2",
-    "gdp": 34
+    "month": "Fevereiro",
+    "amount": 71
   },
   {
     "name": "Cartão de crédito",
-    "year": "3",
-    "gdp": 100
+    "month": "Março",
+    "amount": 30
   },
   {
     "name": "Boleto",
-    "year": "1",
-    "gdp": 46
+    "month": "Janeiro",
+    "amount": 46
   },
   {
     "name": "Boleto",
-    "year": "2",
-    "gdp": 83
+    "month": "Fevereiro",
+    "amount": 83
   },
   {
     "name": "Boleto",
-    "year": "3",
-    "gdp": 21
+    "month": "Março",
+    "amount": 2
   },
   {
     "name": "PIX",
-    "year": "1",
-    "gdp": 24
+    "month": "Janeiro",
+    "amount": 24
   },
   {
     "name": "PIX",
-    "year": "2",
-    "gdp": 12
+    "month": "Fevereiro",
+    "amount": 2
   },
   {
     "name": "PIX",
-    "year": "3",
-    "gdp": 56
+    "month": "Março",
+    "amount": 56
   }
 ]

@@ -5,7 +5,7 @@ export const Card = styled.div`
   margin-bottom: 26px;
   background: ${props => props.theme.colors.black100};
   padding: 30px;
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+  box-shadow: 0 5px 30px 0 rgba(0, 0, 0, .25); 
   border-radius: 20px;
   position: relative;
   z-index: 1;

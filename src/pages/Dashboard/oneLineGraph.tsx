@@ -50,7 +50,6 @@ const OneLineGraph: React.FC = () => {
       },
       interactions: [{ type: 'element-active' }],
       state: {
-        // 设置 active 激活状态的样式
         active: {
           size: 15,
           animate: { duration: 5000, easing: 'easeLinear' },

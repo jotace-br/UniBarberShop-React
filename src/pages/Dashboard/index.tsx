@@ -1,5 +1,5 @@
 import React from "react";
-import { FaEllipsisV } from "react-icons/fa";
+import { FaEllipsisV, FaChevronRight } from "react-icons/fa";
 import {
   Card,
   CardTitle,
@@ -10,15 +10,27 @@ import {
 } from "../../components/Card";
 import { Rangepicker } from "../../components/Datepicker";
 import Select from "../../components/Select";
-import { FilterContainer, ExportContainer, TwoCardContainer } from "./style";
-import LineGraph from './lineGraph'
-import OneLineGraph from './oneLineGraph'
+import {
+  FilterContainer,
+  ExportContainer,
+  TwoCardContainer,
+  SmallCard,
+  CardIcon,
+  SmallCardText,
+  SmallCardAction,
+  SmallCardContainer
+} from "./style";
+import LineGraph from "./lineGraph";
+import OneLineGraph from "./oneLineGraph";
 import BarGraph from "./barGraph";
+import { Icon } from "@iconify/react";
+import cartArrowDown from "@iconify/icons-mdi/cart-arrow-down";
+import currencyUsd from '@iconify/icons-mdi/currency-usd';
+import walletOutline from '@iconify/icons-mdi/wallet-outline';
 
 const { Option } = Select;
 
 const Dashboard: React.FC = () => {
-  
   return (
     <>
       <Card>
@@ -65,7 +77,46 @@ const Dashboard: React.FC = () => {
             <FaEllipsisV />
           </ActionsBtn>
         </CardHeader>
-        <CardContent></CardContent>
+        <CardContent>
+          <SmallCardContainer>
+            <SmallCard>
+              <CardIcon color="#F9C96E">
+                <Icon icon={cartArrowDown} />
+              </CardIcon>
+              <SmallCardText>
+                <p>562</p>
+                <p>Vendas efetuadas</p>
+              </SmallCardText>
+              <SmallCardAction>
+                <FaChevronRight />
+              </SmallCardAction>
+            </SmallCard>
+            <SmallCard>
+              <CardIcon color="#71E083">
+                <Icon icon={currencyUsd} />
+              </CardIcon>
+              <SmallCardText>
+                <p>562</p>
+                <p>Vendas efetuadas</p>
+              </SmallCardText>
+              <SmallCardAction>
+                <FaChevronRight />
+              </SmallCardAction>
+            </SmallCard>
+            <SmallCard>
+              <CardIcon color="#7197E0">
+                <Icon icon={walletOutline} />
+              </CardIcon>
+              <SmallCardText>
+                <p>562</p>
+                <p>Vendas efetuadas</p>
+              </SmallCardText>
+              <SmallCardAction>
+                <FaChevronRight />
+              </SmallCardAction>
+            </SmallCard>
+          </SmallCardContainer>
+        </CardContent>
       </Card>
       <TwoCardContainer>
         <Card>

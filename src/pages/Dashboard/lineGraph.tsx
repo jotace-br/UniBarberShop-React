@@ -1,29 +1,30 @@
 import { Line } from '@ant-design/charts';
-import React, { useEffect, useState } from 'react';
-// import data from './graphData.json'
+import React from 'react';
+import data from './graphData.json'
 
 const LineGraph: React.FC = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    asyncFetch();
-  }, []);
-  const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/e00d52f4-2fa6-47ee-a0d7-105dd95bde20.json')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log('fetch data failed', error);
-      });
-  };
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   asyncFetch();
+  // }, []);
+  // const asyncFetch = () => {
+  //   fetch('https://gw.alipayobjects.com/os/bmw-prod/e00d52f4-2fa6-47ee-a0d7-105dd95bde20.json')
+  //     .then((response) => response.json())
+  //     .then((json) => setData(json))
+  //     .catch((error) => {
+  //       console.log('fetch data failed', error);
+  //     });
+  // };
   const config = {
     data: data,
     autoFit: true,
-    xField: 'year',
-    yField: 'gdp',
+    xField: 'month',
+    yField: 'amount',
     seriesField: 'name',
     xAxis: {
       label: null,
       line: null,
+      min: 0.4,
     },
     yAxis: {
       label: {
