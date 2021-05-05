@@ -87,8 +87,7 @@ const Dashboard: React.FC = () => {
     color: ['#66FFE3', '#FEF756', '#A219CE'],
   };
  
-  let chart;
-  return <Line {...config} onReady={(chartInstance) => (chart = chartInstance)} />;
+  return <Line {...config} />;
 }
 
 export default Dashboard;
