@@ -43,6 +43,14 @@ export const CardHeader = styled.div`
   align-items: flex-start;
 `
 export const CardContent = styled.div`
-  padding: 8px 0;
+  padding: 16px 0;
   
+`
+export const ActionsBtn = styled.button`
+  padding: 6px;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 `
