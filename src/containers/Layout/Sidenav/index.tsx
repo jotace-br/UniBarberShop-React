@@ -62,13 +62,13 @@ const Sidenav: React.FC = () => {
           );
         })}
       </StyledMenu>
-      <UpgradeButton>
+      {/* <UpgradeButton>
         <Icon icon={crownIcon} />
         <div className="text-container">
           <p>Faça um upgrade</p>
           <p>em seu plano</p>
         </div>
-      </UpgradeButton>
+      </UpgradeButton> */}
       <Divider />
       <UserInfo>
         <img src={UserImg} alt="user" />

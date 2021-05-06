@@ -15,11 +15,12 @@ import Reports from "../pages/Reports";
 import Integrations from "../pages/Tools/Integrations";
 import Api from "../pages/Tools/Api";
 import Webhooks from "../pages/Tools/Webhooks";
+import Login from "../pages/Login";
 
 const Routes: React.FC = () => (
   <Switch>
     <Route exact path="/" component={Home} />
-    <Route exact path="/login" component={Dashboard} />
+    <Route exact path="/login" component={Login} />
     <Route exact path="/cadastro" component={Dashboard} />
     <Route exact path="/dashboard" component={Dashboard} />
     <Route exact path="/vendas" component={Financial} />
