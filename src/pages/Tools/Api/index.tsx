@@ -23,7 +23,6 @@ const Api: React.FC = () => {
   const [isToken, setIsToken] = useState(false);
 
   const noTokenYetMessage = () => {
-    setIsToken(!isToken);
     if (isToken) {
       return (
         <>
