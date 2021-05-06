@@ -21,12 +21,8 @@ const Header: React.FC = () => {
   useEffect(() => {
     const handleTitle = () => {
       setIndex(location.pathname)
-      if (index === "/"){
-        setSelectedKey("Home")
-      } else {
-        let selected = index.slice(1, index.length).replace("/", " > ");
-        setSelectedKey(selected);
-      }
+      let selected = index.slice(1, index.length).replace("/", " > ");
+      setSelectedKey(selected);
      
     };
     handleTitle();

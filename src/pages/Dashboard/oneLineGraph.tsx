@@ -41,7 +41,7 @@ const OneLineGraph: React.FC = () => {
     },
     smooth: true,
     point: {
-      size: 15,
+      size: 10,
       shape: 'circle',
       style: {
         fill: 'transparent',
@@ -51,7 +51,7 @@ const OneLineGraph: React.FC = () => {
       interactions: [{ type: 'element-active' }],
       state: {
         active: {
-          size: 15,
+          size: 2,
           animate: { duration: 5000, easing: 'easeLinear' },
           style: {
             lineWidth: 2,

@@ -4,7 +4,6 @@ import {
   StyledMenu,
   StyledSubMenu,
   Logo,
-  UpgradeButton,
   Divider,
   UserInfo,
 } from "./style";
@@ -13,7 +12,7 @@ import SidebarItems from "./SidebarItems";
 import { Link, useLocation } from "react-router-dom";
 
 import { Icon } from '@iconify/react';
-import crownIcon from '@iconify/icons-mdi/crown';
+
 
 import UserImg from "../../../assets/user.jpg";
 import { FaEllipsisV } from "react-icons/fa";
@@ -62,13 +61,13 @@ const Sidenav: React.FC = () => {
           );
         })}
       </StyledMenu>
-      <UpgradeButton>
+      {/* <UpgradeButton>
         <Icon icon={crownIcon} />
         <div className="text-container">
           <p>Faça um upgrade</p>
           <p>em seu plano</p>
         </div>
-      </UpgradeButton>
+      </UpgradeButton> */}
       <Divider />
       <UserInfo>
         <img src={UserImg} alt="user" />

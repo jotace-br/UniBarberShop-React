@@ -16,6 +16,25 @@ export const GlobalStyles = createGlobalStyle`
   .subB{ font: ${(props) => props.theme.text.subtitle_bold}}
   .subSB{ font: ${(props) => props.theme.text.subtitle_small}}
   .subSB{ font: ${(props) => props.theme.text.subtitle_small_bold}} */
+  /* Scrollbar */
+  * {
+    scrollbar-width: thin;          /* "auto" or "thin"  */
+    scrollbar-color: ${props=>props.theme.colors.primary100} ${props=>props.theme.colors.black80};   /* scroll thumb & track */
+  }
+
+  /* Works on Chrome/Edge/Safari */
+  *::-webkit-scrollbar {
+    width: 4px;  
+    height: 7px;             /* width of the entire scrollbar */
+  }
+  *::-webkit-scrollbar-track {
+    background: ${props=>props.theme.colors.black80};        /* color of the tracking area */
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: ${props=>props.theme.colors.primary100};    /* color of the scroll thumb */
+    border-radius: 40px;       /* roundness of the scroll thumb */
+    border: 1px solid ${props=>props.theme.colors.black80};  /* creates padding around scroll thumb */
+  }
   *{
     margin: 0;
     padding: 0;
