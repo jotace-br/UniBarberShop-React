@@ -15,14 +15,14 @@ import { Table, Space, Tag } from "antd";
 // import { Container } from './styles';
 
 const Api: React.FC = () => {
-  const [isDataAvailable, setIsDataAvailable] = useState(false);
+  const [isDataAvailable] = useState(false);
 
   const columns = [
     {
       title: "Endpoint",
       dataIndex: "endpoint",
       key: "endpoint",
-      render: (text: string) => <a>{text}</a>,
+      render: (text: string) => <a href="http://pudim.com.br">{text}</a>,
     },
     {
       title: "Método",
@@ -46,8 +46,8 @@ const Api: React.FC = () => {
       key: "options",
       render: (text: string, record: { endpoint: string }) => (
         <Space size="middle">
-          <a>Editar {record.endpoint}</a>
-          <a>Delete</a>
+          <a href="http://pudim.com.br">Editar {record.endpoint}</a>
+          <a href="http://pudim.com.br">Delete</a>
         </Space>
       ),
     },

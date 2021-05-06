@@ -6,7 +6,7 @@ import Customers from "../pages/Customers";
 import Dashboard from "../pages/Dashboard";
 import Emails from "../pages/Emails";
 import Financial from "../pages/Financial";
-import Home from "../pages/Home";
+// import Home from "../pages/Home";
 import Products from "../pages/Products";
 import Registrations from "../pages/Registrations";
 import Reports from "../pages/Reports";
