@@ -101,4 +101,17 @@ export const SmallCardContainer = styled.div`
   grid-template-columns: auto auto auto;
   overflow-x: auto;
   padding-bottom: 12px;
+  /* Works on Chrome/Edge/Safari */
+  ::-webkit-scrollbar {
+    width: 7px;  
+    height: 7px;             /* width of the entire scrollbar */
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,.25);        /* color of the tracking area */
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${props=>props.theme.colors.primary100};    /* color of the scroll thumb */
+    border-radius: 40px;       /* roundness of the scroll thumb */
+    border: 1px solid rgba(0,0,0,.25);  /* creates padding around scroll thumb */
+  }
 ` 

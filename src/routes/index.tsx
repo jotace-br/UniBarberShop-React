@@ -19,7 +19,6 @@ import Login from "../pages/Login";
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route exact path="/" component={Home} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/cadastro" component={Dashboard} />
     <Route exact path="/dashboard" component={Dashboard} />

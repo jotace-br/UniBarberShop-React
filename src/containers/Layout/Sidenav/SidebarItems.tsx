@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  AiFillDollarCircle,
-  AiFillHome,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
 
