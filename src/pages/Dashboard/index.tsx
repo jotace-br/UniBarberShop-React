@@ -107,7 +107,7 @@ const Dashboard: React.FC = () => {
               </CardIcon>
               <SmallCardText>
                 <p>562</p>
-                <p>Vendas efetuadas</p>
+                <p>Valor líquido</p>
               </SmallCardText>
               <SmallCardAction>
                 <FaChevronRight />
@@ -119,7 +119,7 @@ const Dashboard: React.FC = () => {
               </CardIcon>
               <SmallCardText>
                 <p>562</p>
-                <p>Vendas efetuadas</p>
+                <p>Disponível para antecipar</p>
               </SmallCardText>
               <SmallCardAction>
                 <FaChevronRight />

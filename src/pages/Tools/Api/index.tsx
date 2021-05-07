@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "../../../components/Card";
 import { TextWithIcon } from "../../../components/TextWithIcon";
-import { StyledTab, StyledTabPane } from "../../../components/Tabs";
+import { Tab, TabsPane } from "../../../components/Tabs";
 
 import { Typography } from "antd";
 
@@ -84,11 +84,11 @@ const Api: React.FC = () => {
       </CardHeader>
 
       <CardContent>
-        <StyledTab>
-          <StyledTabPane tab="Token de acesso" key="1">
+        <Tab>
+          <TabsPane tab="Token de acesso" key="1">
             {noTokenYetMessage()}
-          </StyledTabPane>
-        </StyledTab>
+          </TabsPane>
+        </Tab>
       </CardContent>
     </Card>
   );
