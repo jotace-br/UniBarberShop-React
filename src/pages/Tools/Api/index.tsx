@@ -20,10 +20,9 @@ import { FaFileAlt } from "react-icons/fa";
 const { Text } = Typography;
 
 const Api: React.FC = () => {
-  const [isToken, setIsToken] = useState(false);
+  const [isToken] = useState(false);
 
   const noTokenYetMessage = () => {
-    setIsToken(!isToken);
     if (isToken) {
       return (
         <>

@@ -11,7 +11,7 @@ import Registrations from "../pages/Registrations";
 import Reports from "../pages/Reports";
 
 //ferramentas
-import Integrations from "../pages/Tools/Integrations";
+import Integrations from "../pages/Tools/Webhooks";
 import Api from "../pages/Tools/Api";
 import Webhooks from "../pages/Tools/Webhooks";
 import Login from "../pages/Login";
