@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Switch } from "react-router-dom";
 
 //Páginas
 import Customers from "../pages/Customers";
@@ -15,27 +15,29 @@ import Integrations from "../pages/Tools/Webhooks";
 import Api from "../pages/Tools/Api";
 import Webhooks from "../pages/Tools/Webhooks";
 import Login from "../pages/Login";
+import PrivateRoute from "./private";
+import GuestRoute from "./guest";
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route exact path="/login" component={Login} />
-    <Route exact path="/cadastro" component={Dashboard} />
-    <Route exact path="/dashboard" component={Dashboard} />
-    <Route exact path="/vendas" component={Financial} />
-    <Route exact path="/clientes/page1" component={Customers} />
-    <Route exact path="/clientes/page2" component={Customers} />
-    <Route exact path="/clientes/page3" component={Customers} />
-    <Route exact path="/produtos/page1" component={Products} />
-    <Route exact path="/produtos/page2" component={Products} />
-    <Route exact path="/produtos/page3" component={Products} />
-    <Route exact path="/relatorios" component={Reports} />
-    <Route exact path="/ferramentas/integracoes" component={Integrations} />
-    <Route exact path="/ferramentas/api" component={Api} />
-    <Route exact path="/ferramentas/webhooks" component={Webhooks} />
-    <Route exact path="/emails" component={Emails} />
-    <Route exact path="/cadastros/page1" component={Registrations} />
-    <Route exact path="/cadastros/page2" component={Registrations} />
-    <Route exact path="/cadastros/page3" component={Registrations} />
+    <GuestRoute exact path="/login" component={Login} />
+    <GuestRoute exact path="/cadastro" component={Dashboard} />
+    <PrivateRoute exact path="/dashboard" component={Dashboard} />
+    <PrivateRoute exact path="/vendas" component={Financial} />
+    <PrivateRoute exact path="/clientes/page1" component={Customers} />
+    <PrivateRoute exact path="/clientes/page2" component={Customers} />
+    <PrivateRoute exact path="/clientes/page3" component={Customers} />
+    <PrivateRoute exact path="/produtos/page1" component={Products} />
+    <PrivateRoute exact path="/produtos/page2" component={Products} />
+    <PrivateRoute exact path="/produtos/page3" component={Products} />
+    <PrivateRoute exact path="/relatorios" component={Reports} />
+    <PrivateRoute exact path="/ferramentas/integracoes" component={Integrations} />
+    <PrivateRoute exact path="/ferramentas/api" component={Api} />
+    <PrivateRoute exact path="/ferramentas/webhooks" component={Webhooks} />
+    <PrivateRoute exact path="/emails" component={Emails} />
+    <PrivateRoute exact path="/cadastros/page1" component={Registrations} />
+    <PrivateRoute exact path="/cadastros/page2" component={Registrations} />
+    <PrivateRoute exact path="/cadastros/page3" component={Registrations} />
     <Redirect to="/dashboard" />
   </Switch>
 );

@@ -4,6 +4,8 @@ import Checkbox from "../../components/Checkbox";
 import { FormItem, Input, PasswordInput } from "../../components/Input";
 import { Link } from "../../components/Link";
 import { ButtonGoogle } from "../../components/SocialButton";
+import api from "../../services/api";
+import { login, TOKEN_USER } from "../../services/login";
 import {
   Background,
   Container,
@@ -15,12 +17,22 @@ import {
   HeadingForm,
   DividerOr,
   RegistrationLabel,
-  ContainerSocial
+  ContainerSocial,
 } from "./style";
 
 // import { Container } from './styles';
 const Login: React.FC = () => {
   const [form] = Form.useForm();
+  const onFinish = async (body: object) => {
+    try {
+      const { data } = await api.post('/login', body)
+      await localStorage.setItem(TOKEN_USER, JSON.stringify(data.user))
+      await login(data.token)
+    } catch (err) {
+      console.log(err)
+    }
+  };
+
   return (
     <Container>
       <Background />
@@ -29,26 +41,31 @@ const Login: React.FC = () => {
           <Logo></Logo>
           <HeadingForm>
             <p>Login.</p>
-            <p>Entre com os dados de acesso definidos por você no ato do cadastro.</p>
+            <p>
+              Entre com os dados de acesso definidos por você no ato do
+              cadastro.
+            </p>
           </HeadingForm>
-          <Form form={form} layout="vertical">
-            <FormItem label="Email">
+          <Form form={form} layout="vertical" onFinish={onFinish}>
+            <FormItem name="email" label="Email">
               <Input placeholder="Digite seu email de acesso..." />
             </FormItem>
-            <FormItem label="Senha">
+            <FormItem name="password" label="Senha">
               <PasswordInput placeholder="Digite sua senha de acesso..." />
             </FormItem>
             <FormItem>
-              <LoginButton>Entrar</LoginButton>
+              <LoginButton htmlType="submit">Entrar</LoginButton>
               <SubButtonContainer>
                 <Checkbox>Lembrar de mim</Checkbox>
                 <Link>Esqueci minha senha</Link>
               </SubButtonContainer>
-              <RegistrationLabel>Você é novo por aqui? <Link>Cadastre-se</Link></RegistrationLabel>
+              <RegistrationLabel>
+                Você é novo por aqui? <Link>Cadastre-se</Link>
+              </RegistrationLabel>
               <DividerOr>
-                <hr/>
+                <hr />
                 <p>Ou</p>
-                <hr/>
+                <hr />
               </DividerOr>
               <ContainerSocial>
                 <p>Entre com suas redes sociais</p>

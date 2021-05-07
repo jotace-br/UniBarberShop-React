@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaEllipsisV, FaChevronRight } from "react-icons/fa";
 import {
   Card,
@@ -27,10 +27,20 @@ import { Icon } from "@iconify/react";
 import cartArrowDown from "@iconify/icons-mdi/cart-arrow-down";
 import currencyUsd from "@iconify/icons-mdi/currency-usd";
 import walletOutline from "@iconify/icons-mdi/wallet-outline";
+import api from "../../services/api";
 
 const { Option } = Select;
 
 const Dashboard: React.FC = () => {
+  const getData = async () =>{
+    await api.get('/financial-summary')
+    .then((data)=>{
+      console.log({data})
+    })
+  }
+  useEffect(()=>{
+    getData()
+  }, [])
   return (
     <>
       <Card>

@@ -17,6 +17,8 @@ import { Icon } from '@iconify/react';
 import UserImg from "../../../assets/user.jpg";
 import { FaEllipsisV } from "react-icons/fa";
 import menuOpen from '@iconify/icons-mdi/menu-open';
+import { Dropdown, Menu } from "antd";
+import { logout } from "../../../services/login";
 // import { Container } from './styles';
 const Sidenav: React.FC = () => {
   const location = useLocation();
@@ -24,17 +26,17 @@ const Sidenav: React.FC = () => {
   const [selectedKey] = useState<string>(
     index.slice(0, index.lastIndexOf("/"))
   );
+
+  const ThreeDotMenu = (
+    <Menu>
+      <Menu.Item danger onClick={logout}>Sair</Menu.Item>
+    </Menu>
+  );
   useEffect(() => {
   }, [location.pathname, selectedKey]);
   return (
     <StyledSider
       collapsedWidth="80"
-      onBreakpoint={(broken) => {
-        console.log(broken);
-      }}
-      onCollapse={(collapsed, type) => {
-        console.log(collapsed, type);
-      }}
     >
       <Logo src={Pxpaylogo} alt="" />
       <StyledMenu
@@ -75,7 +77,9 @@ const Sidenav: React.FC = () => {
           <p>Jéssica Ramos</p>
           <p>Administrador(a)</p>
         </div>
-        <FaEllipsisV />
+        <Dropdown placement="bottomRight" overlay={ThreeDotMenu}>
+          <FaEllipsisV />
+        </Dropdown>
       </UserInfo>
     </StyledSider>
   );
