@@ -8,7 +8,7 @@ import {
   CardSubTitle,
   CardTitle,
 } from "../../../components/Card";
-import { StyledTab, StyledTabPane } from "../../../components/Tabs";
+import { Tab, TabsPane } from "../../../components/Tabs";
 import { RiLayoutGridFill } from "react-icons/ri";
 import { FaFacebook } from "react-icons/fa";
 // import { Container } from './styles';
@@ -29,8 +29,8 @@ const Api: React.FC = () => {
       </CardHeader>
 
       <CardContent>
-        <StyledTab>
-          <StyledTabPane tab="Disponíveis" key="1">
+        <Tab>
+          <TabsPane tab="Disponíveis" key="1">
             <h3>Plataformas ativas</h3>
             <h4>
               <RiLayoutGridFill /> 3 plataformas
@@ -63,8 +63,8 @@ const Api: React.FC = () => {
                 </div>
               </section>
             </Card>
-          </StyledTabPane>
-          <StyledTabPane tab="Ativos" key="2">
+          </TabsPane>
+          <TabsPane tab="Ativos" key="2">
             <h3>Plataformas disponíveis</h3>
             <h4>
               <RiLayoutGridFill /> 12 plataformas
@@ -97,8 +97,8 @@ const Api: React.FC = () => {
                 </div>
               </section>
             </Card>
-          </StyledTabPane>
-        </StyledTab>
+          </TabsPane>
+        </Tab>
       </CardContent>
     </Card>
   );

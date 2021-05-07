@@ -26,8 +26,6 @@ const Header: React.FC = () => {
      
     };
     handleTitle();
-    console.log(index);
-    console.log(selectedKey);
   }, [index, selectedKey, location.pathname]);
   return (
     <StyledHeader>

@@ -1,8 +1,23 @@
 import styled from "styled-components";
-import { Tabs } from "antd";
+import { Tabs as AntdTabs } from "antd";
 
-const { TabPane } = Tabs;
+const { TabPane } = AntdTabs;
 
-export const StyledTab = styled(Tabs)``;
+export const Tab = styled(AntdTabs)`
+  color: ${props=>props.theme.colors.black40};
+  .ant-tabs-nav{
+    background-color: ${props=>props.theme.colors.black80};
+    padding: 14px 20px;
+    border-radius: 8px;
+  }
+  .ant-tabs-nav::before{
+    border: none;
+  }
+  .ant-tabs-tab + .ant-tabs-tab{
+    margin: 0 0 0 50px;
+  }
+`;
 
-export const StyledTabPane = styled(TabPane)``;
+export const TabsPane = styled(TabPane)`
+  
+`;

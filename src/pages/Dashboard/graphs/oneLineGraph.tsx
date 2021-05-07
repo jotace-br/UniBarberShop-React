@@ -41,7 +41,7 @@ const OneLineGraph: React.FC = () => {
     },
     smooth: true,
     point: {
-      size: 10,
+      size: 8,
       shape: 'circle',
       style: {
         fill: 'transparent',
@@ -69,8 +69,6 @@ const OneLineGraph: React.FC = () => {
         style: {
           shadowColor: 'yellow',
           shadowBlur: 4,
-          stroke: 'transparent',
-          fill: 'red',
         },
       },
     },

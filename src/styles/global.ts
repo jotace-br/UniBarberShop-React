@@ -24,7 +24,7 @@ export const GlobalStyles = createGlobalStyle`
 
   /* Works on Chrome/Edge/Safari */
   *::-webkit-scrollbar {
-    width: 4px;  
+    width: 7px;  
     height: 7px;             /* width of the entire scrollbar */
   }
   *::-webkit-scrollbar-track {

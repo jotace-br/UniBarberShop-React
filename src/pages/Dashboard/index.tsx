@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaEllipsisV, FaChevronRight } from "react-icons/fa";
 import {
   Card,
@@ -18,19 +18,29 @@ import {
   CardIcon,
   SmallCardText,
   SmallCardAction,
-  SmallCardContainer
+  SmallCardContainer,
 } from "./style";
-import LineGraph from "./lineGraph";
-import OneLineGraph from "./oneLineGraph";
-import BarGraph from "./barGraph";
+import LineGraph from "./graphs/lineGraph";
+import OneLineGraph from "./graphs//oneLineGraph";
+import BarGraph from "./graphs/barGraph";
 import { Icon } from "@iconify/react";
 import cartArrowDown from "@iconify/icons-mdi/cart-arrow-down";
-import currencyUsd from '@iconify/icons-mdi/currency-usd';
-import walletOutline from '@iconify/icons-mdi/wallet-outline';
+import currencyUsd from "@iconify/icons-mdi/currency-usd";
+import walletOutline from "@iconify/icons-mdi/wallet-outline";
+import api from "../../services/api";
 
 const { Option } = Select;
 
 const Dashboard: React.FC = () => {
+  const getData = async () =>{
+    await api.get('/financial-summary')
+    .then((data)=>{
+      console.log({data})
+    })
+  }
+  useEffect(()=>{
+    getData()
+  }, [])
   return (
     <>
       <Card>
@@ -97,7 +107,7 @@ const Dashboard: React.FC = () => {
               </CardIcon>
               <SmallCardText>
                 <p>562</p>
-                <p>Vendas efetuadas</p>
+                <p>Valor líquido</p>
               </SmallCardText>
               <SmallCardAction>
                 <FaChevronRight />
@@ -109,7 +119,7 @@ const Dashboard: React.FC = () => {
               </CardIcon>
               <SmallCardText>
                 <p>562</p>
-                <p>Vendas efetuadas</p>
+                <p>Disponível para antecipar</p>
               </SmallCardText>
               <SmallCardAction>
                 <FaChevronRight />
@@ -136,8 +146,9 @@ const Dashboard: React.FC = () => {
             <p>Exportar em:</p>
             <Select defaultValue={"pdf"}>
               <Option value="pdf">PDF</Option>
-              <Option value="excel">Excel</Option>
-              <Option value="odf">ODF</Option>
+              <Option value="excel">XLS</Option>
+              <Option value="excel">DOC.X</Option>
+              <Option value="odf">TXT</Option>
             </Select>
           </ExportContainer>
         </Card>
@@ -145,8 +156,8 @@ const Dashboard: React.FC = () => {
         <Card>
           <CardHeader>
             <div>
-              <CardTitle>Afiliados</CardTitle>
-              <CardSubTitle>Visão geral dos seus afiliados</CardSubTitle>
+              <CardTitle>Vendas</CardTitle>
+              <CardSubTitle>Visão geral das suas vendas</CardSubTitle>
             </div>
             <ActionsBtn>
               <FaEllipsisV />
@@ -159,8 +170,9 @@ const Dashboard: React.FC = () => {
             <p>Exportar em:</p>
             <Select defaultValue={"pdf"}>
               <Option value="pdf">PDF</Option>
-              <Option value="excel">Excel</Option>
-              <Option value="odf">ODF</Option>
+              <Option value="excel">XLS</Option>
+              <Option value="excel">DOC.X</Option>
+              <Option value="odf">TXT</Option>
             </Select>
           </ExportContainer>
         </Card>

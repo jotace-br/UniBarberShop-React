@@ -8,7 +8,7 @@ import {
   CardSubTitle,
   CardTitle,
 } from "../../../components/Card";
-import { StyledTab, StyledTabPane } from "../../../components/Tabs";
+import { Tab, TabsPane } from "../../../components/Tabs";
 
 import { Table, Space, Tag } from "antd";
 
@@ -144,17 +144,17 @@ const Api: React.FC = () => {
       </CardHeader>
 
       <CardContent>
-        <StyledTab>
-          <StyledTabPane tab="Todos" key="1">
+        <Tab>
+          <TabsPane tab="Todos" key="1">
             {isTableEmpty()}
-          </StyledTabPane>
-          <StyledTabPane tab="Ativos" key="2">
+          </TabsPane>
+          <TabsPane tab="Ativos" key="2">
             <p>ativos</p>
-          </StyledTabPane>
-          <StyledTabPane tab="Falha" key="3">
+          </TabsPane>
+          <TabsPane tab="Falha" key="3">
             <p>falha</p>
-          </StyledTabPane>
-        </StyledTab>
+          </TabsPane>
+        </Tab>
       </CardContent>
     </Card>
   );
