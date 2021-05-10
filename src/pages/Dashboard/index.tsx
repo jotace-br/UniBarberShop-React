@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FaEllipsisV, FaChevronRight } from "react-icons/fa";
 import {
   Card,
@@ -27,22 +27,21 @@ import { Icon } from "@iconify/react";
 import cartArrowDown from "@iconify/icons-mdi/cart-arrow-down";
 import currencyUsd from "@iconify/icons-mdi/currency-usd";
 import walletOutline from "@iconify/icons-mdi/wallet-outline";
-import api from "../../services/api";
+import { useFetch } from "../../hooks/useFetch";
 
 const { Option } = Select;
 
 const Dashboard: React.FC = () => {
-  const getData = async () =>{
-    await api.get('/financial-summary')
-    .then((data)=>{
-      console.log({data})
-    })
-  }
-  useEffect(()=>{
-    getData()
-  }, [])
+  const { data: financial, error: financialError } = useFetch(
+    "financial-summary"
+  );
+
+  if (financialError) return <p>oops! um erro aconteceu.</p>;
+  if (!financial) return <p>Carregando...</p>;
   return (
     <>
+      {console.log(financial)}
+
       <Card>
         <CardHeader>
           <div>
