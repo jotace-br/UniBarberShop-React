@@ -8,8 +8,11 @@ export const Tab = styled(AntdTabs)`
   .ant-tabs-nav{
     background-color: ${props=>props.theme.colors.black80};
     padding: 14px 20px;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
     height: 56px;
+  }
+  .ant-tabs-nav{
+    margin: 0;
   }
   .ant-tabs-tab:hover{
     color: ${props=>props.theme.colors.primary80};

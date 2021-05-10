@@ -10,9 +10,9 @@ import {
 } from "../../../components/Card";
 import { Tab, TabsPane } from "../../../components/Tabs";
 
-import { Space } from "antd";
+import { Pagination, Space } from "antd";
 import { Tag } from "../../../components/Tag";
-import Table, { TableButton } from "../../../components/Table"
+import Table, { TableButton } from "../../../components/Table";
 
 import { FaEdit, FaTrash } from "react-icons/fa";
 // import { Container } from './styles';
@@ -43,7 +43,10 @@ const Api: React.FC = () => {
       dataIndex: "status",
       render: (status: string) => (
         <span>
-          <Tag status={status.includes("ATIVO") ? "active" : "error"} color={status.includes("ATIVO") ? "sucess" : "error"}>
+          <Tag
+            status={status.includes("ATIVO") ? "active" : "error"}
+            color={status.includes("ATIVO") ? "sucess" : "error"}
+          >
             {status.toUpperCase()}
           </Tag>
         </span>
@@ -57,7 +60,7 @@ const Api: React.FC = () => {
           <TableButton a="edit">
             <FaEdit />
           </TableButton>
-            
+
           <TableButton a="trash">
             <FaTrash />
           </TableButton>
@@ -68,8 +71,16 @@ const Api: React.FC = () => {
     },
   ];
 
+  function showTotal(total: any) {
+    return (
+      <div>
+        <p>
+          Mostrando: <span>{total}</span> resultados
+        </p>
+      </div>
+    );
+  }
 
-  
   const data = [
     {
       key: "1",
@@ -180,6 +191,7 @@ const Api: React.FC = () => {
             rowSelection={{ type: "checkbox", ...rowSelection }}
             columns={columns}
             dataSource={data}
+            pagination={{ showTotal: showTotal }}
           />
         </div>
       );

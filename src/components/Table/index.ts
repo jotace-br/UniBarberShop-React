@@ -58,10 +58,10 @@ export const Table = styled(AntdTable)`
     padding: 16px 30px;
     background-color: rgba(34,34,34,.70);
     border-radius: 0 0 5px 5px;
+    
   }
-  .ant-pagination .ant-pagination-prev{
-    width: 26px;
-    height: 26px;
+  .ant-pagination .ant-pagination-prev,
+  .ant-pagination .ant-pagination-next{
     background-color: ${(props) => props.theme.colors.black90};
     border: 0;
     color:  ${(props) => props.theme.colors.white};
@@ -77,9 +77,42 @@ export const Table = styled(AntdTable)`
     }
   }
   .ant-pagination-item{
-    
+    background-color: transparent;
+    border: 0;
+    color:  ${(props) => props.theme.colors.white};
+    padding: 4px 7px;
+    border-radius: 5px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    a{
+      color: #fff;
+      font: ${(props) => props.theme.text.subtitle};
+    }
   } 
-  
+  .ant-pagination-item.ant-pagination-item-active{
+    background-color: ${(props) => props.theme.colors.primary100};
+    box-shadow: 0 4px 10px rgba(230, 194, 39, .25);
+    a{
+      font: ${(props) => props.theme.text.subtitle_bold};
+    }
+  }
+  .ant-pagination-total-text{
+    margin-right: auto;
+    div{
+      height: 100%;
+      display: flex;
+      align-items: center;  
+    }
+    div>p{
+      color: ${(props) => props.theme.colors.black30} !important;
+      font: ${(props) => props.theme.text.subtitle_small};
+    }
+    div>p>span{
+      font: ${(props) => props.theme.text.subtitle_small_bold};
+    }
+  }
 
 `;
 
@@ -99,12 +132,18 @@ export const TableButton = styled(Button)<TableButtonProps>`
   padding: 4px 7px;
   border-radius: 5px;
   &[a="trash"],
-  &[a="trash"]:hover{
+  &[a="trash"]:hover,
+  &[a="trash"]:active,
+  &[a="trash"]:focus{
     color: #FF7070; 
+    box-shadow: none;
   }
-  :hover{
+  :hover,
+  :active,
+  :focus{
     color:  ${(props) => props.theme.colors.white}; 
     background-color: ${(props) => props.theme.colors.black70};
+    box-shadow: none;
   }
   
 `;
