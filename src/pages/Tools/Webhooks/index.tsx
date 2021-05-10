@@ -10,14 +10,22 @@ import {
 } from "../../../components/Card";
 import { Tab, TabsPane } from "../../../components/Tabs";
 
-import { Table, Space, Tag } from "antd";
+import { Space } from "antd";
+import { Tag } from "../../../components/Tag";
+import Table, { TableButton } from "../../../components/Table"
 
+import { FaEdit, FaTrash } from "react-icons/fa";
 // import { Container } from './styles';
 
 const Api: React.FC = () => {
   const [isDataAvailable] = useState(false);
 
   const columns = [
+    {
+      title: "ID",
+      dataIndex: "key",
+      key: "key",
+    },
     {
       title: "Endpoint",
       dataIndex: "endpoint",
@@ -35,7 +43,7 @@ const Api: React.FC = () => {
       dataIndex: "status",
       render: (status: string) => (
         <span>
-          <Tag color={status.includes("ATIVO") ? "green" : "volcano"}>
+          <Tag status={status.includes("ATIVO") ? "active" : "error"} color={status.includes("ATIVO") ? "sucess" : "error"}>
             {status.toUpperCase()}
           </Tag>
         </span>
@@ -44,15 +52,24 @@ const Api: React.FC = () => {
     {
       title: "Opções",
       key: "options",
-      render: (text: string, record: { endpoint: string }) => (
+      render: (text: string, record: any) => (
         <Space size="middle">
-          <a href="http://pudim.com.br">Editar {record.endpoint}</a>
-          <a href="http://pudim.com.br">Delete</a>
+          <TableButton a="edit">
+            <FaEdit />
+          </TableButton>
+            
+          <TableButton a="trash">
+            <FaTrash />
+          </TableButton>
+          {/* <a href="http://pudim.com.br">Editar {record.endpoint}</a>
+          <a href="http://pudim.com.br">Delete</a> */}
         </Space>
       ),
     },
   ];
 
+
+  
   const data = [
     {
       key: "1",
@@ -72,24 +89,84 @@ const Api: React.FC = () => {
       method: "POST",
       status: "ATIVO",
     },
+    {
+      key: "4",
+      endpoint: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+    },
+    {
+      key: "5",
+      endpoint: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+    },
+    {
+      key: "6",
+      endpoint: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+    },
+    {
+      key: "7",
+      endpoint: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+    },
+    {
+      key: "8",
+      endpoint: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+    },
+    {
+      key: "9",
+      endpoint: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+    },
+    {
+      key: "10",
+      endpoint: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+    },
+    {
+      key: "11",
+      endpoint: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+    },
+    {
+      key: "12",
+      endpoint: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+    },
+    {
+      key: "13",
+      endpoint: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+    },
   ];
-  interface DataType {
-    key: React.Key;
-    endpoint: string;
-    method: string;
-    status: string;
-  }
+  // interface DataType {
+  //   key: React.Key;
+  //   endpoint: string;
+  //   method: string;
+  //   status: string;
+  // }
 
   // rowSelection object indicates the need for row selection
   const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
+    onChange: (selectedRowKeys: any, selectedRows: any) => {
       console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
         "selectedRows: ",
         selectedRows
       );
     },
-    getCheckboxProps: (record: DataType) => ({
+    getCheckboxProps: (record: any) => ({
       disabled: record.endpoint === "Disabled User", // Column configuration not to be checked
       endpoint: record.endpoint,
     }),
