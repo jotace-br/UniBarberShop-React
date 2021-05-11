@@ -1,6 +1,6 @@
-import { Line } from '@ant-design/charts';
-import React from 'react';
-import data from './graphData.json'
+import { Line } from "@ant-design/charts";
+import React from "react";
+import data from "./graphData.json";
 
 const LineGraph: React.FC = () => {
   // const [data, setData] = useState([]);
@@ -18,9 +18,9 @@ const LineGraph: React.FC = () => {
   const config = {
     data: data,
     autoFit: true,
-    xField: 'month',
-    yField: 'amount',
-    seriesField: 'name',
+    xField: "month",
+    yField: "amount",
+    seriesField: "name",
     xAxis: {
       label: null,
       line: null,
@@ -28,67 +28,67 @@ const LineGraph: React.FC = () => {
     },
     yAxis: {
       label: {
-        style:{
+        style: {
           fill: "#fff",
           fontFamily: "Poppins, sans-serif",
           fontSize: 12,
         },
-        formatter: function formatter(v:any) {
-          if (v<100){
-            return v
+        formatter: function formatter(v: any) {
+          if (v < 100) {
+            return v;
           } else {
-          return ''.concat(v, '+');
+            return "".concat(v, "+");
           }
         },
       },
       grid: {
-        line:{
-          style:{
+        line: {
+          style: {
             lineDash: [4.8, 7.2],
-          }
+          },
         },
-      }
+      },
     },
     smooth: true,
-    lineStyle:{
+    lineStyle: {
       lineWidth: 6,
       strokeOpacity: 1,
-      shadowColor: '#fff',
+      shadowColor: "#fff",
       shadowBlur: 10,
       shadowOffsetX: 0,
       shadowOffsetY: 0,
-      cursor: 'pointer',
+      cursor: "pointer",
     },
     legend: {
-      position: 'top-left',
+      position: "top-left",
       itemSpacing: 30,
       marker: {
-        symbol: 'circle',
+        symbol: "circle",
         style: {
-          fill: '#fff'
-        }
+          fill: "#fff",
+        },
       },
       itemName: {
-        style:{
+        style: {
           fill: "#fff",
           fontFamily: "Poppins, sans-serif",
-          fontSize: 16
-        }
+          fontSize: 16,
+        },
       },
-      style:{
+      style: {
         fill: "#fff",
-      }
-    }  as const,
+      },
+    } as const,
     animation: {
       appear: {
-        animation: 'path-in',
+        animation: "path-in",
         duration: 2000,
       },
     },
-    color: ['#66FFE3', '#FEF756', '#A219CE'],
+    color: ["#66FFE3", "#FEF756", "#A219CE"],
   };
- 
+
   return <Line {...config} />;
-}
+};
 
 export default LineGraph;

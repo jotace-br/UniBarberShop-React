@@ -1,4 +1,5 @@
 import React from "react";
+
 import { FaEllipsisV, FaChevronRight } from "react-icons/fa";
 import {
   Card,
@@ -27,22 +28,25 @@ import { Icon } from "@iconify/react";
 import cartArrowDown from "@iconify/icons-mdi/cart-arrow-down";
 import currencyUsd from "@iconify/icons-mdi/currency-usd";
 import walletOutline from "@iconify/icons-mdi/wallet-outline";
+
 import { useFetch } from "../../hooks/useFetch";
+import { useUser } from "../../services/user";
 
 const { Option } = Select;
 
 const Dashboard: React.FC = () => {
-  const { data: financial, error: financialError } = useFetch(
-    "financial-summary"
-  );
+  const {
+    data: { user },
+  } = useUser();
+  const { data: financial_summary } = useFetch("financial-summary");
+  const { data: balance } = useFetch(`/check-balance/${user.seller_id}`);
 
-  if (financialError) return <p>oops! um erro aconteceu.</p>;
-  if (!financial) return <p>Carregando...</p>;
+  if (!user) return <p>Carregando...</p>;
+  if (!financial_summary) return <p>Carregando...</p>;
+  if (!balance) return <p>Carregando...</p>;
 
   return (
     <>
-      {console.log(financial)}
-
       <Card>
         <CardHeader>
           <div>
@@ -94,7 +98,7 @@ const Dashboard: React.FC = () => {
                 <Icon icon={cartArrowDown} />
               </CardIcon>
               <SmallCardText>
-                <p>562</p>
+                <p>{financial_summary.financial_summary.sales || "..."}</p>
                 <p>Vendas efetuadas</p>
               </SmallCardText>
               <SmallCardAction>
@@ -106,7 +110,12 @@ const Dashboard: React.FC = () => {
                 <Icon icon={currencyUsd} />
               </CardIcon>
               <SmallCardText>
-                <p>562</p>
+                <p>
+                  {financial_summary.financial_summary.net_value.toLocaleString(
+                    "pt-BR",
+                    { style: "currency", currency: "BRL" }
+                  ) || "..."}
+                </p>
                 <p>Valor líquido</p>
               </SmallCardText>
               <SmallCardAction>
@@ -118,7 +127,12 @@ const Dashboard: React.FC = () => {
                 <Icon icon={walletOutline} />
               </CardIcon>
               <SmallCardText>
-                <p>562</p>
+                <p>
+                  {balance.balance.account_balance.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }) || "..."}
+                </p>
                 <p>Disponível para antecipar</p>
               </SmallCardText>
               <SmallCardAction>

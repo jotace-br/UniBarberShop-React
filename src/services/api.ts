@@ -1,12 +1,12 @@
 import axios from "axios";
-import { getCookieToken } from "./login";
+import { getToken } from "./login";
 
 const api = axios.create({
   baseURL: "https://pxpay-api-zhi4y.ondigitalocean.app/",
 });
 
 api.interceptors.request.use((config) => {
-  const token = getCookieToken();
+  const token = getToken();
   const headers = { ...config.headers };
 
   if (token) {

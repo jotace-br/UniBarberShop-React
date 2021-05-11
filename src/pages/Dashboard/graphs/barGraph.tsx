@@ -1,16 +1,23 @@
 import { Pie } from "@ant-design/charts";
 import React from "react";
+import { useFetch } from "../../../hooks/useFetch";
 export { GraphText } from "../style";
 
 const BarGraph: React.FC = () => {
+  const { data: allProducts } = useFetch("/list-all-by-producer-products");
+  const { data: activeProducts } = useFetch("/list-active-products");
+
+  if (!allProducts) return <p>Carregando...</p>;
+  if (!activeProducts) return <p>Carregando...</p>;
+
   var data = [
     {
       country: "Ativos",
-      value: 22,
+      value: activeProducts.length,
     },
     {
       country: "Inativos",
-      value: 5,
+      value: allProducts.total_records - activeProducts.length,
     },
   ];
   // var config = {
@@ -106,7 +113,7 @@ const BarGraph: React.FC = () => {
         fill: "#000",
       },
       autoRotate: false,
-      content: "{value}%",
+      content: "{value}",
     },
     legend: {
       position: "right",
