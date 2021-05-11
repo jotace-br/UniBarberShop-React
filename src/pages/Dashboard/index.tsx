@@ -38,6 +38,7 @@ const Dashboard: React.FC = () => {
 
   if (financialError) return <p>oops! um erro aconteceu.</p>;
   if (!financial) return <p>Carregando...</p>;
+
   return (
     <>
       {console.log(financial)}

@@ -1,11 +1,13 @@
-import { Form } from "antd";
 import React from "react";
+
+import api from "../../services/api";
+import { login } from "../../services/login";
+
+import { Form } from "antd";
 import Checkbox from "../../components/Checkbox";
 import { FormItem, Input, PasswordInput } from "../../components/Input";
 import { Link } from "../../components/Link";
 import { ButtonGoogle } from "../../components/SocialButton";
-import api from "../../services/api";
-import { login, TOKEN_USER } from "../../services/login";
 import {
   Background,
   Container,
@@ -20,16 +22,15 @@ import {
   ContainerSocial,
 } from "./style";
 
-// import { Container } from './styles';
 const Login: React.FC = () => {
   const [form] = Form.useForm();
+
   const onFinish = async (body: object) => {
     try {
-      const { data } = await api.post('/login', body)
-      await localStorage.setItem(TOKEN_USER, JSON.stringify(data.user))
-      await login(data.token)
+      const { data } = await api.post("/login", body);
+      await login(data.token, data.user);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   };
 
