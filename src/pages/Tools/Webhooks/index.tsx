@@ -1,5 +1,6 @@
+import { Space } from "antd";
 import React, { useState } from "react";
-
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { ButtonPrimary } from "../../../components/Button";
 import {
   Card,
@@ -8,13 +9,9 @@ import {
   CardSubTitle,
   CardTitle,
 } from "../../../components/Card";
-import { Tab, TabsPane } from "../../../components/Tabs";
-
-import { /* Pagination , */ Space } from "antd";
-import { Tag } from "../../../components/Tag";
 import Table, { TableButton } from "../../../components/Table";
-
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { Tab, TabsPane } from "../../../components/Tabs";
+import { Tag } from "../../../components/Tag";
 // import { Container } from './styles';
 
 const Api: React.FC = () => {

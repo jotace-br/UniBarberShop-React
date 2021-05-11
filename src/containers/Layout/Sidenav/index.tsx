@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-
-import { Dropdown, Menu } from "antd";
-import SidebarItems from "./SidebarItems";
-
-import { logout } from "../../../services/login"; // import { Container } from './styles';
-
 import menuOpen from "@iconify/icons-mdi/menu-open";
 import { Icon } from "@iconify/react";
+import { Dropdown, Menu } from "antd";
+import React, { useEffect, useState } from "react";
 import { FaEllipsisV } from "react-icons/fa";
-
+import { Link, useLocation } from "react-router-dom";
 import Pxpaylogo from "../../../assets/logo_principal.svg";
 import UserImg from "../../../assets/user.jpg";
-
+import { logout } from "../../../services/login"; // import { Container } from './styles';
+import SidebarItems from "./SidebarItems";
 import {
   Divider,
   Logo,

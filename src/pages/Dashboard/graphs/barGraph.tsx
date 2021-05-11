@@ -1,14 +1,15 @@
-import React from "react";
 import { Pie } from "@ant-design/charts";
+import React from "react";
+export { GraphText } from "../style";
 
 const BarGraph: React.FC = () => {
   var data = [
     {
-      country: "Produtos Ativos",
+      country: "Ativos",
       value: 22,
     },
     {
-      country: "Produtos Inativos",
+      country: "Inativos",
       value: 5,
     },
   ];
@@ -64,8 +65,7 @@ const BarGraph: React.FC = () => {
   //   color: ['#C284F3', '#7836AC', '#571D85'],
   // };
   var config = {
-    padding: 30,
-    height: 224,
+    height: 240,
     autoFit: true,
     appendPadding: 10,
     data: data,
@@ -75,22 +75,23 @@ const BarGraph: React.FC = () => {
     innerRadius: 0.64,
     pieStyle: {
       lineWidth: 0,
-      shadowBlur: 30,
+      shadowBlur: 15,
       shadowColor: "#C284F3",
     },
     statistic: {
+      title: false,
       content: {
-        customHtml: (container: any, view: any, datum: any, data: any)=>{
-          console.log(data)
+        customHtml: (container: any, view: any, datum: any, data: any) => {
           var total = 0;
-          for (var i = 0; i< data.length; i++){
-            total += data[i].value
+          for (var i = 0; i < data.length; i++) {
+            total += data[i].value;
           }
-          console.log(total)
-          return(
-            "<h1>aaa</h1>"
+          return (
+            "<GraphText style='color: #ffa'><p style='font-size: 20px'>" +
+            total +
+            "</p><br /><p style='font-size: 10px; margin-top: -28px; font-weight: 300'>Total de produtos</p></GraphText>"
           );
-        }
+        },
       },
     },
     label: {
@@ -102,30 +103,30 @@ const BarGraph: React.FC = () => {
         fontSize: 14,
         fontWeight: 700,
         opacity: 0.4,
-        fill: "#000"
+        fill: "#000",
       },
       autoRotate: false,
       content: "{value}%",
     },
     legend: {
-      position: 'right',
-      layout: 'vertical',
+      position: "right",
+      layout: "vertical",
       itemSpacing: 30,
-      background:{
-        style:{
-          fill: 'transparent',
-          stroke: 'transparent',
-        }
+      background: {
+        style: {
+          fill: "transparent",
+          stroke: "transparent",
+        },
       },
       marker: {
-        symbol: 'circle',
+        symbol: "circle",
       },
       itemName: {
-        style:{
+        style: {
           fill: "#fff",
           fontFamily: "Poppins, sans-serif",
-          fontSize: 16
-        }
+          fontSize: 16,
+        },
       },
     } as const,
     interactions: [

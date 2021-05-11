@@ -58,7 +58,7 @@ export const SubButtonContainer = styled.div`
 `
 export const ContainerForm = styled.div`
   width: 460px;
-  margin: 72px 60px;
+  margin: 75px 60px 0 60px;
 `
 export const Logo = styled(PxPayLogo)`
   margin-bottom: 60px;
