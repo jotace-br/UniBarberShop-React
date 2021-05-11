@@ -41,8 +41,6 @@ const Dashboard: React.FC = () => {
   const { data: financial_summary } = useFetch("financial-summary");
   const { data: balance } = useFetch(`/check-balance/${user.seller_id}`);
 
-  console.log(user.seller_id, financial_summary, balance);
-
   if (!user) return <p>Carregando...</p>;
   if (!financial_summary) return <p>Carregando...</p>;
   if (!balance) return <p>Carregando...</p>;
