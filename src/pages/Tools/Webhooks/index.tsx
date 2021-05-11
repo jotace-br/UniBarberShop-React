@@ -14,7 +14,7 @@ import { Tab, TabsPane } from "../../../components/Tabs";
 import { Tag } from "../../../components/Tag";
 // import { Container } from './styles';
 
-const Api: React.FC = () => {
+const Webhooks: React.FC = () => {
   const [isDataAvailable] = useState(false);
 
   const columns = [
@@ -246,4 +246,4 @@ const Api: React.FC = () => {
   );
 };
 
-export default Api;
+export default Webhooks;
