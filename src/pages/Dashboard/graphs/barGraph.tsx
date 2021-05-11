@@ -82,12 +82,10 @@ const BarGraph: React.FC = () => {
       title: false,
       content: {
         customHtml: (container: any, view: any, datum: any, data: any) => {
-          console.log(data);
           var total = 0;
           for (var i = 0; i < data.length; i++) {
             total += data[i].value;
           }
-          console.log(total);
           return (
             "<GraphText style='color: #ffa'><p style='font-size: 20px'>" +
             total +

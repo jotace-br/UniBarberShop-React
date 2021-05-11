@@ -1,52 +1,57 @@
 import React, { useEffect, useState } from "react";
-import {
-  StyledSider,
-  StyledMenu,
-  StyledSubMenu,
-  Logo,
-  Divider,
-  UserInfo,
-} from "./style";
-import Pxpaylogo from "../../../assets/logo_principal.svg";
-import SidebarItems from "./SidebarItems";
 import { Link, useLocation } from "react-router-dom";
 
-import { Icon } from '@iconify/react';
-
-
-import UserImg from "../../../assets/user.jpg";
-import { FaEllipsisV } from "react-icons/fa";
-import menuOpen from '@iconify/icons-mdi/menu-open';
 import { Dropdown, Menu } from "antd";
-import { logout } from "../../../services/login";
-// import { Container } from './styles';
-const Sidenav: React.FC = () => {
+import SidebarItems from "./SidebarItems";
+
+import { logout } from "../../../services/login"; // import { Container } from './styles';
+
+import menuOpen from "@iconify/icons-mdi/menu-open";
+import { Icon } from "@iconify/react";
+import { FaEllipsisV } from "react-icons/fa";
+
+import Pxpaylogo from "../../../assets/logo_principal.svg";
+import UserImg from "../../../assets/user.jpg";
+
+import {
+  Divider,
+  Logo,
+  StyledMenu,
+  StyledSider,
+  StyledSubMenu,
+  UserInfo,
+} from "./style";
+
+interface SidenavProps {
+  userInfo?: any;
+}
+
+const Sidenav = ({ userInfo: { user } }: SidenavProps) => {
   const location = useLocation();
   const [index] = useState<string>(location.pathname);
   const [selectedKey] = useState<string>(
     index.slice(0, index.lastIndexOf("/"))
   );
 
+  useEffect(() => {}, [location.pathname, selectedKey]);
+
   const ThreeDotMenu = (
     <Menu>
-      <Menu.Item danger onClick={logout}>Sair</Menu.Item>
+      <Menu.Item danger onClick={logout}>
+        Sair
+      </Menu.Item>
     </Menu>
   );
-  useEffect(() => {
-  }, [location.pathname, selectedKey]);
+
   return (
-    <StyledSider
-      collapsedWidth="80"
-    >
+    <StyledSider collapsedWidth="80">
       <Logo src={Pxpaylogo} alt="" />
       <StyledMenu
         defaultSelectedKeys={[`${index}`]}
         defaultOpenKeys={[`${selectedKey}`]}
         mode="inline"
       >
-        <StyledMenu.Item icon={<Icon icon={menuOpen} />}>
-          Menu
-        </StyledMenu.Item>
+        <StyledMenu.Item icon={<Icon icon={menuOpen} />}>Menu</StyledMenu.Item>
         {SidebarItems.map(({ isDrop, route, icon, name, labels }) => {
           return isDrop ? (
             <StyledSubMenu key={route} icon={icon} title={name}>
@@ -71,11 +76,18 @@ const Sidenav: React.FC = () => {
         </div>
       </UpgradeButton> */}
       <Divider />
+
       <UserInfo>
-        <img src={UserImg} alt="user" />
+        <img
+          src={user.avatar || UserImg}
+          alt="user"
+          style={{ objectFit: "cover" }}
+        />
         <div className="text-container">
-          <p>Jéssica Ramos</p>
-          <p>Administrador(a)</p>
+          <p>
+            {user.name} {user.last_name}
+          </p>
+          <p>{user.email}</p>
         </div>
         <Dropdown placement="bottomRight" overlay={ThreeDotMenu}>
           <FaEllipsisV />
