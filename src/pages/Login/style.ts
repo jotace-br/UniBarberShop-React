@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Background = styled.div`
   background-color: ${props=>props.theme.colors.black100};
-  height: 100vh;
+  min-height: 100vh;
   width: 60vw;
   display: flex;
   flex-direction: column;
@@ -41,7 +41,7 @@ export const FormLogin = styled.div`
   display: flex;
   justify-content: center;
   background-color: ${props=>props.theme.colors.black100};
-  height: 100vh;
+  min-height: 100vh;
   width: 40vw;
   box-shadow: 0px 0px 250px 0px rgba(0,0,0,.5);
   border-left: 8px solid ${props=>props.theme.colors.black90};
