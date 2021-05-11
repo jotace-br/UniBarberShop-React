@@ -10,7 +10,7 @@ import {
 } from "../../../components/Card";
 import { Tab, TabsPane } from "../../../components/Tabs";
 
-import { Pagination, Space } from "antd";
+import { /* Pagination , */ Space } from "antd";
 import { Tag } from "../../../components/Tag";
 import Table, { TableButton } from "../../../components/Table";
 
