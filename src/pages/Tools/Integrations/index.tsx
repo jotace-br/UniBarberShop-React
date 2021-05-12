@@ -9,7 +9,7 @@ import {
   CardSubTitle,
   CardTitle,
 } from "../../../components/Card";
-import { Tab, TabsPane } from "../../../components/Tabs";
+import { TabCard, TabsPane } from "../../../components/Tabs";
 
 // import { Container } from './styles';
 
@@ -29,7 +29,7 @@ const Integrations: React.FC = () => {
       </CardHeader>
 
       <CardContent>
-        <Tab>
+        <TabCard>
           <TabsPane tab="Disponíveis" key="1">
             <h3>Plataformas ativas</h3>
             <h4>
@@ -98,7 +98,7 @@ const Integrations: React.FC = () => {
               </section>
             </Card>
           </TabsPane>
-        </Tab>
+        </TabCard>
       </CardContent>
     </Card>
   );
