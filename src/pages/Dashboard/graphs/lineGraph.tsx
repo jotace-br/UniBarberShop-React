@@ -1,22 +1,60 @@
+import React, { useEffect, useState } from "react";
+import { useFetch } from "../../../hooks/useFetch";
+
 import { Line } from "@ant-design/charts";
-import React from "react";
+
 import data from "./graphData.json";
 
-const LineGraph: React.FC = () => {
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   asyncFetch();
-  // }, []);
-  // const asyncFetch = () => {
-  //   fetch('https://gw.alipayobjects.com/os/bmw-prod/e00d52f4-2fa6-47ee-a0d7-105dd95bde20.json')
-  //     .then((response) => response.json())
-  //     .then((json) => setData(json))
-  //     .catch((error) => {
-  //       console.log('fetch data failed', error);
-  //     });
-  // };
+interface LineGraphProps {
+  rangePickerDate?: any;
+  isRangePickerOpen?: boolean;
+}
+
+const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
+  const RPChoosenDate = [
+    rangePickerDate[0]._d.toDateString(),
+    rangePickerDate[1]._d.toDateString(),
+  ];
+
+  const initialRPValue = rangePickerDate;
+  const [allRangePickerDate, setAllRangePickerDate] = useState(initialRPValue);
+  const [isDateReady, setIsDateReady] = useState(false);
+
+  const { data: graphicData } = useFetch(
+    `/financial-chart/${
+      isDateReady ? allRangePickerDate[0] : RPChoosenDate[0]
+    }/${isDateReady ? allRangePickerDate[1] : RPChoosenDate[1]}`
+  );
+
+  useEffect(() => {
+    const filterByGivenDate = () => {
+      if (!isRangePickerOpen && rangePickerDate[1] !== undefined) {
+        setAllRangePickerDate(
+          rangePickerDate?.map((dates: any) => dates._d.toDateString())
+        );
+        setIsDateReady(true);
+      }
+      setIsDateReady(false);
+    };
+
+    filterByGivenDate();
+  }, [isRangePickerOpen, rangePickerDate]);
+
+  console.log(allRangePickerDate);
+
+  if (!graphicData) return <p>Carregando métodos de pagamento...</p>;
+
+  const getData = () => {
+    // console.log(graphicData);
+    // const billetData = graphicData.billet;
+    // const creditCardData = graphicData.credit;
+
+    // return [...billetData, ...creditCardData];
+    return data;
+  };
+
   const config = {
-    data: data,
+    data: getData(),
     autoFit: true,
     xField: "month",
     yField: "amount",
