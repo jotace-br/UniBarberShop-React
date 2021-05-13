@@ -1,27 +1,27 @@
-import React from "react";
-
-import api from "../../services/api";
-import { login } from "../../services/login";
-
 import { Form } from "antd";
+import React from "react";
+import Illustration from "../../assets/login.svg";
 import Checkbox from "../../components/Checkbox";
 import { FormItem, Input, PasswordInput } from "../../components/Input";
 import { Link } from "../../components/Link";
 import { ButtonGoogle } from "../../components/SocialButton";
+import api from "../../services/api";
+import { login } from "../../services/login";
 import {
   Background,
   Container,
   ContainerForm,
+  ContainerSocial,
+  DividerOr,
   FormLogin,
+  Heading,
+  HeadingForm,
+  IllustrationLogin,
   LoginButton,
   Logo,
-  SubButtonContainer,
-  HeadingForm,
-  DividerOr,
   RegistrationLabel,
-  ContainerSocial,
+  SubButtonContainer,
 } from "./style";
-
 const Login: React.FC = () => {
   const [form] = Form.useForm();
 
@@ -36,7 +36,17 @@ const Login: React.FC = () => {
 
   return (
     <Container>
-      <Background />
+      <Background>
+        <Heading>
+          <p>A FORMA MAIS PODEROSA DE</p>
+          <p>Gestão de vendas online</p>
+          <p>
+            Com a Pxpay é fácil vender, comprar e indicar compradores online de
+            maneira fácil, prática e segura!
+          </p>
+        </Heading>
+        <IllustrationLogin src={Illustration} />
+      </Background>
       <FormLogin>
         <ContainerForm>
           <Logo></Logo>

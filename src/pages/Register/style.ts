@@ -22,8 +22,8 @@ export const IllustrationLogin = styled.img`
   position: fixed;
 `;
 export const Heading = styled.div`
-  text-align: center;
   position: fixed;
+  text-align: center;
   top: 138px;
   z-index: 999;
   width: 610px;
@@ -61,6 +61,7 @@ export const FormLogin = styled.div`
 
 export const LoginButton = styled(ButtonPrimary)`
   width: 100%;
+  margin-bottom: 113px;
 `;
 
 export const SubButtonContainer = styled.div`
@@ -86,7 +87,7 @@ export const HeadingForm = styled.div`
     color: ${(props) => props.theme.colors.black30} !important;
   }
 `;
-export const DividerOr = styled.div`
+export const DividerIcon = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -101,6 +102,13 @@ export const DividerOr = styled.div`
   p {
     color: ${(props) => props.theme.colors.black40} !important;
     font: ${(props) => props.theme.text.subtitle};
+    margin-right: 10px;
+    width: 161px;
+    text-align: center;
+  }
+  svg {
+    color: ${(props) => props.theme.colors.black30} !important;
+    margin: 0 10px;
   }
 `;
 export const RegistrationLabel = styled.p`
