@@ -68,10 +68,10 @@ const Login: React.FC = () => {
               <LoginButton htmlType="submit">Entrar</LoginButton>
               <SubButtonContainer>
                 <Checkbox>Lembrar de mim</Checkbox>
-                <Link>Esqueci minha senha</Link>
+                <Link to="/">Esqueci minha senha</Link>
               </SubButtonContainer>
               <RegistrationLabel>
-                Você é novo por aqui? <Link>Cadastre-se</Link>
+                Você é novo por aqui? <Link to="/register">Cadastre-se</Link>
               </RegistrationLabel>
               <DividerOr>
                 <hr />

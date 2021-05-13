@@ -52,6 +52,7 @@ export const Illustration = styled(LoginIllustration)`
 export const FormLogin = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
   background-color: ${(props) => props.theme.colors.black100};
   min-height: 100vh;
   width: 40vw;
@@ -102,23 +103,25 @@ export const DividerIcon = styled.div`
   p {
     color: ${(props) => props.theme.colors.black40} !important;
     font: ${(props) => props.theme.text.subtitle};
-    margin-right: 10px;
+    margin-right: 5px;
     width: 161px;
     text-align: center;
   }
   svg {
     color: ${(props) => props.theme.colors.black30} !important;
-    margin: 0 10px;
+    margin: 0 5px;
+    font-size: 28px;
   }
 `;
 export const RegistrationLabel = styled.p`
   margin-top: 50px;
+  margin-bottom: 24px;
   width: 100%;
   text-align: center;
   color: ${(props) => props.theme.colors.black10} !important;
-  font: ${(props) => props.theme.text.text_small};
+  font: ${(props) => props.theme.text.subtitle};
   a {
-    font: ${(props) => props.theme.text.text_small_bold};
+    font: ${(props) => props.theme.text.subtitle_bold};
   }
 `;
 export const ContainerSocial = styled.div`
@@ -128,5 +131,19 @@ export const ContainerSocial = styled.div`
     margin-bottom: 24px;
     color: ${(props) => props.theme.colors.black30} !important;
     font: ${(props) => props.theme.text.subtitle};
+  }
+`;
+export const Divider = styled.hr`
+  width: 100%;
+  margin: 40px 0;
+  color: ${(props) => props.theme.colors.black60} !important;
+  background-color: ${(props) => props.theme.colors.black60} !important;
+  border-color: ${(props) => props.theme.colors.black60} !important;
+`;
+export const InfoFooter = styled.div`
+  text-align: center;
+  padding: 20px 0;
+  p {
+    color: ${(props) => props.theme.colors.black30} !important;
   }
 `;

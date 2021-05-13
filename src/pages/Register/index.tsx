@@ -1,21 +1,26 @@
 import { Form } from "antd";
 import React from "react";
-import { FaAddressBook } from "react-icons/fa";
+import { IoIosLogIn, IoMdBusiness } from "react-icons/io";
+import { RiAccountBoxLine } from "react-icons/ri";
 import Illustration from "../../assets/login.svg";
 import { FormItem, Input, PasswordInput } from "../../components/Input";
+import { Link } from "../../components/Link";
 import api from "../../services/api";
 import { login } from "../../services/login";
 import {
   Background,
   Container,
   ContainerForm,
+  Divider,
   DividerIcon,
   FormLogin,
   Heading,
   HeadingForm,
   IllustrationLogin,
+  InfoFooter,
   LoginButton,
   Logo,
+  RegistrationLabel,
 } from "./style";
 const Register: React.FC = () => {
   const [form] = Form.useForm();
@@ -51,7 +56,7 @@ const Register: React.FC = () => {
           <Form form={form} layout="vertical" onFinish={onFinish}>
             <DividerIcon>
               <hr />
-              <FaAddressBook />
+              <RiAccountBoxLine />
               <p>Dados Pessoais</p>
               <hr />
             </DividerIcon>
@@ -64,7 +69,7 @@ const Register: React.FC = () => {
 
             <DividerIcon>
               <hr />
-              <FaAddressBook />
+              <IoIosLogIn />
               <p>Dados de acesso</p>
               <hr />
             </DividerIcon>
@@ -81,7 +86,7 @@ const Register: React.FC = () => {
 
             <DividerIcon>
               <hr />
-              <FaAddressBook />
+              <IoMdBusiness />
               <p>Dados da empresa</p>
               <hr />
             </DividerIcon>
@@ -95,12 +100,17 @@ const Register: React.FC = () => {
             <FormItem name="identification" label="CPF ou CNPJ">
               <Input placeholder="Digite sua senha de acesso..." />
             </FormItem>
+            <Divider />
+            <RegistrationLabel>
+              Ao se cadastrar, você concorda com os{" "}
+              <Link to="">Termos de Uso</Link> da PXPay.
+            </RegistrationLabel>
             <LoginButton htmlType="submit">Cadastrar</LoginButton>
-            {/* <RegistrationLabel>
-                Você é novo por aqui? <Link>Cadastre-se</Link>
-              </RegistrationLabel> */}
           </Form>
         </ContainerForm>
+        <InfoFooter>
+          <p>Pxpay © 2021 by XGrow - Todos os Direitos Reservados</p>
+        </InfoFooter>
       </FormLogin>
     </Container>
   );
