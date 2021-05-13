@@ -69,7 +69,17 @@ const Register: React.FC = () => {
               <p>Dados Pessoais</p>
               <hr />
             </DividerIcon>
-            <FormItem name="name" label="Nome completo">
+            <FormItem
+              name="name"
+              label="Nome completo"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, insira seu nome completo.",
+                },
+              ]}
+              hasFeedback
+            >
               <Input
                 placeholder="Digite seu nome completo..."
                 maxLength={100}
@@ -101,10 +111,41 @@ const Register: React.FC = () => {
             <FormItem name="email" label="E-mail">
               <Input placeholder="Digite seu e-mail..." />
             </FormItem>
-            <FormItem name="password" label="Senha">
+            <FormItem
+              name="password"
+              label="Senha"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, digite uam senha.",
+                },
+              ]}
+              hasFeedback
+            >
               <PasswordInput placeholder="Digite sua senha..." />
             </FormItem>
-            <FormItem name="password_check" label="Confirme sua senha">
+            <FormItem
+              name="password_check"
+              label="Confirme sua senha"
+              dependencies={["password"]}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, confirme sua senha.",
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("password") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error("As duas senhas digitadas não conferem.")
+                    );
+                  },
+                }),
+              ]}
+            >
               <PasswordInput placeholder="Digite sua senha..." />
             </FormItem>
 
