@@ -5,6 +5,7 @@ import { RiAccountBoxLine } from "react-icons/ri";
 import Illustration from "../../assets/register.svg";
 import { FormItem, Input, PasswordInput } from "../../components/Input";
 import { Link } from "../../components/Link";
+import Select from "../../components/Select";
 import api from "../../services/api";
 import { login } from "../../services/login";
 import {
@@ -22,6 +23,9 @@ import {
   Logo,
   RegistrationLabel,
 } from "./style";
+
+const { Option } = Select;
+
 const Register: React.FC = () => {
   const [form] = Form.useForm();
 
@@ -61,10 +65,10 @@ const Register: React.FC = () => {
               <hr />
             </DividerIcon>
             <FormItem name="email" label="Nome completo">
-              <Input placeholder="Digite seu email de acesso..." />
+              <Input placeholder="Digite seu nome completo..." />
             </FormItem>
             <FormItem name="phone" label="Telefone">
-              <PasswordInput placeholder="Digite sua senha de acesso..." />
+              <Input placeholder="Digite seu número de telefone..." />
             </FormItem>
 
             <DividerIcon>
@@ -75,13 +79,13 @@ const Register: React.FC = () => {
             </DividerIcon>
 
             <FormItem name="email" label="E-mail">
-              <Input placeholder="Digite sua senha de acesso..." />
+              <Input placeholder="Digite seu e-mail..." />
             </FormItem>
             <FormItem name="password" label="Senha">
-              <Input placeholder="Digite sua senha de acesso..." />
+              <PasswordInput placeholder="Digite sua senha..." />
             </FormItem>
             <FormItem name="password_check" label="Confirme sua senha">
-              <Input placeholder="Digite sua senha de acesso..." />
+              <PasswordInput placeholder="Digite sua senha..." />
             </FormItem>
 
             <DividerIcon>
@@ -92,13 +96,18 @@ const Register: React.FC = () => {
             </DividerIcon>
 
             <FormItem name="company_name" label="Nome da empresa">
-              <Input placeholder="Digite sua senha de acesso..." />
+              <Input placeholder="Digite o nome da sua empresa  ..." />
             </FormItem>
             <FormItem name="occupation" label="Área de atuação">
-              <Input placeholder="Digite sua senha de acesso..." />
+              <Select placeholder="Selecione uma opção">
+                <Option value="1">Marketing Digital</Option>
+                <Option value="2">Empreendedorismo</Option>
+                <Option value="3">Gestão de Tráfego</Option>
+                <Option value="4">Desenvolvimento pessoal</Option>
+              </Select>
             </FormItem>
             <FormItem name="identification" label="CPF ou CNPJ">
-              <Input placeholder="Digite sua senha de acesso..." />
+              <Input placeholder="Digite seu CPF ou CNPJ..." />
             </FormItem>
             <Divider />
             <RegistrationLabel>
