@@ -2,7 +2,7 @@ import { Form } from "antd";
 import React from "react";
 import { IoIosLogIn, IoMdBusiness } from "react-icons/io";
 import { RiAccountBoxLine } from "react-icons/ri";
-import Illustration from "../../assets/login.svg";
+import Illustration from "../../assets/register.svg";
 import { FormItem, Input, PasswordInput } from "../../components/Input";
 import { Link } from "../../components/Link";
 import api from "../../services/api";

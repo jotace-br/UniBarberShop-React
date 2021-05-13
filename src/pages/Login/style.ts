@@ -20,6 +20,8 @@ export const Background = styled.div`
 export const IllustrationLogin = styled.img`
   height: 100vh;
   position: fixed;
+  width: 860px;
+  object-fit: fill;
 `;
 export const Heading = styled.div`
   text-align: center;

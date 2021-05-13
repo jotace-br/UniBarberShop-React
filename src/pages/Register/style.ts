@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ReactComponent as LoginIllustration } from "../../assets/background_login.svg";
 import { ReactComponent as PxPayLogo } from "../../assets/logo_principal.svg";
 import { ButtonPrimary } from "../../components/Button";
 
@@ -20,6 +19,8 @@ export const Background = styled.div`
 export const IllustrationLogin = styled.img`
   height: 100vh;
   position: fixed;
+  width: 860px;
+  object-fit: cover;
 `;
 export const Heading = styled.div`
   position: fixed;
@@ -44,11 +45,6 @@ export const Heading = styled.div`
   }
 `;
 
-export const Illustration = styled(LoginIllustration)`
-  width: 687px;
-  height: 848px;
-  margin-top: 1;
-`;
 export const FormLogin = styled.div`
   display: flex;
   justify-content: center;
