@@ -1,4 +1,5 @@
 import history from "../routes/history";
+import api from "./api";
 
 export const TOKEN_KEY = "@pxpay:jwt";
 export const TOKEN_USER = "@pxpay:user";
@@ -17,6 +18,16 @@ export const logout = () => {
 
   window.location.reload();
   history.push("/login");
+};
+
+export const authTest = async () => {
+  const response = await api.get("/isAuth");
+  if (!response.data) {
+    localStorage.removeItem(TOKEN_KEY);
+    window.location.reload();
+    history.push("/login");
+  }
+  return response.data;
 };
 
 export const isAuthenticated = () => {

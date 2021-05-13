@@ -58,11 +58,42 @@ const Login: React.FC = () => {
             </p>
           </HeadingForm>
           <Form form={form} layout="vertical" onFinish={onFinish}>
-            <FormItem name="email" label="Email">
-              <Input placeholder="Digite seu email de acesso..." />
+            <FormItem
+              name="email"
+              label="Email"
+              rules={[
+                {
+                  type: "email",
+                  message: "O E-mail digitado não é um e-mail válido.",
+                },
+                {
+                  required: true,
+                  message: "Por favor, digite seu e-mail.",
+                },
+              ]}
+            >
+              <Input
+                placeholder="Digite seu email de acesso..."
+                maxLength={100}
+                required
+              />
             </FormItem>
-            <FormItem name="password" label="Senha">
-              <PasswordInput placeholder="Digite sua senha de acesso..." />
+            <FormItem
+              name="password"
+              label="Senha"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, insira sua senha.",
+                },
+              ]}
+              hasFeedback
+            >
+              <PasswordInput
+                placeholder="Digite sua senha de acesso..."
+                maxLength={150}
+                required
+              />
             </FormItem>
             <FormItem>
               <LoginButton htmlType="submit">Entrar</LoginButton>

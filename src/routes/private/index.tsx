@@ -1,9 +1,10 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import Layout from "../../containers/Layout";
-import { isAuthenticated } from "../../services/login";
+import { isAuthenticated, authTest } from "../../services/login";
 
 const PrivateRoute = ({ component, title, ...rest }: any) => {
+  authTest();
   const routeComponent = (props: any) =>
     isAuthenticated() ? (
       React.createElement(component, props, title)

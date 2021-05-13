@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { FaEllipsisV, FaChevronRight } from "react-icons/fa";
 import {
@@ -31,19 +31,45 @@ import walletOutline from "@iconify/icons-mdi/wallet-outline";
 
 import { useFetch } from "../../hooks/useFetch";
 import { useUser } from "../../services/user";
+import moment from "moment";
 
 const { Option } = Select;
 
 const Dashboard: React.FC = () => {
+  const dateFormat = "DD/MM/YY";
+
+  const [rangePickerValue, setRangePickerValue] = useState();
+  const [rangePickerDates, setRangePickerDates] = useState<any>([
+    moment(moment().add(-1, "months"), dateFormat),
+    moment(moment(), dateFormat),
+  ]);
+  const [rangePickerHackValue, setRangePickerHackValue] = useState<any>();
+  const [isRangePickerOpen, setIsRangePickerOpen] = useState(false);
+
   const {
     data: { user },
   } = useUser();
   const { data: financial_summary } = useFetch("financial-summary");
   const { data: balance } = useFetch(`/check-balance/${user.seller_id}`);
 
-  if (!user) return <p>Carregando...</p>;
-  if (!financial_summary) return <p>Carregando...</p>;
-  if (!balance) return <p>Carregando...</p>;
+  const onChangeRangePicker = (e: any) => {
+    setRangePickerValue(e);
+  };
+
+  const onCalendarChangeRangePicker = (e: any) => {
+    setRangePickerDates(e);
+  };
+
+  const onOpenChangeRangePicker = (open: boolean) => {
+    if (open) {
+      setIsRangePickerOpen(true);
+      setRangePickerHackValue([]);
+      setRangePickerDates([]);
+    } else {
+      setRangePickerHackValue(undefined);
+      setIsRangePickerOpen(false);
+    }
+  };
 
   return (
     <>
@@ -58,7 +84,14 @@ const Dashboard: React.FC = () => {
           <div />
           <FilterContainer>
             <p>Fitrar:</p>
-            <Rangepicker />
+            <Rangepicker
+              hackValue={rangePickerHackValue}
+              dates={rangePickerDates}
+              value={rangePickerValue}
+              onChangeRP={onChangeRangePicker}
+              onCalendarChangeRP={onCalendarChangeRangePicker}
+              onOpenChangeRP={onOpenChangeRangePicker}
+            />
           </FilterContainer>
           <ActionsBtn>
             <FaEllipsisV />
@@ -66,7 +99,10 @@ const Dashboard: React.FC = () => {
         </CardHeader>
         <CardContent>
           {/* <Line type="line" options={options} data={data} /> */}
-          <LineGraph />
+          <LineGraph
+            rangePickerDate={rangePickerDates}
+            isRangePickerOpen={isRangePickerOpen}
+          />
         </CardContent>
         <ExportContainer>
           <p>Exportar em:</p>
@@ -98,7 +134,11 @@ const Dashboard: React.FC = () => {
                 <Icon icon={cartArrowDown} />
               </CardIcon>
               <SmallCardText>
-                <p>{financial_summary.financial_summary.sales || "..."}</p>
+                <p>
+                  {!financial_summary
+                    ? "..."
+                    : financial_summary.financial_summary.sales}
+                </p>
                 <p>Vendas efetuadas</p>
               </SmallCardText>
               <SmallCardAction>
@@ -111,10 +151,12 @@ const Dashboard: React.FC = () => {
               </CardIcon>
               <SmallCardText>
                 <p>
-                  {financial_summary.financial_summary.net_value.toLocaleString(
-                    "pt-BR",
-                    { style: "currency", currency: "BRL" }
-                  ) || "..."}
+                  {!financial_summary
+                    ? "..."
+                    : financial_summary.financial_summary.net_value.toLocaleString(
+                        "pt-BR",
+                        { style: "currency", currency: "BRL" }
+                      )}
                 </p>
                 <p>Valor líquido</p>
               </SmallCardText>
@@ -128,10 +170,12 @@ const Dashboard: React.FC = () => {
               </CardIcon>
               <SmallCardText>
                 <p>
-                  {balance.balance.account_balance.toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  }) || "..."}
+                  {!balance
+                    ? "..."
+                    : balance.balance.account_balance.toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      })}
                 </p>
                 <p>Disponível para antecipar</p>
               </SmallCardText>

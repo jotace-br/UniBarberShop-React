@@ -1,13 +1,17 @@
-import { Form } from "antd";
 import React from "react";
+import MaskedInput from "antd-mask-input";
+
+import { Form } from "antd";
+// import api from "../../services/api";
+
 import { IoIosLogIn, IoMdBusiness } from "react-icons/io";
 import { RiAccountBoxLine } from "react-icons/ri";
 import Illustration from "../../assets/register.svg";
+
 import { FormItem, Input, PasswordInput } from "../../components/Input";
 import { Link } from "../../components/Link";
 import Select from "../../components/Select";
-import api from "../../services/api";
-import { login } from "../../services/login";
+
 import {
   Background,
   Container,
@@ -31,8 +35,9 @@ const Register: React.FC = () => {
 
   const onFinish = async (body: object) => {
     try {
-      const { data } = await api.post("/login", body);
-      await login(data.token, data.user);
+      console.log(body);
+      // const { data } = await api.post("/register", body);
+      // await login(data.token, data.user);
     } catch (err) {
       console.log(err);
     }
@@ -64,11 +69,36 @@ const Register: React.FC = () => {
               <p>Dados Pessoais</p>
               <hr />
             </DividerIcon>
-            <FormItem name="email" label="Nome completo">
-              <Input placeholder="Digite seu nome completo..." />
+            <FormItem
+              name="name"
+              label="Nome completo"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, insira seu nome completo.",
+                },
+              ]}
+              hasFeedback
+            >
+              <Input
+                placeholder="Digite seu nome completo..."
+                maxLength={100}
+              />
             </FormItem>
             <FormItem name="phone" label="Telefone">
-              <Input placeholder="Digite seu número de telefone..." />
+              <MaskedInput
+                mask="(11) 11111-1111"
+                required
+                style={{
+                  width: "100%",
+                  height: "36px",
+                  borderRadius: "6px",
+                  backgroundColor: "#2C2C2C",
+                  border: "none",
+                  color: "#E8E8E8",
+                }}
+              />
+              {/* <Input placeholder="Digite seu número de telefone..." /> */}
             </FormItem>
 
             <DividerIcon>
@@ -81,10 +111,41 @@ const Register: React.FC = () => {
             <FormItem name="email" label="E-mail">
               <Input placeholder="Digite seu e-mail..." />
             </FormItem>
-            <FormItem name="password" label="Senha">
+            <FormItem
+              name="password"
+              label="Senha"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, digite uam senha.",
+                },
+              ]}
+              hasFeedback
+            >
               <PasswordInput placeholder="Digite sua senha..." />
             </FormItem>
-            <FormItem name="password_check" label="Confirme sua senha">
+            <FormItem
+              name="password_check"
+              label="Confirme sua senha"
+              dependencies={["password"]}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, confirme sua senha.",
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("password") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error("As duas senhas digitadas não conferem.")
+                    );
+                  },
+                }),
+              ]}
+            >
               <PasswordInput placeholder="Digite sua senha..." />
             </FormItem>
 

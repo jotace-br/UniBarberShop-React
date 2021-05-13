@@ -1,35 +1,61 @@
 import { Line } from "@ant-design/charts";
 import React from "react";
+// import { useFetch } from "../../../hooks/useFetch";
 
 // import data from './graphData.json'
 
 const OneLineGraph: React.FC = () => {
-  var data = [
-    {
-      month: "Janeiro",
-      quantidade: 16,
-      line: "Vendas",
-    },
-    {
-      month: "Fevereiro",
-      quantidade: 78,
-      line: "Vendas",
-    },
-    {
-      month: "Março",
-      quantidade: 35,
-      line: "Vendas",
-    },
-    {
-      month: "Abril",
-      quantidade: 128,
-      line: "Vendas",
-    },
-  ];
+  // const firstDayOfTheYear = new Date(
+  //   new Date().getFullYear(),
+  //   0,
+  //   1
+  // ).toDateString();
+
+  // const currentDate = new Date().toDateString();
+
+  // const { data: salesData } = useFetch(
+  //   `/financial-chart-sales/${firstDayOfTheYear}/${currentDate}`
+  // );
+
+  // if (!salesData) return <p>Carregando visão geral de vendas...</p>;
+
+  const getData = () => {
+    const data = [
+      {
+        month: 0,
+        amount: 456,
+      },
+      {
+        month: 1,
+        amount: 31241,
+      },
+      {
+        month: 2,
+        amount: 412531,
+      },
+      {
+        month: 3,
+        amount: 3186,
+      },
+      {
+        month: 4,
+        amount: 867,
+      },
+      {
+        month: 5,
+        amount: 894375,
+      },
+    ];
+
+    // console.log(salesData);
+    // return salesData.sales;
+    return data;
+  };
+
   const config = {
-    data: data,
+    data: getData(),
     xField: "month",
-    yField: "quantidade",
+    yField: "amount",
     width: 500,
     height: 224,
     autoFit: true,
