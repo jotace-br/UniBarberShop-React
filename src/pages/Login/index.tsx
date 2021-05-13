@@ -59,10 +59,18 @@ const Login: React.FC = () => {
           </HeadingForm>
           <Form form={form} layout="vertical" onFinish={onFinish}>
             <FormItem name="email" label="Email">
-              <Input placeholder="Digite seu email de acesso..." />
+              <Input
+                placeholder="Digite seu email de acesso..."
+                maxLength={100}
+                required
+              />
             </FormItem>
             <FormItem name="password" label="Senha">
-              <PasswordInput placeholder="Digite sua senha de acesso..." />
+              <PasswordInput
+                placeholder="Digite sua senha de acesso..."
+                maxLength={150}
+                required
+              />
             </FormItem>
             <FormItem>
               <LoginButton htmlType="submit">Entrar</LoginButton>
