@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as LoginIllustration } from "../../assets/background_login.svg";
-import { ReactComponent as PxPayLogo } from "../../assets/logo_principal.svg";
-import { ButtonPrimary } from "../../components/Button";
+import { ReactComponent as LoginIllustration } from "../../../assets/background_login.svg";
+import { ReactComponent as PxPayLogo } from "../../../assets/logo_principal.svg";
+import { ButtonPrimary } from "../../../components/Button";
 
 export const Container = styled.div`
   display: grid;
@@ -22,6 +22,13 @@ export const IllustrationLogin = styled.img`
   position: fixed;
   width: 860px;
   object-fit: cover;
+`;
+export const InfoFooter = styled.div`
+  text-align: center;
+  padding: 20px 0;
+  p {
+    color: ${(props) => props.theme.colors.black30} !important;
+  }
 `;
 export const Heading = styled.div`
   text-align: center;
@@ -53,7 +60,8 @@ export const Illustration = styled(LoginIllustration)`
 `;
 export const FormLogin = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: ${(props) => props.theme.colors.black100};
   min-height: 100vh;
   width: 40vw;

@@ -6,6 +6,7 @@ import Dashboard from "../pages/Dashboard";
 import Emails from "../pages/Emails";
 import Financial from "../pages/Financial";
 import Login from "../pages/Login";
+import ForgotPassword from "../pages/Login/ForgotPassword";
 import Products from "../pages/Products";
 import Register from "../pages/Register";
 import Registrations from "../pages/Registrations";
@@ -22,6 +23,7 @@ import PrivateRoute from "./private";
 const Routes: React.FC = () => (
   <Switch>
     <GuestRoute exact path="/login" component={Login} />
+    <GuestRoute exact path="/forgot-password" component={ForgotPassword} />
     <GuestRoute exact path="/register" component={Register} />
     <GuestRoute exact path="/cadastro" component={Dashboard} />
     <PrivateRoute exact path="/dashboard" component={Dashboard} />
