@@ -1,5 +1,6 @@
 import React from "react";
-
+import { FaFacebook } from "react-icons/fa";
+import { RiLayoutGridFill } from "react-icons/ri";
 import { ButtonPrimary } from "../../../components/Button";
 import {
   Card,
@@ -8,12 +9,11 @@ import {
   CardSubTitle,
   CardTitle,
 } from "../../../components/Card";
-import { Tab, TabsPane } from "../../../components/Tabs";
-import { RiLayoutGridFill } from "react-icons/ri";
-import { FaFacebook } from "react-icons/fa";
+import { TabCard, TabsPane } from "../../../components/Tabs";
+
 // import { Container } from './styles';
 
-const Api: React.FC = () => {
+const Integrations: React.FC = () => {
   return (
     <Card>
       <CardHeader>
@@ -29,7 +29,7 @@ const Api: React.FC = () => {
       </CardHeader>
 
       <CardContent>
-        <Tab>
+        <TabCard>
           <TabsPane tab="Disponíveis" key="1">
             <h3>Plataformas ativas</h3>
             <h4>
@@ -98,10 +98,10 @@ const Api: React.FC = () => {
               </section>
             </Card>
           </TabsPane>
-        </Tab>
+        </TabCard>
       </CardContent>
     </Card>
   );
 };
 
-export default Api;
+export default Integrations;

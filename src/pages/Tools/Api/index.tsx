@@ -1,5 +1,7 @@
+import { Typography } from "antd";
 import React, { useState } from "react";
-
+import { FaFileAlt } from "react-icons/fa";
+import { IoReload } from "react-icons/io5";
 import { ButtonPrimary } from "../../../components/Button";
 import {
   Card,
@@ -8,13 +10,8 @@ import {
   CardSubTitle,
   CardTitle,
 } from "../../../components/Card";
+import { TabCard, TabsPane } from "../../../components/Tabs";
 import { TextWithIcon } from "../../../components/TextWithIcon";
-import { Tab, TabsPane } from "../../../components/Tabs";
-
-import { Typography } from "antd";
-
-import { IoReload } from "react-icons/io5";
-import { FaFileAlt } from "react-icons/fa";
 
 // import { Container } from './styles';
 const { Text } = Typography;
@@ -84,11 +81,11 @@ const Api: React.FC = () => {
       </CardHeader>
 
       <CardContent>
-        <Tab>
+        <TabCard>
           <TabsPane tab="Token de acesso" key="1">
             {noTokenYetMessage()}
           </TabsPane>
-        </Tab>
+        </TabCard>
       </CardContent>
     </Card>
   );

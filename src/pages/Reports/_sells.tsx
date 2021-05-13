@@ -1,36 +1,49 @@
-import { Space } from "antd";
+import { Menu, Space } from "antd";
 import React, { useState } from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
-import { ButtonPrimary } from "../../../components/Button";
+import { FaEllipsisV } from "react-icons/fa";
+import {
+  ButtonDropdown,
+  ButtonPrimary,
+  MenuDropdown,
+} from "../../components/Button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from "../../../components/Card";
-import Table, { TableButton } from "../../../components/Table";
-import { TabCard, TabsPane } from "../../../components/Tabs";
-import { Tag } from "../../../components/Tag";
+} from "../../components/Card";
+import Table, { TableButton } from "../../components/Table";
+import { TabCard, TabsPane } from "../../components/Tabs";
+import { Tag } from "../../components/Tag";
+
 // import { Container } from './styles';
 
-const Webhooks: React.FC = () => {
+const Sells: React.FC = () => {
   const [isDataAvailable] = useState(false);
 
   const columns = [
     {
-      title: "ID",
+      title: "ID Venda",
       dataIndex: "key",
       key: "key",
     },
     {
-      title: "Endpoint",
-      dataIndex: "endpoint",
-      key: "endpoint",
-      render: (text: string) => <a href="http://pudim.com.br">{text}</a>,
+      title: "Cliente",
+      dataIndex: "customer",
+      key: "customer",
+      render: (text: string) => {
+        console.log(text);
+        return "".concat(text);
+      },
     },
     {
-      title: "Método",
+      title: "Produto",
+      dataIndex: "method",
+      key: "method",
+    },
+    {
+      title: "valor líquido",
       dataIndex: "method",
       key: "method",
     },
@@ -55,14 +68,8 @@ const Webhooks: React.FC = () => {
       render: (text: string, record: any) => (
         <Space size="middle">
           <TableButton a="edit">
-            <FaEdit />
+            <FaEllipsisV />
           </TableButton>
-
-          <TableButton a="trash">
-            <FaTrash />
-          </TableButton>
-          {/* <a href="http://pudim.com.br">Editar {record.endpoint}</a>
-          <a href="http://pudim.com.br">Delete</a> */}
         </Space>
       ),
     },
@@ -81,81 +88,108 @@ const Webhooks: React.FC = () => {
   const data = [
     {
       key: "1",
-      endpoint: "Mussum Ipsum",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
     },
     {
-      key: "2",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "FALHA",
-    },
-    {
-      key: "3",
-      endpoint: "Mussum Ipsum",
+      key: "1",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
     },
     {
-      key: "4",
-      endpoint: "Mussum Ipsum",
+      key: "1",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
     },
     {
-      key: "5",
-      endpoint: "Mussum Ipsum",
+      key: "1",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
     },
     {
-      key: "6",
-      endpoint: "Mussum Ipsum",
+      key: "1",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
     },
     {
-      key: "7",
-      endpoint: "Mussum Ipsum",
+      key: "1",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
     },
     {
-      key: "8",
-      endpoint: "Mussum Ipsum",
+      key: "1",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
     },
     {
-      key: "9",
-      endpoint: "Mussum Ipsum",
+      key: "1",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
     },
     {
-      key: "10",
-      endpoint: "Mussum Ipsum",
+      key: "1",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
     },
     {
-      key: "11",
-      endpoint: "Mussum Ipsum",
+      key: "1",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
     },
     {
-      key: "12",
-      endpoint: "Mussum Ipsum",
+      key: "1",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
     },
     {
-      key: "13",
-      endpoint: "Mussum Ipsum",
+      key: "1",
+      customer: "Mussum Ipsum",
       method: "POST",
       status: "ATIVO",
+      email: "gabs@gabs.com",
+    },
+    {
+      key: "1",
+      customer: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+      email: "gabs@gabs.com",
+    },
+    {
+      key: "1",
+      customer: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+      email: "gabs@gabs.com",
+    },
+    {
+      key: "1",
+      customer: "Mussum Ipsum",
+      method: "POST",
+      status: "ATIVO",
+      email: "gabs@gabs.com",
     },
   ];
   // interface DataType {
@@ -215,30 +249,38 @@ const Webhooks: React.FC = () => {
     }
   };
 
+  const menu = (
+    <MenuDropdown>
+      <Menu.Item key="1">Download em PDF</Menu.Item>
+      <Menu.Item key="2">Download em XLS</Menu.Item>
+      <Menu.Item key="3">Download em DOC.X</Menu.Item>
+      <Menu.Item key="4">Download em TXT</Menu.Item>
+    </MenuDropdown>
+  );
+
   return (
     <Card>
       <CardHeader>
         <div>
-          <CardTitle>Listagem de webhooks</CardTitle>
-          <CardSubTitle>
-            Veja todos os webhooks cadastrados e adicione novos
-          </CardSubTitle>
+          <CardTitle>Listagem de vendas</CardTitle>
+          <CardSubTitle>Acompanhe os detalhes de suas vendas</CardSubTitle>
         </div>
-        <ButtonPrimary>
-          <p>Adicionar +</p>
-        </ButtonPrimary>
+        <ButtonDropdown overlay={menu}>Gerar relatório</ButtonDropdown>
       </CardHeader>
 
       <CardContent>
         <TabCard>
-          <TabsPane tab="Todos" key="1">
+          <TabsPane tab="Todas" key="1">
             {isTableEmpty()}
           </TabsPane>
-          <TabsPane tab="Ativos" key="2">
-            <p>ativos</p>
+          <TabsPane tab="Finalizadas" key="2">
+            {isTableEmpty()}
           </TabsPane>
-          <TabsPane tab="Falha" key="3">
-            <p>falha</p>
+          <TabsPane tab="Pendentes" key="3">
+            {isTableEmpty()}
+          </TabsPane>
+          <TabsPane tab="Canceladas" key="4">
+            {isTableEmpty()}
           </TabsPane>
         </TabCard>
       </CardContent>
@@ -246,4 +288,4 @@ const Webhooks: React.FC = () => {
   );
 };
 
-export default Webhooks;
+export default Sells;
