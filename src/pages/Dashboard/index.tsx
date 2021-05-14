@@ -92,7 +92,6 @@ const Dashboard: React.FC = () => {
           </FilterContainer>
         </CardHeader>
         <CardContent>
-          {/* <Line type="line" options={options} data={data} /> */}
           <LineGraph
             rangePickerDate={rangePickerDates}
             isRangePickerOpen={isRangePickerOpen}
@@ -207,8 +206,7 @@ const Dashboard: React.FC = () => {
             </div>
           </CardHeader>
           <CardContent>
-            <p>aconteceu um bug aqui, consertarei na segunda-feira.</p>
-            {/* <OneLineGraph /> */}
+            <OneLineGraph />
           </CardContent>
           <ExportContainer>
             <p>Exportar em:</p>

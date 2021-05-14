@@ -1,7 +1,6 @@
 import { Line } from "@ant-design/charts";
 import React, { useEffect, useState } from "react";
 import { useFetch } from "../../../hooks/useFetch";
-import data from "./graphData.json";
 
 interface LineGraphProps {
   rangePickerDate?: any;
@@ -10,8 +9,8 @@ interface LineGraphProps {
 
 const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
   const RPChoosenDate = [
-    rangePickerDate[0]._d.toDateString(),
-    rangePickerDate[1]._d.toDateString(),
+    rangePickerDate[0]?._d.toDateString(),
+    rangePickerDate[1]?._d.toDateString(),
   ];
 
   const initialRPValue = rangePickerDate;
@@ -38,23 +37,28 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
     filterByGivenDate();
   }, [isRangePickerOpen, rangePickerDate]);
 
-  // console.log(allRangePickerDate);
-
   if (!graphicData) return <p>Carregando métodos de pagamento...</p>;
 
   const getData = () => {
-    // console.log(graphicData);
-    // const billetData = graphicData.billet;
-    // const creditCardData = graphicData.credit;
+    const rows: any = [];
 
-    // return [...billetData, ...creditCardData];
-    return data;
+    graphicData?.forEach((data: any) => {
+      rows.push({
+        name: data.name,
+        day: `${data.day < 9 ? `0${data.day}` : data.day}-${
+          data.month > 9 ? data.month : `0${data.month}`
+        }`,
+        amount: data.amount,
+      });
+    });
+
+    return rows;
   };
 
   const config = {
     data: getData(),
     autoFit: true,
-    xField: "month",
+    xField: "day",
     yField: "amount",
     seriesField: "name",
     xAxis: {

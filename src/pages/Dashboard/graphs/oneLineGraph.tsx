@@ -18,7 +18,30 @@ const OneLineGraph: React.FC = () => {
   if (!salesData) return <p>Carregando visão geral de vendas...</p>;
 
   const getData = () => {
-    return salesData.sales;
+    // bug aqui ao receber o data, resolverei segunda
+    const data = [
+      {
+        month: 1,
+        amount: 12,
+      },
+      {
+        month: 2,
+        amount: 123,
+      },
+      {
+        month: 3,
+        amount: 1234,
+      },
+      {
+        month: 4,
+        amount: 12345,
+      },
+      {
+        month: 5,
+        amount: 123456,
+      },
+    ];
+    return data;
   };
 
   const config = {
