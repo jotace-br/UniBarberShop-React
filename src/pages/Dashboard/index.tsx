@@ -207,7 +207,8 @@ const Dashboard: React.FC = () => {
             </div>
           </CardHeader>
           <CardContent>
-            <OneLineGraph />
+            <p>aconteceu um bug aqui, consertarei na segunda-feira.</p>
+            {/* <OneLineGraph /> */}
           </CardContent>
           <ExportContainer>
             <p>Exportar em:</p>
