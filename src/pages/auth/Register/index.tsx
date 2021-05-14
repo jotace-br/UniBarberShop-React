@@ -2,34 +2,34 @@ import React, { useState } from "react";
 
 import ReCAPTCHA from "react-google-recaptcha";
 
-import api from "../../services/api";
+import api from "../../../services/api";
+
+import MaskedInput from "antd-mask-input";
 
 import { Form } from "antd";
-import MaskedInput from "antd-mask-input";
 
 import { IoIosLogIn /* IoMdBusiness */ } from "react-icons/io";
 import { RiAccountBoxLine } from "react-icons/ri";
-import Illustration from "../../assets/register.svg";
-
-import { FormItem, Input, PasswordInput } from "../../components/Input";
-import { Link } from "../../components/Link";
-// import Select from "../../components/Select";
+import IllustrationRegister from "../../../assets/register.svg";
+import { FormItem, Input, PasswordInput } from "../../../components/Input";
+import { Link } from "../../../components/Link";
+// import Select from "../../../components/Select";
 
 import {
+  AuthButton,
   Background,
   Container,
   ContainerForm,
   Divider,
   DividerIcon,
-  FormLogin,
+  FormAuth,
   Heading,
   HeadingForm,
-  IllustrationLogin,
+  Illustration,
   InfoFooter,
-  LoginButton,
   Logo,
-  RegistrationLabel,
-} from "./style";
+  RedirectLabel,
+} from "../style";
 
 // const { Option } = Select;
 
@@ -62,9 +62,9 @@ const Register: React.FC = () => {
           <p>É BOM TE VER POR AQUI</p>
           <p>Seja bem vindo!</p>
         </Heading>
-        <IllustrationLogin src={Illustration} />
+        <Illustration src={IllustrationRegister} />
       </Background>
-      <FormLogin>
+      <FormAuth>
         <ContainerForm>
           <Logo></Logo>
           <HeadingForm>
@@ -120,6 +120,7 @@ const Register: React.FC = () => {
               <MaskedInput
                 mask="(11) 11111-1111"
                 maxLength={11}
+                placeholder="Digite seu número de telefone..."
                 style={{
                   width: "100%",
                   height: "36px",
@@ -263,21 +264,21 @@ const Register: React.FC = () => {
               <Input placeholder="Digite seu CPF ou CNPJ..." />
             </FormItem> */}
             <Divider />
-            <RegistrationLabel>
+            <RedirectLabel>
               Ao se cadastrar, você concorda com os{" "}
               <Link to="">Termos de Uso</Link> da PXPay.
-            </RegistrationLabel>
+            </RedirectLabel>
             <ReCAPTCHA
               sitekey="6Ldn0NQaAAAAAPMwZPGhiDodUC8P0FCGf_7SMa3G"
               onChange={(token: any) => setToken(token)}
             />
-            ,<LoginButton htmlType="submit">Cadastrar</LoginButton>
+            <AuthButton htmlType="submit">Cadastrar</AuthButton>
           </Form>
         </ContainerForm>
         <InfoFooter>
           <p>Pxpay © 2021 by XGrow - Todos os Direitos Reservados</p>
         </InfoFooter>
-      </FormLogin>
+      </FormAuth>
     </Container>
   );
 };

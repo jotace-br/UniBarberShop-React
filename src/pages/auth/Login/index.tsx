@@ -1,27 +1,33 @@
-import { Form } from "antd";
 import React from "react";
-import Illustration from "../../assets/login.svg";
-import Checkbox from "../../components/Checkbox";
-import { FormItem, Input, PasswordInput } from "../../components/Input";
-import { Link } from "../../components/Link";
-import { ButtonGoogle } from "../../components/SocialButton";
-import api from "../../services/api";
-import { login } from "../../services/login";
+
+import api from "../../../services/api";
+import { login } from "../../../services/login";
+
+import { Form } from "antd";
+
+import { FormItem, Input, PasswordInput } from "../../../components/Input";
+import { ButtonGoogle } from "../../../components/SocialButton";
+import Checkbox from "../../../components/Checkbox";
+import { Link } from "../../../components/Link";
+
+import IllustrationLogin from "../../../assets/login.svg";
+
 import {
+  AuthButton,
   Background,
   Container,
   ContainerForm,
   ContainerSocial,
   DividerOr,
-  FormLogin,
+  FormAuth,
   Heading,
   HeadingForm,
-  IllustrationLogin,
-  LoginButton,
+  Illustration,
+  InfoFooter,
   Logo,
-  RegistrationLabel,
+  RedirectLabel,
   SubButtonContainer,
-} from "./style";
+} from "../style";
 const Login: React.FC = () => {
   const [form] = Form.useForm();
 
@@ -45,13 +51,13 @@ const Login: React.FC = () => {
             maneira fácil, prática e segura!
           </p>
         </Heading>
-        <IllustrationLogin src={Illustration} />
+        <Illustration src={IllustrationLogin} />
       </Background>
-      <FormLogin>
+      <FormAuth>
         <ContainerForm>
           <Logo></Logo>
           <HeadingForm>
-            <p>Login.</p>
+            <p>Login</p>
             <p>
               Entre com os dados de acesso definidos por você no ato do
               cadastro.
@@ -61,6 +67,7 @@ const Login: React.FC = () => {
             <FormItem
               name="email"
               label="Email"
+              required
               rules={[
                 {
                   type: "email",
@@ -99,7 +106,7 @@ const Login: React.FC = () => {
               />
             </FormItem>
             <FormItem>
-              <LoginButton htmlType="submit">Entrar</LoginButton>
+              <AuthButton htmlType="submit">Entrar</AuthButton>
               <SubButtonContainer>
                 <FormItem name="remember_me" valuePropName="checked">
                   <Checkbox>Lembrar de mim</Checkbox>
@@ -108,9 +115,9 @@ const Login: React.FC = () => {
                   <Link to="/">Esqueci minha senha</Link>
                 </FormItem>
               </SubButtonContainer>
-              <RegistrationLabel>
+              <RedirectLabel>
                 Você é novo por aqui? <Link to="/register">Cadastre-se</Link>
-              </RegistrationLabel>
+              </RedirectLabel>
               <DividerOr>
                 <hr />
                 <p>Ou</p>
@@ -121,9 +128,12 @@ const Login: React.FC = () => {
                 <ButtonGoogle />
               </ContainerSocial>
             </FormItem>
+            <InfoFooter>
+              <p>Pxpay © 2021 by XGrow - Todos os Direitos Reservados</p>
+            </InfoFooter>
           </Form>
         </ContainerForm>
-      </FormLogin>
+      </FormAuth>
     </Container>
   );
 };

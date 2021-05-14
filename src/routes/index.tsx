@@ -1,13 +1,14 @@
 import React from "react";
 import { Redirect, Switch } from "react-router-dom";
+import ForgotPassword from "../pages/auth/ForgotPassword";
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
 //Páginas
 import Customers from "../pages/Customers";
 import Dashboard from "../pages/Dashboard";
 import Emails from "../pages/Emails";
 import Financial from "../pages/Financial";
-import Login from "../pages/Login";
 import Products from "../pages/Products";
-import Register from "../pages/Register";
 import Registrations from "../pages/Registrations";
 import Reports from "../pages/Reports";
 import Api from "../pages/Tools/Api";
@@ -22,6 +23,7 @@ import PrivateRoute from "./private";
 const Routes: React.FC = () => (
   <Switch>
     <GuestRoute exact path="/login" component={Login} />
+    <GuestRoute exact path="/forgot-password" component={ForgotPassword} />
     <GuestRoute exact path="/register" component={Register} />
     <GuestRoute exact path="/cadastro" component={Dashboard} />
     <PrivateRoute exact path="/dashboard" component={Dashboard} />

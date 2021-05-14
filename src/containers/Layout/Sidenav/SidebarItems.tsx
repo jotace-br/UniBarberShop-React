@@ -1,16 +1,12 @@
 import React from "react";
 import {
-  AiOutlineUnorderedList,
-} from "react-icons/ai";
-
-import {
-  RiDashboardFill,
   RiBarChartBoxFill,
-  RiGroupFill,
-  RiShoppingCart2Fill,
-  RiGridFill,
+  RiDashboardFill,
   RiFileTextFill,
+  RiGridFill,
+  RiGroupFill,
   RiMailFill,
+  RiShoppingCart2Fill,
 } from "react-icons/ri";
 
 const SidebarItems = [
@@ -77,17 +73,17 @@ const SidebarItems = [
     icon: <RiMailFill />,
     route: "/emails",
   },
-  {
-    name: "Cadastros",
-    isDrop: true,
-    icon: <AiOutlineUnorderedList />,
-    route: "/cadastros",
-    labels: [
-      { name: "Página 1", route: "/cadastros/page1" },
-      { name: "Página 2", route: "/cadastros/page2" },
-      { name: "Página 3", route: "/cadastros/page3" },
-    ],
-  },
+  // {
+  //   name: "Cadastros",
+  //   isDrop: true,
+  //   icon: <AiOutlineUnorderedList />,
+  //   route: "/cadastros",
+  //   labels: [
+  //     { name: "Página 1", route: "/cadastros/page1" },
+  //     { name: "Página 2", route: "/cadastros/page2" },
+  //     { name: "Página 3", route: "/cadastros/page3" },
+  //   ],
+  // },
 ];
 
 export default SidebarItems;

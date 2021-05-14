@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Form, Input as FormInput } from "antd";
+import styled from "styled-components";
 
 export const FormItem = styled(Form.Item)`
   label {
