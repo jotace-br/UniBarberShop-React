@@ -1,8 +1,6 @@
+import { Line } from "@ant-design/charts";
 import React, { useEffect, useState } from "react";
 import { useFetch } from "../../../hooks/useFetch";
-
-import { Line } from "@ant-design/charts";
-
 import data from "./graphData.json";
 
 interface LineGraphProps {
@@ -40,7 +38,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
     filterByGivenDate();
   }, [isRangePickerOpen, rangePickerDate]);
 
-  console.log(allRangePickerDate);
+  // console.log(allRangePickerDate);
 
   if (!graphicData) return <p>Carregando métodos de pagamento...</p>;
 
@@ -88,23 +86,47 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
       },
     },
     smooth: true,
-    lineStyle: {
-      lineWidth: 6,
-      strokeOpacity: 1,
-      shadowColor: "#fff",
-      shadowBlur: 10,
-      shadowOffsetX: 0,
-      shadowOffsetY: 0,
-      cursor: "pointer",
+    lineStyle: (data: any) => {
+      if (data.name === "Cartão de crédito") {
+        return {
+          stroke: "#66FFE3",
+          lineWidth: 6,
+          strokeOpacity: 1,
+          shadowColor: "#66FFE3",
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowOffsetY: 0,
+          cursor: "pointer",
+        };
+      } else if (data.name === "Boleto") {
+        return {
+          stroke: "#FEF756",
+          lineWidth: 6,
+          strokeOpacity: 1,
+          shadowColor: "#FEF756",
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowOffsetY: 0,
+          cursor: "pointer",
+        };
+      } else {
+        return {
+          stroke: "#fff",
+          lineWidth: 6,
+          strokeOpacity: 1,
+          shadowColor: "#fff",
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowOffsetY: 0,
+          cursor: "pointer",
+        };
+      }
     },
     legend: {
       position: "top-left",
       itemSpacing: 30,
       marker: {
         symbol: "circle",
-        style: {
-          fill: "#fff",
-        },
       },
       itemName: {
         style: {
@@ -123,7 +145,6 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
         duration: 2000,
       },
     },
-    color: ["#66FFE3", "#FEF756", "#A219CE"],
   };
 
   return <Line {...config} />;

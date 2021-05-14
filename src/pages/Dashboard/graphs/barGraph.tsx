@@ -20,57 +20,6 @@ const BarGraph: React.FC = () => {
       value: allProducts.total_records - activeProducts.length,
     },
   ];
-  // var config = {
-  //   data: data,
-  //   xAxis: false,
-  //   yAxis: {
-  //     grid:{
-  //       line:{
-  //         style:{
-  //           lineDash: [30, 99999999],
-  //           lineWidth: 1
-  //         }
-  //       }
-  //     }
-  //   },
-  //   xField: 'year',
-  //   yField: 'value',
-  //   seriesField: 'country',
-
-  //   label: false,
-  //   width: 500,
-  //   height: 224,
-  //   autoFit: true,
-  //   columnStyle:{
-  //     shadowColor: 'rgba(120,54,172,0.5)',
-  //     shadowBlur: 10,
-  //     shadowOffsetX: 0,
-  //     shadowOffsetY: 0,
-  //     borderRadius: 5
-  //   },
-  //   legend: {
-  //     position: 'top-left',
-  //     layout: 'horizontal',
-  //     itemSpacing: 30,
-  //     background:{
-  //       style:{
-  //         fill: 'transparent',
-  //         stroke: 'transparent',
-  //       }
-  //     },
-  //     marker: {
-  //       symbol: 'circle',
-  //     },
-  //     itemName: {
-  //       style:{
-  //         fill: "#fff",
-  //         fontFamily: "Poppins, sans-serif",
-  //         fontSize: 16
-  //       }
-  //     },
-  //   } as const,
-  //   color: ['#C284F3', '#7836AC', '#571D85'],
-  // };
   var config = {
     height: 240,
     autoFit: true,
