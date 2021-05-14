@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Form, Input as FormInput } from "antd";
-import MaskedInput from "antd-mask-input";
 
 export const FormItem = styled(Form.Item)`
   label {

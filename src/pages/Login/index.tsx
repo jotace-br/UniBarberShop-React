@@ -71,11 +71,11 @@ const Login: React.FC = () => {
                   message: "Por favor, digite seu e-mail.",
                 },
               ]}
+              hasFeedback
             >
               <Input
                 placeholder="Digite seu email de acesso..."
                 maxLength={100}
-                required
               />
             </FormItem>
             <FormItem
@@ -86,20 +86,27 @@ const Login: React.FC = () => {
                   required: true,
                   message: "Por favor, insira sua senha.",
                 },
+                {
+                  min: 8,
+                  message: "Sua senha deve conter, no mínimo, 8 caracteres.",
+                },
               ]}
               hasFeedback
             >
               <PasswordInput
                 placeholder="Digite sua senha de acesso..."
                 maxLength={150}
-                required
               />
             </FormItem>
             <FormItem>
               <LoginButton htmlType="submit">Entrar</LoginButton>
               <SubButtonContainer>
-                <Checkbox>Lembrar de mim</Checkbox>
-                <Link to="/">Esqueci minha senha</Link>
+                <FormItem name="remember_me" valuePropName="checked">
+                  <Checkbox>Lembrar de mim</Checkbox>
+                </FormItem>
+                <FormItem>
+                  <Link to="/">Esqueci minha senha</Link>
+                </FormItem>
               </SubButtonContainer>
               <RegistrationLabel>
                 Você é novo por aqui? <Link to="/register">Cadastre-se</Link>

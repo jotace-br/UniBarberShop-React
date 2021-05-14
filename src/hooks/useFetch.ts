@@ -9,7 +9,7 @@ export function useFetch<Data = any, Error = any>(url: string) {
       return response.data;
     },
     {
-      refreshInterval: 10000,
+      refreshInterval: 1000 * 60 * 30,
     }
   );
 
