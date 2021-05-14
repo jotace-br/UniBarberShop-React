@@ -1,37 +1,34 @@
-import React, { useState } from "react";
-
-import { FaEllipsisV, FaChevronRight } from "react-icons/fa";
-import {
-  Card,
-  CardTitle,
-  CardSubTitle,
-  CardHeader,
-  CardContent,
-  ActionsBtn,
-} from "../../components/Card";
-import { Rangepicker } from "../../components/Datepicker";
-import Select from "../../components/Select";
-import {
-  FilterContainer,
-  ExportContainer,
-  TwoCardContainer,
-  SmallCard,
-  CardIcon,
-  SmallCardText,
-  SmallCardAction,
-  SmallCardContainer,
-} from "./style";
-import LineGraph from "./graphs/lineGraph";
-import OneLineGraph from "./graphs//oneLineGraph";
-import BarGraph from "./graphs/barGraph";
-import { Icon } from "@iconify/react";
 import cartArrowDown from "@iconify/icons-mdi/cart-arrow-down";
 import currencyUsd from "@iconify/icons-mdi/currency-usd";
 import walletOutline from "@iconify/icons-mdi/wallet-outline";
-
+import { Icon } from "@iconify/react";
+import moment from "moment";
+import React, { useState } from "react";
+import { FaChevronRight } from "react-icons/fa";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardSubTitle,
+  CardTitle,
+} from "../../components/Card";
+import { Rangepicker } from "../../components/Datepicker";
+import Select from "../../components/Select";
 import { useFetch } from "../../hooks/useFetch";
 import { useUser } from "../../services/user";
-import moment from "moment";
+import OneLineGraph from "./graphs//oneLineGraph";
+import BarGraph from "./graphs/barGraph";
+import LineGraph from "./graphs/lineGraph";
+import {
+  CardIcon,
+  ExportContainer,
+  FilterContainer,
+  SmallCard,
+  SmallCardAction,
+  SmallCardContainer,
+  SmallCardText,
+  TwoCardContainer,
+} from "./style";
 
 const { Option } = Select;
 
@@ -93,9 +90,6 @@ const Dashboard: React.FC = () => {
               onOpenChangeRP={onOpenChangeRangePicker}
             />
           </FilterContainer>
-          <ActionsBtn>
-            <FaEllipsisV />
-          </ActionsBtn>
         </CardHeader>
         <CardContent>
           {/* <Line type="line" options={options} data={data} /> */}
@@ -123,9 +117,6 @@ const Dashboard: React.FC = () => {
             <CardTitle>Vendas</CardTitle>
             <CardSubTitle>Visão geral de suas vendas</CardSubTitle>
           </div>
-          <ActionsBtn>
-            <FaEllipsisV />
-          </ActionsBtn>
         </CardHeader>
         <CardContent>
           <SmallCardContainer>
@@ -193,9 +184,6 @@ const Dashboard: React.FC = () => {
               <CardTitle>Produtos</CardTitle>
               <CardSubTitle>Visão geral dos seus produtos</CardSubTitle>
             </div>
-            <ActionsBtn>
-              <FaEllipsisV />
-            </ActionsBtn>
           </CardHeader>
           <CardContent>
             <BarGraph />
@@ -217,9 +205,6 @@ const Dashboard: React.FC = () => {
               <CardTitle>Vendas</CardTitle>
               <CardSubTitle>Visão geral das suas vendas</CardSubTitle>
             </div>
-            <ActionsBtn>
-              <FaEllipsisV />
-            </ActionsBtn>
           </CardHeader>
           <CardContent>
             <OneLineGraph />

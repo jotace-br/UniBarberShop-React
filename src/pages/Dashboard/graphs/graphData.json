@@ -28,20 +28,5 @@
     "name": "Boleto",
     "month": "Março",
     "amount": 2
-  },
-  {
-    "name": "PIX",
-    "month": "Janeiro",
-    "amount": 24
-  },
-  {
-    "name": "PIX",
-    "month": "Fevereiro",
-    "amount": 2
-  },
-  {
-    "name": "PIX",
-    "month": "Março",
-    "amount": 56
   }
 ]
