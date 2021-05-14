@@ -1,32 +1,132 @@
 [
   {
-    "name": "Cartão de crédito",
-    "month": "Janeiro",
-    "amount": 92
+    "name": "Cartão de Crédito",
+    "day": "26-03",
+    "amount": 5
   },
   {
-    "name": "Cartão de crédito",
-    "month": "Fevereiro",
-    "amount": 71
-  },
-  {
-    "name": "Cartão de crédito",
-    "month": "Março",
-    "amount": 30
-  },
-  {
-    "name": "Boleto",
-    "month": "Janeiro",
-    "amount": 46
-  },
-  {
-    "name": "Boleto",
-    "month": "Fevereiro",
-    "amount": 83
-  },
-  {
-    "name": "Boleto",
-    "month": "Março",
+    "name": "Cartão de Crédito",
+    "day": "28-03",
     "amount": 2
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "29-03",
+    "amount": 10
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "30-03",
+    "amount": 8
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "03-04",
+    "amount": 4
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "04-04",
+    "amount": 6
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "06-04",
+    "amount": 10
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "07-04",
+    "amount": 7
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "10-04",
+    "amount": 3
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "11-04",
+    "amount": 1
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "26-04",
+    "amount": 3
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "29-04",
+    "amount": 49
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "30-04",
+    "amount": 12
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "03-05",
+    "amount": 9
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "04-05",
+    "amount": 6
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "06-05",
+    "amount": 1
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "07-05",
+    "amount": 1
+  },
+  {
+    "name": "Cartão de Crédito",
+    "day": "10-05",
+    "amount": 1
+  },
+  {
+    "name": "Boleto",
+    "day": "26-04",
+    "amount": 3
+  },
+  {
+    "name": "Boleto",
+    "day": "29-04",
+    "amount": 49
+  },
+  {
+    "name": "Boleto",
+    "day": "30-04",
+    "amount": 12
+  },
+  {
+    "name": "Boleto",
+    "day": "03-05",
+    "amount": 9
+  },
+  {
+    "name": "Boleto",
+    "day": "04-05",
+    "amount": 6
+  },
+  {
+    "name": "Boleto",
+    "day": "06-05",
+    "amount": 1
+  },
+  {
+    "name": "Boleto",
+    "day": "07-05",
+    "amount": 1
+  },
+  {
+    "name": "Boleto",
+    "day": "10-05",
+    "amount": 1
   }
 ]

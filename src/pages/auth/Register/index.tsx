@@ -39,7 +39,6 @@ const Register: React.FC = () => {
 
   const onFinish = async (body: object) => {
     const bodyWithLastName = {
-      lastName: "Último nome",
       type_user: "producer",
       ...body,
     };

@@ -1,8 +1,9 @@
 import axios from "axios";
-import { getToken } from "./login";
+import { getToken, logout } from "./login";
 
 const api = axios.create({
   baseURL: "https://pxpay-api-zhi4y.ondigitalocean.app/",
+  // baseURL: "https://api.pxpay.com.br/",
 });
 
 api.interceptors.request.use((config) => {
@@ -15,5 +16,15 @@ api.interceptors.request.use((config) => {
 
   return { ...config, headers };
 });
+
+api.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    if (err.response.status === 401) {
+      logout();
+    }
+    throw err;
+  }
+);
 
 export default api;
