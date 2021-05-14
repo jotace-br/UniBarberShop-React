@@ -7,7 +7,7 @@ import {
   SmallCardAction,
   SmallCardContainer,
   SmallCardText,
-} from "../../components/SmallCards";
+} from "../../components/SmallCards/style";
 import { IconTab, Tabs, TabsPane } from "../../components/Tabs";
 import Products from "./_products";
 import Recurrences from "./_recurrences";

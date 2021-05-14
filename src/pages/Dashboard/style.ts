@@ -117,7 +117,9 @@ export const SmallCardContainer = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.25); /* creates padding around scroll thumb */
   }
 `;
-
+export const InfoCardContainer = styled.div`
+  display: flex;
+`;
 export const GraphText = styled.div`
   p {
     color: #f00;

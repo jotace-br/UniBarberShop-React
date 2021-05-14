@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const SmallCard = styled.div`
-  width: 320px;
+  min-width: 320px;
+  width: auto;
   height: 108px;
   background-color: ${(props) => props.theme.colors.black100};
   display: flex;
@@ -9,10 +10,11 @@ export const SmallCard = styled.div`
   border-radius: 10px;
   box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.15);
   margin-right: 26px;
+  justify-content: space-between;
 `;
 export const CardIcon = styled.div`
   flex-shrink: 0;
-  margin-left: 12px;
+  margin: 0 12px;
   width: 62px;
   height: 62px;
   background-color: transparent;
@@ -32,12 +34,11 @@ export const CardIcon = styled.div`
   }
 `;
 export const SmallCardText = styled.div`
-  width: 111px;
+  width: auto;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-right: 70px;
   p:first-child {
     font: ${(props) => props.theme.text.text_large_bold};
   }
@@ -91,4 +92,7 @@ export const SmallCardContainer = styled.div`
     border-radius: 40px; /* roundness of the scroll thumb */
     border: 1px solid rgba(0, 0, 0, 0.25); /* creates padding around scroll thumb */
   }
+`;
+export const InfoCardContainer = styled.div`
+  display: flex;
 `;
