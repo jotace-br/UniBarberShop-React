@@ -14,6 +14,12 @@ import {
 } from "../../components/Card";
 import { Rangepicker } from "../../components/Datepicker";
 import Select from "../../components/Select";
+import {
+  SmallCard,
+  SmallCardAction,
+  SmallCardContainer,
+  SmallCardText,
+} from "../../components/SmallCards/style";
 import { useFetch } from "../../hooks/useFetch";
 import { useUser } from "../../services/user";
 import OneLineGraph from "./graphs//oneLineGraph";
@@ -23,10 +29,7 @@ import {
   CardIcon,
   ExportContainer,
   FilterContainer,
-  SmallCard,
-  SmallCardAction,
-  SmallCardContainer,
-  SmallCardText,
+  InfoCardContainer,
   TwoCardContainer,
 } from "./style";
 
@@ -121,17 +124,19 @@ const Dashboard: React.FC = () => {
         <CardContent>
           <SmallCardContainer>
             <SmallCard>
-              <CardIcon color="#F9C96E">
-                <Icon icon={cartArrowDown} />
-              </CardIcon>
-              <SmallCardText>
-                <p>
-                  {!financial_summary
-                    ? "..."
-                    : financial_summary.financial_summary.sales}
-                </p>
-                <p>Vendas efetuadas</p>
-              </SmallCardText>
+              <InfoCardContainer>
+                <CardIcon color="#F9C96E">
+                  <Icon icon={cartArrowDown} />
+                </CardIcon>
+                <SmallCardText>
+                  <p>
+                    {!financial_summary
+                      ? "..."
+                      : financial_summary.financial_summary.sales}
+                  </p>
+                  <p>Vendas efetuadas</p>
+                </SmallCardText>
+              </InfoCardContainer>
               <SmallCardAction>
                 <FaChevronRight />
               </SmallCardAction>
@@ -151,6 +156,7 @@ const Dashboard: React.FC = () => {
                 </p>
                 <p>Valor líquido</p>
               </SmallCardText>
+
               <SmallCardAction>
                 <FaChevronRight />
               </SmallCardAction>
@@ -170,6 +176,7 @@ const Dashboard: React.FC = () => {
                 </p>
                 <p>Disponível para antecipar</p>
               </SmallCardText>
+
               <SmallCardAction>
                 <FaChevronRight />
               </SmallCardAction>

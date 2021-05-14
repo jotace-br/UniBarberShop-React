@@ -145,6 +145,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
         duration: 2000,
       },
     },
+    colors: ["#66FFE3", "#FEF756"],
   };
 
   return <Line {...config} />;

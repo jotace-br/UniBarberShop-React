@@ -7,7 +7,7 @@ import Register from "../pages/auth/Register";
 import Customers from "../pages/Customers";
 import Dashboard from "../pages/Dashboard";
 import Emails from "../pages/Emails";
-import Financial from "../pages/Financial";
+import FinancialResume from "../pages/Financial";
 import Products from "../pages/Products";
 import Registrations from "../pages/Registrations";
 import Reports from "../pages/Reports";
@@ -27,7 +27,7 @@ const Routes: React.FC = () => (
     <GuestRoute exact path="/register" component={Register} />
     <GuestRoute exact path="/cadastro" component={Dashboard} />
     <PrivateRoute exact path="/dashboard" component={Dashboard} />
-    <PrivateRoute exact path="/vendas" component={Financial} />
+    <PrivateRoute exact path="/vendas" component={FinancialResume} />
     <PrivateRoute exact path="/clientes/page1" component={Customers} />
     <PrivateRoute exact path="/clientes/page2" component={Customers} />
     <PrivateRoute exact path="/clientes/page3" component={Customers} />
