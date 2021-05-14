@@ -1,13 +1,20 @@
-import { Form } from "antd";
+import React, { useState } from "react";
+
+import ReCAPTCHA from "react-google-recaptcha";
+
+import api from "../../../services/api";
+
 import MaskedInput from "antd-mask-input";
-import React from "react";
-// import api from "../../services/api";
-import { IoIosLogIn, IoMdBusiness } from "react-icons/io";
+
+import { Form } from "antd";
+
+import { IoIosLogIn /* IoMdBusiness */ } from "react-icons/io";
 import { RiAccountBoxLine } from "react-icons/ri";
 import IllustrationRegister from "../../../assets/register.svg";
 import { FormItem, Input, PasswordInput } from "../../../components/Input";
 import { Link } from "../../../components/Link";
-import Select from "../../../components/Select";
+// import Select from "../../../components/Select";
+
 import {
   AuthButton,
   Background,
@@ -24,16 +31,25 @@ import {
   RedirectLabel,
 } from "../style";
 
-const { Option } = Select;
+// const { Option } = Select;
 
 const Register: React.FC = () => {
+  const [token, setToken] = useState("");
   const [form] = Form.useForm();
 
   const onFinish = async (body: object) => {
+    const bodyWithLastName = {
+      lastName: "Último nome",
+      type_user: "producer",
+      ...body,
+    };
+
     try {
-      console.log(body);
-      // const { data } = await api.post("/register", body);
-      // await login(data.token, data.user);
+      if (token) {
+        await api.post("/register", bodyWithLastName);
+      } else {
+        throw Error("Precisa do toast");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -58,7 +74,12 @@ const Register: React.FC = () => {
               campos abaixo.
             </p>
           </HeadingForm>
-          <Form form={form} layout="vertical" onFinish={onFinish}>
+          <Form
+            form={form}
+            layout="vertical"
+            onFinish={onFinish}
+            scrollToFirstError
+          >
             <DividerIcon>
               <hr />
               <RiAccountBoxLine />
@@ -73,6 +94,10 @@ const Register: React.FC = () => {
                   required: true,
                   message: "Por favor, insira seu nome completo.",
                 },
+                {
+                  min: 3,
+                  message: "Seu nome deve ter, no mínimo, 3 caracteres.",
+                },
               ]}
               hasFeedback
             >
@@ -81,11 +106,21 @@ const Register: React.FC = () => {
                 maxLength={100}
               />
             </FormItem>
-            <FormItem name="phone" label="Telefone">
+            <FormItem
+              name="cell_phone"
+              label="Telefone"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, insira seu telefone.",
+                },
+              ]}
+              hasFeedback
+            >
               <MaskedInput
                 mask="(11) 11111-1111"
+                maxLength={11}
                 placeholder="Digite seu número de telefone..."
-                required
                 style={{
                   width: "100%",
                   height: "36px",
@@ -97,29 +132,49 @@ const Register: React.FC = () => {
               />
               {/* <Input placeholder="Digite seu número de telefone..." /> */}
             </FormItem>
-
             <DividerIcon>
               <hr />
               <IoIosLogIn />
               <p>Dados de acesso</p>
               <hr />
             </DividerIcon>
-
-            <FormItem name="email" label="E-mail">
-              <Input placeholder="Digite seu e-mail..." required />
-            </FormItem>
             <FormItem
-              name="password"
-              label="Senha"
+              name="email"
+              label="E-mail"
               rules={[
                 {
+                  type: "email",
+                  message: "O E-mail digitado não é um e-mail válido.",
+                },
+                {
                   required: true,
-                  message: "Por favor, digite uam senha.",
+                  message: "Por favor, digite seu e-mail.",
                 },
               ]}
               hasFeedback
             >
-              <PasswordInput placeholder="Digite sua senha..." />
+              <Input placeholder="Digite seu e-mail..." />
+            </FormItem>
+            <FormItem
+              name="password"
+              label="Senha"
+              tooltip="Mínimo de 8 caracteres."
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, digite uma senha.",
+                },
+                {
+                  min: 8,
+                  message: "Sua senha deve conter, no mínimo, 8 caracteres.",
+                },
+              ]}
+              hasFeedback
+            >
+              <PasswordInput
+                placeholder="Digite sua senha..."
+                maxLength={150}
+              />
             </FormItem>
             <FormItem
               name="password_check"
@@ -130,6 +185,10 @@ const Register: React.FC = () => {
                 {
                   required: true,
                   message: "Por favor, confirme sua senha.",
+                },
+                {
+                  min: 8,
+                  message: "Sua senha deve conter, no mínimo, 8 caracteres.",
                 },
                 ({ getFieldValue }) => ({
                   validator(_, value) {
@@ -143,35 +202,76 @@ const Register: React.FC = () => {
                 }),
               ]}
             >
-              <PasswordInput placeholder="Digite sua senha..." />
+              <PasswordInput
+                placeholder="Digite sua senha..."
+                maxLength={150}
+              />
             </FormItem>
-
-            <DividerIcon>
+            {/* <DividerIcon>
               <hr />
               <IoMdBusiness />
               <p>Dados da empresa</p>
               <hr />
             </DividerIcon>
-
-            <FormItem name="company_name" label="Nome da empresa">
-              <Input placeholder="Digite o nome da sua empresa  ..." />
+            <FormItem
+              name="company_name"
+              label="Nome da empresa"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, insira o nome de sua empresa.",
+                },
+              ]}
+              hasFeedback
+            >
+              <Input
+                placeholder="Digite o nome da sua empresa..."
+                maxLength={100}
+              />
             </FormItem>
-            <FormItem name="occupation" label="Área de atuação">
+            <FormItem
+              name="occupation"
+              label="Área de atuação"
+              rules={[
+                {
+                  required: true,
+                  message:
+                    "Por favor, insira a área de atuação de sua empresa.",
+                },
+              ]}
+              hasFeedback
+            >
               <Select placeholder="Selecione uma opção">
-                <Option value="1">Marketing Digital</Option>
-                <Option value="2">Empreendedorismo</Option>
-                <Option value="3">Gestão de Tráfego</Option>
-                <Option value="4">Desenvolvimento pessoal</Option>
+                <Option value="Marketing Digital">Marketing Digital</Option>
+                <Option value="Empreendedorismo">Empreendedorismo</Option>
+                <Option value="Gestão de Tráfego">Gestão de Tráfego</Option>
+                <Option value="Desenvolvimento pessoal">
+                  Desenvolvimento pessoal
+                </Option>
               </Select>
             </FormItem>
-            <FormItem name="identification" label="CPF ou CNPJ">
+            <FormItem
+              name="identification"
+              label="CPF ou CNPJ"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, insira sua documentação.",
+                },
+              ]}
+              hasFeedback
+            >
               <Input placeholder="Digite seu CPF ou CNPJ..." />
-            </FormItem>
+            </FormItem> */}
             <Divider />
             <RedirectLabel>
               Ao se cadastrar, você concorda com os{" "}
               <Link to="">Termos de Uso</Link> da PXPay.
             </RedirectLabel>
+            <ReCAPTCHA
+              sitekey="6Ldn0NQaAAAAAPMwZPGhiDodUC8P0FCGf_7SMa3G"
+              onChange={(token: any) => setToken(token)}
+            />
             <AuthButton htmlType="submit">Cadastrar</AuthButton>
           </Form>
         </ContainerForm>
