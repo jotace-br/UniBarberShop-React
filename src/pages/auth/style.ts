@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ReactComponent as LoginIllustration } from "../../assets/background_login.svg";
 import { ReactComponent as PxPayLogo } from "../../assets/logo_principal.svg";
 import { ButtonPrimary } from "../../components/Button";
 
@@ -17,16 +16,17 @@ export const Background = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-export const IllustrationLogin = styled.img`
+export const Illustration = styled.img`
   height: 100vh;
-  position: fixed;
-  width: 860px;
-  object-fit: cover;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  /* object-fit: cover; */
 `;
 export const Heading = styled.div`
   text-align: center;
   position: fixed;
-  top: 138px;
+  top: 40px;
   z-index: 999;
   width: 610px;
   p:nth-child(1) {
@@ -46,14 +46,11 @@ export const Heading = styled.div`
   }
 `;
 
-export const Illustration = styled(LoginIllustration)`
-  width: 687px;
-  height: 848px;
-  margin-top: 1;
-`;
-export const FormLogin = styled.div`
+export const FormAuth = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   background-color: ${(props) => props.theme.colors.black100};
   min-height: 100vh;
   width: 40vw;
@@ -61,7 +58,7 @@ export const FormLogin = styled.div`
   border-left: 8px solid ${(props) => props.theme.colors.black90};
 `;
 
-export const LoginButton = styled(ButtonPrimary)`
+export const AuthButton = styled(ButtonPrimary)`
   width: 100%;
 `;
 
@@ -72,10 +69,11 @@ export const SubButtonContainer = styled.div`
 `;
 export const ContainerForm = styled.div`
   width: 460px;
-  margin: 75px 60px 0 60px;
 `;
 export const Logo = styled(PxPayLogo)`
-  margin-bottom: 60px;
+  margin: 60px 0;
+  width: 100%;
+  height: 64px;
 `;
 export const HeadingForm = styled.div`
   margin-bottom: 40px;
@@ -105,8 +103,9 @@ export const DividerOr = styled.div`
     font: ${(props) => props.theme.text.subtitle};
   }
 `;
-export const RegistrationLabel = styled.p`
-  margin-top: 50px;
+export const RedirectLabel = styled.p`
+  margin-top: 80px;
+  margin-bottom: 24px;
   width: 100%;
   text-align: center;
   color: ${(props) => props.theme.colors.black10} !important;
@@ -122,5 +121,45 @@ export const ContainerSocial = styled.div`
     margin-bottom: 24px;
     color: ${(props) => props.theme.colors.black30} !important;
     font: ${(props) => props.theme.text.subtitle};
+  }
+`;
+export const DividerIcon = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 40px 0;
+  hr {
+    width: 211px;
+    color: ${(props) => props.theme.colors.black60} !important;
+    background-color: ${(props) => props.theme.colors.black60} !important;
+    border-color: ${(props) => props.theme.colors.black60} !important;
+  }
+  p {
+    color: ${(props) => props.theme.colors.black40} !important;
+    font: ${(props) => props.theme.text.subtitle};
+    margin-right: 5px;
+    width: 161px;
+    text-align: center;
+  }
+  svg {
+    color: ${(props) => props.theme.colors.black30} !important;
+    margin: 0 5px;
+    font-size: 28px;
+  }
+`;
+export const Divider = styled.hr`
+  width: 100%;
+  margin: 40px 0;
+  color: ${(props) => props.theme.colors.black60} !important;
+  background-color: ${(props) => props.theme.colors.black60} !important;
+  border-color: ${(props) => props.theme.colors.black60} !important;
+`;
+export const InfoFooter = styled.div`
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 12px;
+  p {
+    color: ${(props) => props.theme.colors.black30} !important;
   }
 `;

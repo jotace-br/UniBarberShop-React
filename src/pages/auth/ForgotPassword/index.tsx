@@ -1,21 +1,21 @@
 import { Form } from "antd";
 import React from "react";
-import Illustration from "../../../assets/login.svg";
+import IllustrationForgot from "../../../assets/forgot.svg";
 import { FormItem, Input } from "../../../components/Input";
 import api from "../../../services/api";
 import { login } from "../../../services/login";
 import {
+  AuthButton,
   Background,
   Container,
   ContainerForm,
-  FormLogin,
+  FormAuth,
   Heading,
   HeadingForm,
-  IllustrationLogin,
+  Illustration,
   InfoFooter,
-  LoginButton,
   Logo,
-} from "./style";
+} from "../style";
 const ForgotPassword: React.FC = () => {
   const [form] = Form.useForm();
 
@@ -35,9 +35,9 @@ const ForgotPassword: React.FC = () => {
           <p>ESQUECEU SEUS DADOS DE ACESSO?</p>
           <p>Recupere sua senha</p>
         </Heading>
-        <IllustrationLogin src={Illustration} />
+        <Illustration src={IllustrationForgot} />
       </Background>
-      <FormLogin>
+      <FormAuth>
         <ContainerForm>
           <Logo></Logo>
           <HeadingForm>
@@ -52,14 +52,14 @@ const ForgotPassword: React.FC = () => {
               <Input placeholder="Digite seu email de acesso..." />
             </FormItem>
             <FormItem>
-              <LoginButton htmlType="submit">Enviar</LoginButton>
+              <AuthButton htmlType="submit">Enviar</AuthButton>
             </FormItem>
           </Form>
         </ContainerForm>
         <InfoFooter>
           <p>Pxpay © 2021 by XGrow - Todos os Direitos Reservados</p>
         </InfoFooter>
-      </FormLogin>
+      </FormAuth>
     </Container>
   );
 };

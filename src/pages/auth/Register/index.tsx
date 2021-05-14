@@ -1,32 +1,28 @@
-import React from "react";
-import MaskedInput from "antd-mask-input";
-
 import { Form } from "antd";
+import MaskedInput from "antd-mask-input";
+import React from "react";
 // import api from "../../services/api";
-
 import { IoIosLogIn, IoMdBusiness } from "react-icons/io";
 import { RiAccountBoxLine } from "react-icons/ri";
-import Illustration from "../../assets/register.svg";
-
-import { FormItem, Input, PasswordInput } from "../../components/Input";
-import { Link } from "../../components/Link";
-import Select from "../../components/Select";
-
+import IllustrationRegister from "../../../assets/register.svg";
+import { FormItem, Input, PasswordInput } from "../../../components/Input";
+import { Link } from "../../../components/Link";
+import Select from "../../../components/Select";
 import {
+  AuthButton,
   Background,
   Container,
   ContainerForm,
   Divider,
   DividerIcon,
-  FormLogin,
+  FormAuth,
   Heading,
   HeadingForm,
-  IllustrationLogin,
+  Illustration,
   InfoFooter,
-  LoginButton,
   Logo,
-  RegistrationLabel,
-} from "./style";
+  RedirectLabel,
+} from "../style";
 
 const { Option } = Select;
 
@@ -50,9 +46,9 @@ const Register: React.FC = () => {
           <p>É BOM TE VER POR AQUI</p>
           <p>Seja bem vindo!</p>
         </Heading>
-        <IllustrationLogin src={Illustration} />
+        <Illustration src={IllustrationRegister} />
       </Background>
-      <FormLogin>
+      <FormAuth>
         <ContainerForm>
           <Logo></Logo>
           <HeadingForm>
@@ -88,6 +84,7 @@ const Register: React.FC = () => {
             <FormItem name="phone" label="Telefone">
               <MaskedInput
                 mask="(11) 11111-1111"
+                placeholder="Digite seu número de telefone..."
                 required
                 style={{
                   width: "100%",
@@ -109,7 +106,7 @@ const Register: React.FC = () => {
             </DividerIcon>
 
             <FormItem name="email" label="E-mail">
-              <Input placeholder="Digite seu e-mail..." />
+              <Input placeholder="Digite seu e-mail..." required />
             </FormItem>
             <FormItem
               name="password"
@@ -171,17 +168,17 @@ const Register: React.FC = () => {
               <Input placeholder="Digite seu CPF ou CNPJ..." />
             </FormItem>
             <Divider />
-            <RegistrationLabel>
+            <RedirectLabel>
               Ao se cadastrar, você concorda com os{" "}
               <Link to="">Termos de Uso</Link> da PXPay.
-            </RegistrationLabel>
-            <LoginButton htmlType="submit">Cadastrar</LoginButton>
+            </RedirectLabel>
+            <AuthButton htmlType="submit">Cadastrar</AuthButton>
           </Form>
         </ContainerForm>
         <InfoFooter>
           <p>Pxpay © 2021 by XGrow - Todos os Direitos Reservados</p>
         </InfoFooter>
-      </FormLogin>
+      </FormAuth>
     </Container>
   );
 };
