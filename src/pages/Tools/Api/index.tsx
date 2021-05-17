@@ -1,7 +1,13 @@
+import React from "react";
+
+import { useFetchWithNoRefresh } from "../../../hooks/useFetchWithNoRefresh";
+import api from "../../../services/api";
+
 import { Typography } from "antd";
-import React, { useState } from "react";
+
 import { FaFileAlt } from "react-icons/fa";
 import { IoReload } from "react-icons/io5";
+
 import { ButtonPrimary } from "../../../components/Button";
 import {
   Card,
@@ -13,24 +19,28 @@ import {
 import { TabCard, TabsPane } from "../../../components/Tabs";
 import { TextWithIcon } from "../../../components/TextWithIcon";
 
-// import { Container } from './styles';
 const { Text } = Typography;
 
 const Api: React.FC = () => {
-  const [isToken] = useState(false);
+  const { data: keys, mutate } = useFetchWithNoRefresh("/get-key");
+
+  const generateNewKeys = async () => {
+    const { data: newKeys } = await api.get("/get-key");
+    mutate(newKeys);
+  };
 
   const noTokenYetMessage = () => {
-    if (isToken) {
+    if (keys) {
       return (
         <>
           <div>
             <p>API Key</p>
-            <Text copyable>pxpay_534354_agfadkjfgdf</Text>
+            <Text copyable>{keys ? keys.keys.api_key : "..."}</Text>
           </div>
 
           <div>
             <p>API Password</p>
-            <Text copyable>pxpay_534354_agfadkjfgdf</Text>
+            <Text copyable>{keys ? keys.keys.api_password : "..."}</Text>
           </div>
 
           <Text>
@@ -54,7 +64,12 @@ const Api: React.FC = () => {
           </p>
           <p>Você pode gerar um novo token clicando aqui</p>
 
-          <ButtonPrimary>
+          <ButtonPrimary
+            onClick={() => {
+              generateNewKeys();
+            }}
+            disabled={keys}
+          >
             <TextWithIcon>
               Novo token &nbsp;
               <IoReload />
@@ -72,7 +87,12 @@ const Api: React.FC = () => {
           <CardTitle>Chaves da API</CardTitle>
           <CardSubTitle>Veja as chaves de API ou cadastre novas</CardSubTitle>
         </div>
-        <ButtonPrimary>
+        <ButtonPrimary
+          onClick={() => {
+            generateNewKeys();
+          }}
+          disabled={keys}
+        >
           <TextWithIcon>
             Novo token &nbsp;
             <IoReload />
