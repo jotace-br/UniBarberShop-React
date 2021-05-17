@@ -5,6 +5,8 @@ import { login } from "../../../services/login";
 
 import { Form } from "antd";
 
+import { GoogleLogin } from "react-google-login";
+
 import { FormItem, Input, PasswordInput } from "../../../components/Input";
 import { ButtonGoogle } from "../../../components/SocialButton";
 import Checkbox from "../../../components/Checkbox";
@@ -28,6 +30,7 @@ import {
   RedirectLabel,
   SubButtonContainer,
 } from "../style";
+
 const Login: React.FC = () => {
   const [form] = Form.useForm();
 
@@ -38,6 +41,21 @@ const Login: React.FC = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleLogin = async () => {
+    let authCredentials;
+
+    authCredentials = window.open(
+      `${process.env.REACT_APP_API_LINK}/google_auth`,
+      "mywindow",
+      "location=1,status=1,scrollbars=1, width=800,height=800"
+    );
+    window.addEventListener("message", ({ data }) => {
+      login(data.token, data.user);
+    });
+
+    authCredentials?.close();
   };
 
   return (
@@ -125,7 +143,22 @@ const Login: React.FC = () => {
               </DividerOr>
               <ContainerSocial>
                 <p>Entre com suas redes sociais</p>
-                <ButtonGoogle />
+                <GoogleLogin
+                  clientId={
+                    "947403029672-8ge84a6mssj1puagr3dkn6i98mk6bdmk.apps.googleusercontent.com"
+                  }
+                  render={(renderProps) => (
+                    <ButtonGoogle
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                    />
+                  )}
+                  buttonText="Login"
+                  onSuccess={handleLogin}
+                  onFailure={handleLogin}
+                  cookiePolicy={"single_host_origin"}
+                  isSignedIn={true}
+                />
               </ContainerSocial>
             </FormItem>
             <InfoFooter>
