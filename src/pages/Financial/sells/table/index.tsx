@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FaEllipsisV } from "react-icons/fa";
 import { ButtonPrimary } from "../../../../components/Button";
 import Table, { TableButton } from "../../../../components/Table";
+import { TabCard, TabsPane } from "../../../../components/Tabs";
 import { Tag } from "../../../../components/Tag";
 
 // import { Container } from './styles';
@@ -27,13 +28,13 @@ const TableSells: React.FC = () => {
     },
     {
       title: "Produto",
-      dataIndex: "method",
-      key: "method",
+      dataIndex: "product",
+      key: "product",
     },
     {
-      title: "valor líquido",
-      dataIndex: "method",
-      key: "method",
+      title: "Valor líquido",
+      dataIndex: "value",
+      key: "value",
     },
     {
       title: "Status",
@@ -49,6 +50,16 @@ const TableSells: React.FC = () => {
           </Tag>
         </span>
       ),
+    },
+    {
+      title: "Método de pagamento",
+      dataIndex: "method",
+      key: "method",
+    },
+    {
+      title: "Parcelas",
+      dataIndex: "installments",
+      key: "installments",
     },
     {
       title: "Opções",
@@ -211,6 +222,7 @@ const TableSells: React.FC = () => {
             columns={columns}
             dataSource={data}
             pagination={{ showTotal: showTotal }}
+            scroll={{ x: "calc(700px + 50%)" }}
           />
         </div>
       );
@@ -237,7 +249,25 @@ const TableSells: React.FC = () => {
     }
   };
 
-  return isTableEmpty();
+  return (
+    <TabCard>
+      <TabsPane tab="Ativos" key="1">
+        {isTableEmpty()}
+      </TabsPane>
+      <TabsPane tab="Aprovados" key="1">
+        {isTableEmpty()}
+      </TabsPane>
+      <TabsPane tab="Não Aprovados" key="1">
+        {isTableEmpty()}
+      </TabsPane>
+      <TabsPane tab="Pendentes" key="1">
+        {isTableEmpty()}
+      </TabsPane>
+      <TabsPane tab="Canceladas" key="1">
+        {isTableEmpty()}
+      </TabsPane>
+    </TabCard>
+  );
 };
 
 export default TableSells;

@@ -14,7 +14,7 @@ export const SmallCard = styled.div`
 `;
 export const CardIcon = styled.div`
   flex-shrink: 0;
-  margin: 0 12px;
+  margin: 0 16px;
   width: 62px;
   height: 62px;
   background-color: transparent;
@@ -65,6 +65,10 @@ export const SmallCardAction = styled.button`
     width: 19px;
     height: 12px;
     ${(props) => props.theme.colors.black10}
+  }
+  a {
+    color: #fff;
+    margin-top: 2px;
   }
   :hover {
     background-color: #777777;

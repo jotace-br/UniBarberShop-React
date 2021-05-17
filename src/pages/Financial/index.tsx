@@ -14,7 +14,7 @@ import Sells from "./sells";
 const FinancialResume: React.FC = () => {
   return (
     <>
-      <Tabs>
+      <Tabs activeKey="2">
         <TabsPane
           tab={
             <IconTab>
