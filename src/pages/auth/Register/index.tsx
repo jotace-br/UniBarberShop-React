@@ -38,14 +38,9 @@ const Register: React.FC = () => {
   const [form] = Form.useForm();
 
   const onFinish = async (body: object) => {
-    const bodyWithLastName = {
-      type_user: "producer",
-      ...body,
-    };
-
     try {
       if (token) {
-        await api.post("/register", bodyWithLastName);
+        await api.post("/register", body);
       } else {
         throw Error("Precisa do toast");
       }
