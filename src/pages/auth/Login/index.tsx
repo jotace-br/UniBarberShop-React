@@ -44,9 +44,7 @@ const Login: React.FC = () => {
   };
 
   const handleLogin = async () => {
-    let authCredentials;
-
-    authCredentials = window.open(
+    window.open(
       `${process.env.REACT_APP_API_LINK}/google_auth`,
       "mywindow",
       "location=1,status=1,scrollbars=1, width=800,height=800"
@@ -54,8 +52,6 @@ const Login: React.FC = () => {
     window.addEventListener("message", ({ data }) => {
       login(data.token, data.user);
     });
-
-    authCredentials?.close();
   };
 
   return (

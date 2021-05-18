@@ -8,10 +8,9 @@ interface LineGraphProps {
 }
 
 const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
-  const RPChoosenDate = [
-    rangePickerDate[0]?._d.toDateString(),
-    rangePickerDate[1]?._d.toDateString(),
-  ];
+  const RPChoosenDate = rangePickerDate?.map((initialDate: any) => initialDate);
+
+  console.log(RPChoosenDate);
 
   const initialRPValue = rangePickerDate;
   const [allRangePickerDate, setAllRangePickerDate] = useState(initialRPValue);
@@ -25,10 +24,8 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
 
   useEffect(() => {
     const filterByGivenDate = () => {
-      if (!isRangePickerOpen && rangePickerDate[1] !== undefined) {
-        setAllRangePickerDate(
-          rangePickerDate?.map((dates: any) => dates._d.toDateString())
-        );
+      if (!isRangePickerOpen && rangePickerDate?.length !== 0) {
+        setAllRangePickerDate(rangePickerDate?.map((date: any) => date));
         setIsDateReady(true);
       }
       setIsDateReady(false);
@@ -37,7 +34,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
     filterByGivenDate();
   }, [isRangePickerOpen, rangePickerDate]);
 
-  if (!graphicData) return <p>Carregando métodos de pagamento...</p>;
+  if (!graphicData) return <p>Nenhum método de pagamento disponível.</p>;
 
   const getData = () => {
     const rows: any = [];
@@ -45,12 +42,24 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
     graphicData?.forEach((data: any) => {
       rows.push({
         name: data.name,
-        day: `${data.day < 9 ? `0${data.day}` : data.day}-${
+        day: `${data.day < 9 ? `0${data.day}` : data.day}/${
           data.month > 9 ? data.month : `0${data.month}`
         }`,
         amount: data.amount,
       });
     });
+
+    function compare(a: any, b: any) {
+      if (new Date(a.day) < new Date(b.day)) {
+        return -1;
+      }
+      if (new Date(a.day) > new Date(b.day)) {
+        return 1;
+      }
+      return 0;
+    }
+
+    console.log(rows.sort(compare));
 
     return rows;
   };

@@ -29,23 +29,23 @@ const Webhooks: React.FC = () => {
 
   const { data: webhooks, mutate } = useFetch("/get_webhook_endpoint");
 
-  const handleCreate = async (body: any) => {
-    // no Form, terá esses três campos
-    // const body = {
-    //   url_webhook,
-    //   method,
-    //   trigger,
-    // };
+  // const handleCreate = async (body: any) => {
+  //   // no Form, terá esses três campos
+  //   const body = {
+  //     url_webhook,
+  //     method,
+  //     trigger,
+  //   };
 
-    // try {
-    //   const response = await api.post("/create_webhook_endpoint", body);
-    //   mutate();
-    //   successNotification(response.data.message);
-    // } catch (error) {
-    //   errorNotification(error.response.data.message);
-    // }
-    console.log("oops");
-  };
+  //   try {
+  //     const response = await api.post("/create_webhook_endpoint", body);
+  //     mutate();
+  //     successNotification(response.data.message);
+  //   } catch (error) {
+  //     errorNotification(error.response.data.message);
+  //   }
+  //   console.log("oops");
+  // };
 
   const handleDelete = async (id: number) => {
     try {

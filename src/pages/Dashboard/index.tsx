@@ -40,8 +40,8 @@ const Dashboard: React.FC = () => {
 
   const [rangePickerValue, setRangePickerValue] = useState();
   const [rangePickerDates, setRangePickerDates] = useState<any>([
-    moment(moment().add(-1, "months"), dateFormat),
-    moment(moment(), dateFormat),
+    moment(moment().add(-1, "months"), dateFormat).toDate(),
+    moment(moment(), dateFormat).toDate(),
   ]);
   const [rangePickerHackValue, setRangePickerHackValue] = useState<any>();
   const [isRangePickerOpen, setIsRangePickerOpen] = useState(false);

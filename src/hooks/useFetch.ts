@@ -3,7 +3,7 @@ import api from "../services/api";
 
 export function useFetch<Data = any, Error = any>(
   url: string,
-  params: any = null
+  params: object = {}
 ) {
   const { data, error, mutate } = useSWR<Data, Error>(
     url,
