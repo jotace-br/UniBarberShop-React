@@ -40,8 +40,8 @@ const Dashboard: React.FC = () => {
 
   const [rangePickerValue, setRangePickerValue] = useState();
   const [rangePickerDates, setRangePickerDates] = useState<any>([
-    moment(moment().add(-1, "months"), dateFormat),
-    moment(moment(), dateFormat),
+    moment(moment().add(-1, "months"), dateFormat).toDate(),
+    moment(moment(), dateFormat).toDate(),
   ]);
   const [rangePickerHackValue, setRangePickerHackValue] = useState<any>();
   const [isRangePickerOpen, setIsRangePickerOpen] = useState(false);
@@ -50,7 +50,9 @@ const Dashboard: React.FC = () => {
     data: { user },
   } = useUser();
   const { data: financial_summary } = useFetch("financial-summary");
-  const { data: balance } = useFetch(`/check-balance/${user.seller_id}`);
+  const { data: balance } = useFetch(`/check-balance/${user.seller_id}`, {
+    shouldRetryOnError: false,
+  });
 
   const onChangeRangePicker = (e: any) => {
     setRangePickerValue(e);
@@ -167,7 +169,7 @@ const Dashboard: React.FC = () => {
               <SmallCardText>
                 <p>
                   {!balance
-                    ? "..."
+                    ? "R$ 0,00"
                     : balance.balance.account_balance.toLocaleString("pt-BR", {
                         style: "currency",
                         currency: "BRL",

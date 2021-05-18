@@ -1,5 +1,9 @@
 import React from "react";
 import { Redirect, Switch } from "react-router-dom";
+
+import GuestRoute from "./guest";
+import PrivateRoute from "./private";
+
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
@@ -17,8 +21,6 @@ import {
   default as Integrations,
   default as Webhooks,
 } from "../pages/Tools/Webhooks";
-import GuestRoute from "./guest";
-import PrivateRoute from "./private";
 
 const Routes: React.FC = () => (
   <Switch>
@@ -26,6 +28,7 @@ const Routes: React.FC = () => (
     <GuestRoute exact path="/forgot-password" component={ForgotPassword} />
     <GuestRoute exact path="/register" component={Register} />
     <GuestRoute exact path="/cadastro" component={Dashboard} />
+
     <PrivateRoute exact path="/dashboard" component={Dashboard} />
     <PrivateRoute exact path="/vendas" component={FinancialResume} />
     <PrivateRoute exact path="/clientes/page1" component={Customers} />

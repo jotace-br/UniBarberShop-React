@@ -7,6 +7,7 @@ import { RiAccountBoxLine } from "react-icons/ri";
 import IllustrationRegister from "../../../assets/register.svg";
 import { FormItem, Input, PasswordInput } from "../../../components/Input";
 import { Link } from "../../../components/Link";
+import { errorNotification } from "../../../components/Notification";
 import api from "../../../services/api";
 // import Select from "../../../components/Select";
 import {
@@ -29,18 +30,23 @@ import {
 // const { Option } = Select;
 
 const Register: React.FC = () => {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(null);
+  const [isFinished, setIsFinished] = useState(false);
   const [form] = Form.useForm();
 
   const onFinish = async (body: object) => {
     try {
-      if (token) {
+      if (isFinished && token) {
         await api.post("/register", body);
       } else {
-        throw Error("Precisa do toast");
+        errorNotification(
+          "Não foi possível criar sua conta.",
+          "Por favor, tente novamente."
+        );
       }
     } catch (err) {
       console.log(err);
+      setIsFinished(false);
     }
   };
 
@@ -266,6 +272,14 @@ const Register: React.FC = () => {
               Ao se cadastrar, você concorda com os{" "}
               <Link to="">Termos de Uso</Link> da PXPay.
             </RedirectLabel>
+            <ReCAPTCHA
+              sitekey="6Ldn0NQaAAAAAPMwZPGhiDodUC8P0FCGf_7SMa3G"
+              onChange={(token: any) => setToken(token)}
+              onExpired={() =>
+                console.log("Verification has expired, re-verify.")
+              }
+              theme="dark"
+            />
             <AuthButton htmlType="submit">Cadastrar</AuthButton>
           </Form>
         </ContainerForm>

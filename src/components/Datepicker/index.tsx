@@ -40,7 +40,7 @@ export const Rangepicker = ({
     <ConfigProvider locale={locale}>
       <Space direction="vertical" size={12}>
         <StyledRangePicker
-          placeholder={["", ""]}
+          placeholder={["Dt. Início", "Dt. Final"]}
           defaultValue={[
             moment(moment().add(-1, "months"), dateFormat),
             moment(moment(), dateFormat),
