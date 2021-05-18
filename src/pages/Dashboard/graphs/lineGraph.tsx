@@ -10,8 +10,6 @@ interface LineGraphProps {
 const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
   const RPChoosenDate = rangePickerDate?.map((initialDate: any) => initialDate);
 
-  console.log(RPChoosenDate);
-
   const initialRPValue = rangePickerDate;
   const [allRangePickerDate, setAllRangePickerDate] = useState(initialRPValue);
   const [isDateReady, setIsDateReady] = useState(false);
@@ -40,26 +38,18 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
     const rows: any = [];
 
     graphicData?.forEach((data: any) => {
+      const convertToDate = new Date(
+        data.year,
+        data.month - 1,
+        data.day
+      ).toLocaleString("us", { dateStyle: "short" });
+
       rows.push({
         name: data.name,
-        day: `${data.day < 9 ? `0${data.day}` : data.day}/${
-          data.month > 9 ? data.month : `0${data.month}`
-        }`,
+        date: convertToDate,
         amount: data.amount,
       });
     });
-
-    function compare(a: any, b: any) {
-      if (new Date(a.day) < new Date(b.day)) {
-        return -1;
-      }
-      if (new Date(a.day) > new Date(b.day)) {
-        return 1;
-      }
-      return 0;
-    }
-
-    console.log(rows.sort(compare));
 
     return rows;
   };
@@ -67,7 +57,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
   const config = {
     data: getData(),
     autoFit: true,
-    xField: "day",
+    xField: "date",
     yField: "amount",
     seriesField: "name",
     xAxis: {
