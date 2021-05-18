@@ -1,17 +1,12 @@
+import { Form } from "antd";
 import React from "react";
-
+import IllustrationLogin from "../../../assets/login.svg";
+import Checkbox from "../../../components/Checkbox";
+import { FormItem, Input, PasswordInput } from "../../../components/Input";
+import { Link } from "../../../components/Link";
+import { ButtonGoogle } from "../../../components/SocialButton";
 import api from "../../../services/api";
 import { login } from "../../../services/login";
-
-import { Form } from "antd";
-
-import { FormItem, Input, PasswordInput } from "../../../components/Input";
-import { ButtonGoogle } from "../../../components/SocialButton";
-import Checkbox from "../../../components/Checkbox";
-import { Link } from "../../../components/Link";
-
-import IllustrationLogin from "../../../assets/login.svg";
-
 import {
   AuthButton,
   Background,
@@ -28,6 +23,7 @@ import {
   RedirectLabel,
   SubButtonContainer,
 } from "../style";
+
 const Login: React.FC = () => {
   const [form] = Form.useForm();
 

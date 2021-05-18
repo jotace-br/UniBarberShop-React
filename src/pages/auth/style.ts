@@ -69,6 +69,20 @@ export const SubButtonContainer = styled.div`
 `;
 export const ContainerForm = styled.div`
   width: 460px;
+  .ant-form
+    .ant-form-item.ant-form-item-has-feedback.ant-form-item-has-error
+    .ant-form-item-control
+    .ant-form-item-control-input
+    .ant-form-item-control-input-content
+    input,
+  .ant-form
+    .ant-form-item.ant-form-item-has-feedback.ant-form-item-has-error
+    .ant-form-item-control
+    .ant-form-item-control-input
+    .ant-form-item-control-input-content
+    .ant-input-affix-wrapper {
+    background-color: ${(props) => props.theme.colors.black70};
+  }
 `;
 export const Logo = styled(PxPayLogo)`
   margin: 60px 0;

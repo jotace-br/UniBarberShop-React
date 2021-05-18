@@ -1,6 +1,6 @@
 import { AccountBalanceWalletOutlined } from "@material-ui/icons";
 import React from "react";
-import { FaDollarSign } from "react-icons/fa";
+import { FaCheck, FaChevronUp, FaDollarSign } from "react-icons/fa";
 import {
   Card,
   CardContent,
@@ -11,10 +11,17 @@ import {
 import Select from "../../../components/Select";
 import SmallCard from "../../../components/SmallCards";
 import { SmallCardContainer } from "../../../components/SmallCards/style";
-import { ExportContainer, TwoCardContainer } from "../../Dashboard/style";
+import { ExportContainer } from "../../Dashboard/style";
 import DualAxes from "./graphs/DualAxesGraph";
 import LineFillGraph from "./graphs/LineFillGraph";
 import ProgressBar from "./graphs/ProgressBar";
+import {
+  StatusLabel,
+  StatusList,
+  StatusListItem,
+  StatusValue,
+  TwoCardContainer,
+} from "./style";
 import TableSells from "./table";
 
 // import { Container } from './styles';
@@ -97,7 +104,23 @@ const Sells: React.FC = () => {
             </div>
             <div />
           </CardHeader>
-          <CardContent></CardContent>
+          <CardContent>
+            <StatusList>
+              <StatusListItem color="#71E083">
+                <StatusLabel>
+                  <FaCheck />
+                  <p>Aprovado</p>
+                </StatusLabel>
+                <StatusValue color="#71E083">
+                  <p>R$12.000,00</p>
+                  <FaChevronUp />
+                </StatusValue>
+              </StatusListItem>
+              <li></li>
+              <li></li>
+              <li></li>
+            </StatusList>
+          </CardContent>
           <ExportContainer>
             <p>Exportar em:</p>
             <Select defaultValue={"pdf"}>
