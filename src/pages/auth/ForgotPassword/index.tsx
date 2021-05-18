@@ -1,9 +1,17 @@
-import { Form } from "antd";
 import React from "react";
+
+import api from "../../../services/api";
+import history from "../../../routes/history";
+
+import { Form } from "antd";
+
 import IllustrationForgot from "../../../assets/forgot.svg";
 import { FormItem, Input } from "../../../components/Input";
-import api from "../../../services/api";
-import { login } from "../../../services/login";
+import {
+  errorNotification,
+  successNotification,
+} from "../../../components/Notification";
+
 import {
   AuthButton,
   Background,
@@ -16,15 +24,20 @@ import {
   InfoFooter,
   Logo,
 } from "../style";
+
 const ForgotPassword: React.FC = () => {
   const [form] = Form.useForm();
 
   const onFinish = async (body: object) => {
     try {
-      const { data } = await api.post("/login", body);
-      await login(data.token, data.user);
+      await api.post("/forgot-password", body);
+      successNotification(
+        "Geramos uma nova senha para você!",
+        "Verifique o seu email, caso não esteja na caixa de entrada verifique o spam."
+      );
+      history.push("/login");
     } catch (err) {
-      console.log(err);
+      errorNotification(err.response.data.message);
     }
   };
 
@@ -47,9 +60,31 @@ const ForgotPassword: React.FC = () => {
               um link com o passo a passo para redefinir sua senha.
             </p>
           </HeadingForm>
-          <Form form={form} layout="vertical" onFinish={onFinish}>
-            <FormItem name="email" label="Email">
-              <Input placeholder="Digite seu email de acesso..." />
+          <Form
+            form={form}
+            layout="vertical"
+            onFinish={onFinish}
+            scrollToFirstError
+          >
+            <FormItem
+              name="email"
+              label="Email"
+              rules={[
+                {
+                  type: "email",
+                  message: "O E-mail digitado não é um e-mail válido.",
+                },
+                {
+                  required: true,
+                  message: "Por favor, insira seu E-mail.",
+                },
+              ]}
+              hasFeedback
+            >
+              <Input
+                placeholder="Digite seu email de acesso..."
+                maxLength={100}
+              />
             </FormItem>
             <FormItem>
               <AuthButton htmlType="submit">Enviar</AuthButton>

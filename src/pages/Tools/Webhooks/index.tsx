@@ -1,7 +1,17 @@
-import { Space } from "antd";
 import React, { useState } from "react";
+
+import { useFetch } from "../../../hooks/useFetch";
+import api from "../../../services/api";
+
+import { Space } from "antd";
+
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { ButtonPrimary } from "../../../components/Button";
+
+import {
+  errorNotification,
+  successNotification,
+} from "../../../components/Notification";
+
 import {
   Card,
   CardContent,
@@ -9,25 +19,63 @@ import {
   CardSubTitle,
   CardTitle,
 } from "../../../components/Card";
+import { ButtonPrimary } from "../../../components/Button";
 import Table, { TableButton } from "../../../components/Table";
 import { TabCard, TabsPane } from "../../../components/Tabs";
 import { Tag } from "../../../components/Tag";
-// import { Container } from './styles';
 
 const Webhooks: React.FC = () => {
   const [isDataAvailable] = useState(false);
 
+  const { data: webhooks, mutate } = useFetch("/get_webhook_endpoint");
+
+  const handleCreate = async (body: any) => {
+    // no Form, terá esses três campos
+    // const body = {
+    //   url_webhook,
+    //   method,
+    //   trigger,
+    // };
+
+    // try {
+    //   const response = await api.post("/create_webhook_endpoint", body);
+    //   mutate();
+    //   successNotification(response.data.message);
+    // } catch (error) {
+    //   errorNotification(error.response.data.message);
+    // }
+    console.log("oops");
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      await api.delete(`/delete_webhook_endpoint/${id}`);
+      mutate();
+      successNotification("Webhook deletado com sucesso!");
+    } catch (error) {
+      errorNotification("Ocorreu um erro ao remover o Webhook.");
+    }
+  };
+
+  const handleEdit = async (element: object) => {
+    console.log(element);
+  };
+
   const columns = [
     {
       title: "ID",
-      dataIndex: "key",
-      key: "key",
+      dataIndex: "id",
+      key: "id",
     },
     {
       title: "Endpoint",
-      dataIndex: "endpoint",
-      key: "endpoint",
-      render: (text: string) => <a href="http://pudim.com.br">{text}</a>,
+      dataIndex: "url_webhook",
+      key: "url_webhook",
+      render: (link: string) => (
+        <a href={link} target="_blank" rel="noreferrer">
+          {link}
+        </a>
+      ),
     },
     {
       title: "Método",
@@ -36,15 +84,15 @@ const Webhooks: React.FC = () => {
     },
     {
       title: "Status",
-      key: "status",
-      dataIndex: "status",
-      render: (status: string) => (
+      key: "active",
+      dataIndex: "active",
+      render: (status: boolean) => (
         <span>
           <Tag
-            status={status.includes("ATIVO") ? "active" : "error"}
-            color={status.includes("ATIVO") ? "sucess" : "error"}
+            status={status ? "active" : "error"}
+            color={status ? "success" : "error"}
           >
-            {status.toUpperCase()}
+            {status ? "ATIVO" : "FALHA"}
           </Tag>
         </span>
       ),
@@ -52,17 +100,15 @@ const Webhooks: React.FC = () => {
     {
       title: "Opções",
       key: "options",
-      render: (text: string, record: any) => (
+      render: ({ id }: any, fullObject: any) => (
         <Space size="middle">
-          <TableButton a="edit">
+          <TableButton a="edit" onClick={() => handleEdit(fullObject)}>
             <FaEdit />
           </TableButton>
 
-          <TableButton a="trash">
+          <TableButton a="trash" onClick={() => handleDelete(id)}>
             <FaTrash />
           </TableButton>
-          {/* <a href="http://pudim.com.br">Editar {record.endpoint}</a>
-          <a href="http://pudim.com.br">Delete</a> */}
         </Space>
       ),
     },
@@ -72,98 +118,12 @@ const Webhooks: React.FC = () => {
     return (
       <div>
         <p>
-          Mostrando: <span>{total}</span> resultados
+          Mostrando: <span>{total}</span>{" "}
+          {total > 1 ? "resultados" : "resultado"}
         </p>
       </div>
     );
   }
-
-  const data = [
-    {
-      key: "1",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-    {
-      key: "2",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "FALHA",
-    },
-    {
-      key: "3",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-    {
-      key: "4",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-    {
-      key: "5",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-    {
-      key: "6",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-    {
-      key: "7",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-    {
-      key: "8",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-    {
-      key: "9",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-    {
-      key: "10",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-    {
-      key: "11",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-    {
-      key: "12",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-    {
-      key: "13",
-      endpoint: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-    },
-  ];
-  // interface DataType {
-  //   key: React.Key;
-  //   endpoint: string;
-  //   method: string;
-  //   status: string;
-  // }
 
   // rowSelection object indicates the need for row selection
   const rowSelection = {
@@ -187,7 +147,7 @@ const Webhooks: React.FC = () => {
           <Table
             rowSelection={{ type: "checkbox", ...rowSelection }}
             columns={columns}
-            dataSource={data}
+            dataSource={webhooks?.data.records.map((items: any) => items)}
             pagination={{ showTotal: showTotal }}
           />
         </div>

@@ -15,6 +15,7 @@ export const login = (token: string, user: string) => {
 export const logout = () => {
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem(TOKEN_USER);
+  clearAllCookies();
 
   window.location.reload();
   history.push("/login");
@@ -28,6 +29,22 @@ export const authTest = async () => {
     history.push("/login");
   }
   return response.data;
+};
+
+export const authTestWithoutLogout = async () => {
+  const response = await api.get("/isAuth");
+  if (!response.data) {
+    return "Oops! Login não autorizado.";
+  }
+  return response.data;
+};
+
+export const clearAllCookies = () => {
+  document.cookie.split(";").forEach(function (c) {
+    document.cookie = c
+      .replace(/^ +/, "")
+      .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+  });
 };
 
 export const isAuthenticated = () => {

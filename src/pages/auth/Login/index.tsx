@@ -130,7 +130,7 @@ const Login: React.FC = () => {
                   <Checkbox>Lembrar de mim</Checkbox>
                 </FormItem>
                 <FormItem>
-                  <Link to="/">Esqueci minha senha</Link>
+                  <Link to="/forgot-password">Esqueci minha senha</Link>
                 </FormItem>
               </SubButtonContainer>
               <RedirectLabel>

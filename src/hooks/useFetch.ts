@@ -1,7 +1,10 @@
 import useSWR from "swr";
 import api from "../services/api";
 
-export function useFetch<Data = any, Error = any>(url: string) {
+export function useFetch<Data = any, Error = any>(
+  url: string,
+  params: any = null
+) {
   const { data, error, mutate } = useSWR<Data, Error>(
     url,
     async (url) => {
@@ -10,6 +13,7 @@ export function useFetch<Data = any, Error = any>(url: string) {
     },
     {
       refreshInterval: 1000 * 60 * 30,
+      ...params,
     }
   );
 
