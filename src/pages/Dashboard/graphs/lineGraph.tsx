@@ -1,5 +1,4 @@
 import { Line } from "@ant-design/charts";
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useFetch } from "../../../hooks/useFetch";
 
