@@ -1,20 +1,14 @@
-import React, { useState } from "react";
-
-import ReCAPTCHA from "react-google-recaptcha";
-
-import api from "../../../services/api";
-
-import MaskedInput from "antd-mask-input";
-
 import { Form } from "antd";
-
+import MaskedInput from "antd-mask-input";
+import React, { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { IoIosLogIn /* IoMdBusiness */ } from "react-icons/io";
 import { RiAccountBoxLine } from "react-icons/ri";
 import IllustrationRegister from "../../../assets/register.svg";
 import { FormItem, Input, PasswordInput } from "../../../components/Input";
 import { Link } from "../../../components/Link";
+import api from "../../../services/api";
 // import Select from "../../../components/Select";
-
 import {
   AuthButton,
   Background,
@@ -29,6 +23,7 @@ import {
   InfoFooter,
   Logo,
   RedirectLabel,
+  WrapperRecaptcha,
 } from "../style";
 
 // const { Option } = Select;
@@ -258,14 +253,19 @@ const Register: React.FC = () => {
               <Input placeholder="Digite seu CPF ou CNPJ..." />
             </FormItem> */}
             <Divider />
+            <WrapperRecaptcha>
+              <ReCAPTCHA
+                sitekey="6Ldn0NQaAAAAAPMwZPGhiDodUC8P0FCGf_7SMa3G"
+                onChange={(token: any) => setToken(token)}
+                theme="dark"
+                size="normal"
+                hl="pt-BR"
+              />
+            </WrapperRecaptcha>
             <RedirectLabel>
               Ao se cadastrar, você concorda com os{" "}
               <Link to="">Termos de Uso</Link> da PXPay.
             </RedirectLabel>
-            <ReCAPTCHA
-              sitekey="6Ldn0NQaAAAAAPMwZPGhiDodUC8P0FCGf_7SMa3G"
-              onChange={(token: any) => setToken(token)}
-            />
             <AuthButton htmlType="submit">Cadastrar</AuthButton>
           </Form>
         </ContainerForm>

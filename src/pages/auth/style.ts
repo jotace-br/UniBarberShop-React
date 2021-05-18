@@ -177,3 +177,7 @@ export const InfoFooter = styled.div`
     color: ${(props) => props.theme.colors.black30} !important;
   }
 `;
+export const WrapperRecaptcha = styled.div`
+  display: flex;
+  justify-content: center;
+`;

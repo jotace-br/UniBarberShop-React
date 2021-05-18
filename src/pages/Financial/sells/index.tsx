@@ -1,6 +1,13 @@
 import { AccountBalanceWalletOutlined } from "@material-ui/icons";
 import React from "react";
-import { FaCheck, FaChevronUp, FaDollarSign } from "react-icons/fa";
+import {
+  FaCheck,
+  FaChevronDown,
+  FaChevronUp,
+  FaDollarSign,
+  FaExclamation,
+} from "react-icons/fa";
+import { MdBlock, MdLoop } from "react-icons/md";
 import {
   Card,
   CardContent,
@@ -106,8 +113,9 @@ const Sells: React.FC = () => {
           </CardHeader>
           <CardContent>
             <StatusList>
-              <StatusListItem color="#71E083">
-                <StatusLabel>
+              {/* aprovado */}
+              <StatusListItem>
+                <StatusLabel color="#71E083">
                   <FaCheck />
                   <p>Aprovado</p>
                 </StatusLabel>
@@ -116,20 +124,44 @@ const Sells: React.FC = () => {
                   <FaChevronUp />
                 </StatusValue>
               </StatusListItem>
-              <li></li>
-              <li></li>
-              <li></li>
+
+              {/* não aprovado */}
+              <StatusListItem>
+                <StatusLabel color="#FF7070">
+                  <FaExclamation />
+                  <p>Não aprovado</p>
+                </StatusLabel>
+                <StatusValue color="#71E083">
+                  <p>R$12.000,00</p>
+                  <FaChevronUp />
+                </StatusValue>
+              </StatusListItem>
+
+              {/* cancelados */}
+              <StatusListItem>
+                <StatusLabel color="#A4A4A4">
+                  <MdBlock />
+                  <p>Cancelados</p>
+                </StatusLabel>
+                <StatusValue color="#FF7070">
+                  <p>R$12.000,00</p>
+                  <FaChevronDown />
+                </StatusValue>
+              </StatusListItem>
+
+              {/* pendente */}
+              <StatusListItem>
+                <StatusLabel color="#D6C52E">
+                  <MdLoop />
+                  <p>Aprovado</p>
+                </StatusLabel>
+                <StatusValue color="#71E083">
+                  <p>R$12.000,00</p>
+                  <FaChevronUp />
+                </StatusValue>
+              </StatusListItem>
             </StatusList>
           </CardContent>
-          <ExportContainer>
-            <p>Exportar em:</p>
-            <Select defaultValue={"pdf"}>
-              <Option value="pdf">PDF</Option>
-              <Option value="excel">XLS</Option>
-              <Option value="excel">DOC.X</Option>
-              <Option value="odf">TXT</Option>
-            </Select>
-          </ExportContainer>
         </Card>
       </TwoCardContainer>
       <Card>

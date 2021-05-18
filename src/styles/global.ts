@@ -19,7 +19,8 @@ export const GlobalStyles = createGlobalStyle`
   /* Scrollbar */
   * {
     scrollbar-width: thin;          /* "auto" or "thin"  */
-    scrollbar-color: ${props=>props.theme.colors.primary100} ${props=>props.theme.colors.black80};   /* scroll thumb & track */
+    scrollbar-color: ${(props) => props.theme.colors.primary100} ${(props) =>
+  props.theme.colors.black80};   /* scroll thumb & track */
   }
 
   /* Works on Chrome/Edge/Safari */
@@ -28,12 +29,15 @@ export const GlobalStyles = createGlobalStyle`
     height: 7px;             /* width of the entire scrollbar */
   }
   *::-webkit-scrollbar-track {
-    background: ${props=>props.theme.colors.black80};        /* color of the tracking area */
+    background: ${(props) =>
+      props.theme.colors.black80};        /* color of the tracking area */
   }
   *::-webkit-scrollbar-thumb {
-    background-color: ${props=>props.theme.colors.primary100};    /* color of the scroll thumb */
+    background-color: ${(props) =>
+      props.theme.colors.primary100};    /* color of the scroll thumb */
     border-radius: 40px;       /* roundness of the scroll thumb */
-    border: 1px solid ${props=>props.theme.colors.black80};  /* creates padding around scroll thumb */
+    border: 1px solid ${(props) =>
+      props.theme.colors.black80};  /* creates padding around scroll thumb */
   }
   *{
     margin: 0;

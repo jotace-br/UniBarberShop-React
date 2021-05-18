@@ -14,6 +14,8 @@ const DemoBar: React.FC = () => {
   ];
   var config = {
     data: data,
+    autoSize: false,
+    height: 200,
     xField: "value",
     yField: "year",
     seriesField: "year",
