@@ -45,6 +45,7 @@ const Dashboard: React.FC = () => {
   ]);
   const [rangePickerHackValue, setRangePickerHackValue] = useState<any>();
   const [isRangePickerOpen, setIsRangePickerOpen] = useState(false);
+  const [isRangePickerEmpty, setIsRangePickerEmpty] = useState(false);
 
   const {
     data: { user },
@@ -67,9 +68,11 @@ const Dashboard: React.FC = () => {
       setIsRangePickerOpen(true);
       setRangePickerHackValue([]);
       setRangePickerDates([]);
+      setIsRangePickerEmpty(true);
     } else {
       setRangePickerHackValue(undefined);
       setIsRangePickerOpen(false);
+      setIsRangePickerEmpty(true);
     }
   };
 
