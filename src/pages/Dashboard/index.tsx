@@ -50,9 +50,11 @@ const Dashboard: React.FC = () => {
     data: { user },
   } = useUser();
   const { data: financial_summary } = useFetch("financial-summary");
-  const { data: balance } = useFetch(`/check-balance/${user.seller_id}`, {
-    shouldRetryOnError: false,
-  });
+  const { data: balance } = useFetch(`/check-balance/${user.seller_id}`, [
+    {
+      shouldRetryOnError: false,
+    },
+  ]);
 
   const onChangeRangePicker = (e: any) => {
     setRangePickerValue(e);
