@@ -1,4 +1,9 @@
 import { notification } from "antd";
+// o estilo está nas cofigurações globais
+const notificationStyle = {
+  width: 440,
+  minHeight: 49,
+};
 
 export const successNotification = (
   title: string = "",
@@ -7,6 +12,7 @@ export const successNotification = (
   notification["success"]({
     message: title,
     description: description,
+    style: notificationStyle,
   });
 };
 
@@ -17,6 +23,7 @@ export const infoNotification = (
   notification["info"]({
     message: title,
     description: description,
+    style: notificationStyle,
   });
 };
 
@@ -27,6 +34,7 @@ export const warningNotification = (
   notification["warning"]({
     message: title,
     description: description,
+    style: notificationStyle,
   });
 };
 
@@ -37,5 +45,6 @@ export const errorNotification = (
   notification["error"]({
     message: title,
     description: description,
+    style: notificationStyle,
   });
 };
