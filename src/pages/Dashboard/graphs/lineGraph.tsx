@@ -1,6 +1,6 @@
-import { Line } from '@ant-design/charts';
-import React, { useEffect, useState } from 'react';
-import { useFetch } from '../../../hooks/useFetch';
+import { Line } from "@ant-design/charts";
+import React, { useEffect, useState } from "react";
+import { useFetch } from "../../../hooks/useFetch";
 
 interface LineGraphProps {
   rangePickerDate?: any;
@@ -45,7 +45,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
         data.year,
         data.month - 1,
         data.day
-      ).toLocaleString('us', { dateStyle: 'short' });
+      ).toLocaleString("us", { dateStyle: "short" });
 
       rows.push({
         name: data.name,
@@ -60,26 +60,43 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
   const config = {
     data: getData(),
     autoFit: true,
-    xField: 'date',
-    yField: 'amount',
-    seriesField: 'name',
+    xField: "date",
+    yField: "amount",
+    seriesField: "name",
     xAxis: {
-      label: null,
-      line: null,
-      min: 0.4,
+      label: {
+        style: {
+          fill: "#aaa",
+          fontFamily: "Poppins, sans-serif",
+          fontSize: 12,
+        },
+        formatter: function formatter(v: any) {
+          let date = new Date(v);
+          let dateFormat = date.getDate() + "/" + (date.getMonth() + 1);
+          return dateFormat;
+        },
+      },
+      grid: {
+        line: {
+          style: {
+            stroke: "transparent",
+            cursor: "pointer",
+          },
+        },
+      },
     },
     yAxis: {
       label: {
         style: {
-          fill: '#fff',
-          fontFamily: 'Poppins, sans-serif',
+          fill: "#fff",
+          fontFamily: "Poppins, sans-serif",
           fontSize: 12,
         },
         formatter: function formatter(v: any) {
           if (v < 100) {
             return v;
           } else {
-            return ''.concat(v, '+');
+            return "".concat(v, "+");
           }
         },
       },
@@ -93,65 +110,66 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
     },
     smooth: true,
     lineStyle: (data: any) => {
-      if (data.name === 'Cartão de crédito') {
+      console.log(data);
+      if (data.name === "Cartão de Crédito") {
         return {
-          stroke: '#66FFE3',
+          stroke: "#FEF756",
           lineWidth: 6,
           strokeOpacity: 1,
-          shadowColor: '#66FFE3',
+          shadowColor: "#FEF756",
           shadowBlur: 10,
           shadowOffsetX: 0,
           shadowOffsetY: 0,
-          cursor: 'pointer',
+          cursor: "pointer",
         };
-      } else if (data.name === 'Boleto') {
+      } else if (data.name === "Boleto") {
         return {
-          stroke: '#FEF756',
+          stroke: "#66FFE3",
           lineWidth: 6,
           strokeOpacity: 1,
-          shadowColor: '#FEF756',
+          shadowColor: "#66FFE3",
           shadowBlur: 10,
           shadowOffsetX: 0,
           shadowOffsetY: 0,
-          cursor: 'pointer',
+          cursor: "pointer",
         };
       } else {
         return {
-          stroke: '#fff',
+          stroke: "#fff",
           lineWidth: 6,
           strokeOpacity: 1,
-          shadowColor: '#fff',
+          shadowColor: "#fff",
           shadowBlur: 10,
           shadowOffsetX: 0,
           shadowOffsetY: 0,
-          cursor: 'pointer',
+          cursor: "pointer",
         };
       }
     },
     legend: {
-      position: 'top-left',
+      position: "top-left",
       itemSpacing: 30,
       marker: {
-        symbol: 'circle',
+        symbol: "circle",
       },
       itemName: {
         style: {
-          fill: '#fff',
-          fontFamily: 'Poppins, sans-serif',
+          fill: "#fff",
+          fontFamily: "Poppins, sans-serif",
           fontSize: 16,
         },
       },
       style: {
-        fill: '#fff',
+        fill: "#fff",
       },
     } as const,
     animation: {
       appear: {
-        animation: 'path-in',
+        animation: "path-in",
         duration: 2000,
       },
     },
-    colors: ['#66FFE3', '#FEF756'],
+    color: ["#66FFE3", "#FEF756"],
   };
 
   return <Line {...config} />;
