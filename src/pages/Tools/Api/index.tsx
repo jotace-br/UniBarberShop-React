@@ -1,31 +1,33 @@
-import React from "react";
+import React from 'react';
 
-import { useFetchWithNoRefresh } from "../../../hooks/useFetchWithNoRefresh";
-import api from "../../../services/api";
+import { useFetchWithNoRefresh } from '../../../hooks/useFetchWithNoRefresh';
+import api from '../../../services/api';
 
-import { Typography } from "antd";
-
-import { FaFileAlt } from "react-icons/fa";
-import { IoReload } from "react-icons/io5";
-
-import { ButtonPrimary } from "../../../components/Button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from "../../../components/Card";
-import { TabCard, TabsPane } from "../../../components/Tabs";
-import { TextWithIcon } from "../../../components/TextWithIcon";
+} from '../../../components/Card';
+
+import { ButtonPrimary } from '../../../components/Button';
+
+import { TabCard, TabsPane } from '../../../components/Tabs';
+import { TextWithIcon } from '../../../components/TextWithIcon';
+
+import { Typography } from 'antd';
+
+import { FaFileAlt } from 'react-icons/fa';
+import { IoReload } from 'react-icons/io5';
 
 const { Text } = Typography;
 
 const Api: React.FC = () => {
-  const { data: keys, mutate } = useFetchWithNoRefresh("/get-key");
+  const { data: keys, mutate } = useFetchWithNoRefresh('/get-key');
 
   const generateNewKeys = async () => {
-    const { data: newKeys } = await api.get("/get-key");
+    const { data: newKeys } = await api.get('/get-key');
     mutate(newKeys);
   };
 
@@ -35,17 +37,17 @@ const Api: React.FC = () => {
         <>
           <div>
             <p>API Key</p>
-            <Text copyable>{keys ? keys.keys.api_key : "..."}</Text>
+            <Text copyable>{keys ? keys.keys.api_key : '...'}</Text>
           </div>
 
           <div>
             <p>API Password</p>
-            <Text copyable>{keys ? keys.keys.api_password : "..."}</Text>
+            <Text copyable>{keys ? keys.keys.api_password : '...'}</Text>
           </div>
 
           <Text>
-            <FaFileAlt />A documentação da API está disponível em:{" "}
-            <a href="http://pudim.com.br">www.link.com.br</a>
+            <FaFileAlt />A documentação da API está disponível em:{' '}
+            <a href='http://pudim.com.br'>www.link.com.br</a>
           </Text>
         </>
       );
@@ -53,10 +55,10 @@ const Api: React.FC = () => {
       return (
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <p>
@@ -102,7 +104,7 @@ const Api: React.FC = () => {
 
       <CardContent>
         <TabCard>
-          <TabsPane tab="Token de acesso" key="1">
+          <TabsPane tab='Token de acesso' key='1'>
             {noTokenYetMessage()}
           </TabsPane>
         </TabCard>

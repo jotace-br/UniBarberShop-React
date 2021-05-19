@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { useFetch } from "../../../hooks/useFetch";
+import { useFetch } from '../../../hooks/useFetch';
 
-import { Line } from "@ant-design/charts";
+import { Line } from '@ant-design/charts';
 
 const OneLineGraph: React.FC = () => {
   const firstDayOfTheYear = new Date(
@@ -25,35 +25,35 @@ const OneLineGraph: React.FC = () => {
 
   const config = {
     data: getData(),
-    xField: "month",
-    yField: "amount",
+    xField: 'month',
+    yField: 'amount',
     width: 500,
     height: 224,
     autoFit: true,
     lineStyle: {
       lineWidth: 6,
-      stroke: "#F28792",
-      shadowColor: "#F28792",
+      stroke: '#F28792',
+      shadowColor: '#F28792',
       shadowBlur: 10,
     },
     smooth: true,
     point: {
       size: 8,
-      shape: "circle",
+      shape: 'circle',
       style: {
-        fill: "transparent",
-        stroke: "transparent",
+        fill: 'transparent',
+        stroke: 'transparent',
         lineWidth: 15,
       },
-      interactions: [{ type: "element-active" }],
+      interactions: [{ type: 'element-active' }],
       state: {
         active: {
           size: 2,
-          animate: { duration: 5000, easing: "easeLinear" },
+          animate: { duration: 5000, easing: 'easeLinear' },
           style: {
             lineWidth: 2,
-            fill: "#e4c96a",
-            stroke: "#E6BE27",
+            fill: '#e4c96a',
+            stroke: '#E6BE27',
           },
         },
       },
@@ -64,7 +64,7 @@ const OneLineGraph: React.FC = () => {
     state: {
       active: {
         style: {
-          shadowColor: "yellow",
+          shadowColor: 'yellow',
           shadowBlur: 4,
         },
       },
@@ -75,16 +75,16 @@ const OneLineGraph: React.FC = () => {
           diamond: {
             active: {
               style: {
-                shadowColor: "#FCEBB9",
+                shadowColor: '#FCEBB9',
                 shadowBlur: 2,
-                stroke: "#F6BD16",
+                stroke: '#F6BD16',
               },
             },
           },
         },
       },
     },
-    interactions: [{ type: "marker-active" }],
+    interactions: [{ type: 'marker-active' }],
   };
   // data: data,
   //   xField: 'year',

@@ -1,16 +1,19 @@
-import React from "react";
-import { FaFacebook } from "react-icons/fa";
-import { RiLayoutGridFill } from "react-icons/ri";
-import { ButtonPrimary } from "../../../components/Button";
+import React from 'react';
+
 import {
   Card,
   CardContent,
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from "../../../components/Card";
-import { TabCard, TabsPane } from "../../../components/Tabs";
+} from '../../../components/Card';
 
+import { TabCard, TabsPane } from '../../../components/Tabs';
+
+import { ButtonPrimary } from '../../../components/Button';
+
+import { FaFacebook } from 'react-icons/fa';
+import { RiLayoutGridFill } from 'react-icons/ri';
 // import { Container } from './styles';
 
 const Integrations: React.FC = () => {
@@ -30,25 +33,25 @@ const Integrations: React.FC = () => {
 
       <CardContent>
         <TabCard>
-          <TabsPane tab="Disponíveis" key="1">
+          <TabsPane tab='Disponíveis' key='1'>
             <h3>Plataformas ativas</h3>
             <h4>
               <RiLayoutGridFill /> 3 plataformas
             </h4>
 
             <Card>
-              <section style={{ display: "flex" }}>
+              <section style={{ display: 'flex' }}>
                 <div
                   style={{
-                    background: "#222222",
-                    height: "100px",
-                    width: "68px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    background: '#222222',
+                    height: '100px',
+                    width: '68px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}
                 >
-                  <FaFacebook size="50px" />
+                  <FaFacebook size='50px' />
                 </div>
                 <div
                   style={{
@@ -64,25 +67,25 @@ const Integrations: React.FC = () => {
               </section>
             </Card>
           </TabsPane>
-          <TabsPane tab="Ativos" key="2">
+          <TabsPane tab='Ativos' key='2'>
             <h3>Plataformas disponíveis</h3>
             <h4>
               <RiLayoutGridFill /> 12 plataformas
             </h4>
 
             <Card>
-              <section style={{ display: "flex" }}>
+              <section style={{ display: 'flex' }}>
                 <div
                   style={{
-                    background: "#222222",
-                    height: "100px",
-                    width: "68px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    background: '#222222',
+                    height: '100px',
+                    width: '68px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}
                 >
-                  <FaFacebook size="50px" />
+                  <FaFacebook size='50px' />
                 </div>
                 <div
                   style={{

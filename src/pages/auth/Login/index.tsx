@@ -1,13 +1,12 @@
-import { Form } from "antd";
-import React from "react";
-import { GoogleLogin } from "react-google-login";
-import IllustrationLogin from "../../../assets/login.svg";
-import Checkbox from "../../../components/Checkbox";
-import { FormItem, Input, PasswordInput } from "../../../components/Input";
-import { Link } from "../../../components/Link";
-import { ButtonGoogle } from "../../../components/SocialButton";
-import api from "../../../services/api";
-import { login } from "../../../services/login";
+import React from 'react';
+
+import api from '../../../services/api';
+
+import { GoogleLogin } from 'react-google-login';
+import { login } from '../../../services/login';
+
+import { Form } from 'antd';
+
 import {
   AuthButton,
   Background,
@@ -23,14 +22,22 @@ import {
   Logo,
   RedirectLabel,
   SubButtonContainer,
-} from "../style";
+} from '../style';
+
+import { FormItem, Input, PasswordInput } from '../../../components/Input';
+import Checkbox from '../../../components/Checkbox';
+import { Link } from '../../../components/Link';
+
+import { ButtonGoogle } from '../../../components/SocialButton';
+
+import IllustrationLogin from '../../../assets/login.svg';
 
 const Login: React.FC = () => {
   const [form] = Form.useForm();
 
   const onFinish = async (body: object) => {
     try {
-      const { data } = await api.post("/login", body);
+      const { data } = await api.post('/login', body);
       await login(data.token, data.user);
     } catch (err) {
       console.log(err);
@@ -40,10 +47,10 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     window.open(
       `${process.env.REACT_APP_API_LINK}/google_auth`,
-      "mywindow",
-      "location=1,status=1,scrollbars=1, width=800,height=800"
+      'mywindow',
+      'location=1,status=1,scrollbars=1, width=800,height=800'
     );
-    window.addEventListener("message", ({ data }) => {
+    window.addEventListener('message', ({ data }) => {
       login(data.token, data.user);
     });
   };
@@ -71,60 +78,60 @@ const Login: React.FC = () => {
               cadastro.
             </p>
           </HeadingForm>
-          <Form form={form} layout="vertical" onFinish={onFinish}>
+          <Form form={form} layout='vertical' onFinish={onFinish}>
             <FormItem
-              name="email"
-              label="Email"
+              name='email'
+              label='Email'
               required
               rules={[
                 {
-                  type: "email",
-                  message: "O E-mail digitado não é um e-mail válido.",
+                  type: 'email',
+                  message: 'O E-mail digitado não é um e-mail válido.',
                 },
                 {
                   required: true,
-                  message: "Por favor, digite seu e-mail.",
+                  message: 'Por favor, digite seu e-mail.',
                 },
               ]}
               hasFeedback
             >
               <Input
-                placeholder="Digite seu email de acesso..."
+                placeholder='Digite seu email de acesso...'
                 maxLength={100}
               />
             </FormItem>
             <FormItem
-              name="password"
-              label="Senha"
+              name='password'
+              label='Senha'
               rules={[
                 {
                   required: true,
-                  message: "Por favor, insira sua senha.",
+                  message: 'Por favor, insira sua senha.',
                 },
                 {
                   min: 8,
-                  message: "Sua senha deve conter, no mínimo, 8 caracteres.",
+                  message: 'Sua senha deve conter, no mínimo, 8 caracteres.',
                 },
               ]}
               hasFeedback
             >
               <PasswordInput
-                placeholder="Digite sua senha de acesso..."
+                placeholder='Digite sua senha de acesso...'
                 maxLength={150}
               />
             </FormItem>
             <FormItem>
-              <AuthButton htmlType="submit">Entrar</AuthButton>
+              <AuthButton htmlType='submit'>Entrar</AuthButton>
               <SubButtonContainer>
-                <FormItem name="remember_me" valuePropName="checked">
+                <FormItem name='remember_me' valuePropName='checked'>
                   <Checkbox>Lembrar de mim</Checkbox>
                 </FormItem>
                 <FormItem>
-                  <Link to="/forgot-password">Esqueci minha senha</Link>
+                  <Link to='/forgot-password'>Esqueci minha senha</Link>
                 </FormItem>
               </SubButtonContainer>
               <RedirectLabel>
-                Você é novo por aqui? <Link to="/register">Cadastre-se</Link>
+                Você é novo por aqui? <Link to='/register'>Cadastre-se</Link>
               </RedirectLabel>
               <DividerOr>
                 <hr />
@@ -135,7 +142,7 @@ const Login: React.FC = () => {
                 <p>Entre com suas redes sociais</p>
                 <GoogleLogin
                   clientId={
-                    "947403029672-8ge84a6mssj1puagr3dkn6i98mk6bdmk.apps.googleusercontent.com"
+                    '947403029672-8ge84a6mssj1puagr3dkn6i98mk6bdmk.apps.googleusercontent.com'
                   }
                   render={(renderProps) => (
                     <ButtonGoogle
@@ -143,10 +150,10 @@ const Login: React.FC = () => {
                       disabled={renderProps.disabled}
                     />
                   )}
-                  buttonText="Login"
+                  buttonText='Login'
                   onSuccess={handleLogin}
                   onFailure={handleLogin}
-                  cookiePolicy={"single_host_origin"}
+                  cookiePolicy={'single_host_origin'}
                 />
               </ContainerSocial>
             </FormItem>

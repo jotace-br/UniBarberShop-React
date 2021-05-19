@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import api from "../../../services/api";
-import history from "../../../routes/history";
+import api from '../../../services/api';
+import history from '../../../routes/history';
 
-import { Form } from "antd";
+import { Form } from 'antd';
 
-import IllustrationForgot from "../../../assets/forgot.svg";
-import { FormItem, Input } from "../../../components/Input";
+import IllustrationForgot from '../../../assets/forgot.svg';
+import { FormItem, Input } from '../../../components/Input';
 import {
   errorNotification,
   successNotification,
-} from "../../../components/Notification";
+} from '../../../components/Notification';
 
 import {
   AuthButton,
@@ -23,19 +23,19 @@ import {
   Illustration,
   InfoFooter,
   Logo,
-} from "../style";
+} from '../style';
 
 const ForgotPassword: React.FC = () => {
   const [form] = Form.useForm();
 
   const onFinish = async (body: object) => {
     try {
-      await api.post("/forgot-password", body);
+      await api.post('/forgot-password', body);
       successNotification(
-        "Geramos uma nova senha para você!",
-        "Verifique o seu email, caso não esteja na caixa de entrada verifique o spam."
+        'Geramos uma nova senha para você!',
+        'Verifique o seu email, caso não esteja na caixa de entrada verifique o spam.'
       );
-      history.push("/login");
+      history.push('/login');
     } catch (err) {
       errorNotification(err.response.data.message);
     }
@@ -62,32 +62,32 @@ const ForgotPassword: React.FC = () => {
           </HeadingForm>
           <Form
             form={form}
-            layout="vertical"
+            layout='vertical'
             onFinish={onFinish}
             scrollToFirstError
           >
             <FormItem
-              name="email"
-              label="Email"
+              name='email'
+              label='Email'
               rules={[
                 {
-                  type: "email",
-                  message: "O E-mail digitado não é um e-mail válido.",
+                  type: 'email',
+                  message: 'O E-mail digitado não é um e-mail válido.',
                 },
                 {
                   required: true,
-                  message: "Por favor, insira seu E-mail.",
+                  message: 'Por favor, insira seu E-mail.',
                 },
               ]}
               hasFeedback
             >
               <Input
-                placeholder="Digite seu email de acesso..."
+                placeholder='Digite seu email de acesso...'
                 maxLength={100}
               />
             </FormItem>
             <FormItem>
-              <AuthButton htmlType="submit">Enviar</AuthButton>
+              <AuthButton htmlType='submit'>Enviar</AuthButton>
             </FormItem>
           </Form>
         </ContainerForm>
