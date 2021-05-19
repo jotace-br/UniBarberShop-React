@@ -65,6 +65,70 @@ export const GlobalStyles = createGlobalStyle`
         background-color: ${(props) => props.theme.colors.black60} !important;
       }
   }
+  .ant-notification .ant-notification-notice{
+    padding: 8px;
+    background-color: ${(props) => props.theme.colors.black90} !important;
+   
+    .ant-notification-notice-close{
+      color: ${(props) => props.theme.colors.black60};
+      font-weight: 900;
+    }
+    .ant-notification-notice-with-icon{
+      box-shadow: 8px 0px 0px #000 inset;
+      padding-left: 12px;
+      .ant-notification-notice-icon{
+        margin: 8px;
+      }
+      .ant-notification-notice-message{
+        font: ${(props) => props.theme.text.subtitle_bold};
+        color: ${(props) => props.theme.colors.white};
+      }
+      .ant-notification-notice-description{
+        font: ${(props) => props.theme.text.subtitle};
+        color: ${(props) => props.theme.colors.black20} !important;
+      }
+    }
+  }
+  .ant-notification .ant-notification-notice.ant-notification-notice-success{
+    .ant-notification-notice-with-icon{
+      box-shadow: 4px 0px 0px #58C86A inset;
+      .ant-notification-notice-icon svg{
+        background-color: #58C86A;
+        border-radius: 50%;
+        color: white;
+      }
+    }
+  }
+  .ant-notification .ant-notification-notice.ant-notification-notice-warning{
+    .ant-notification-notice-with-icon{
+      box-shadow: 4px 0px 0px #D6C52E inset; 
+       .ant-notification-notice-icon svg{
+        background-color: #D6C52E;
+        border-radius: 50%;
+        color: white;
+      }
+    }
+  }
+  .ant-notification .ant-notification-notice.ant-notification-notice-info{
+    .ant-notification-notice-with-icon{
+      box-shadow: 4px 0px 0px #428BC1 inset;
+       .ant-notification-notice-icon svg{
+        background-color: #428BC1;
+        border-radius: 50%;
+        color: white;
+      }
+    }
+  }
+  .ant-notification .ant-notification-notice.ant-notification-notice-error{
+    .ant-notification-notice-with-icon{
+      box-shadow: 4px 0px 0px #FF7070 inset;
+      .ant-notification-notice-icon svg{
+        background-color: #FF7070;
+        border-radius: 50%;
+        color: white;
+      }
+    }
+  }
     
 `;
 export default GlobalStyles;

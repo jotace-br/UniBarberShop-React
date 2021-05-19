@@ -1,17 +1,7 @@
-import React, { useState } from "react";
-
-import { useFetch } from "../../../hooks/useFetch";
-import api from "../../../services/api";
-
 import { Space } from "antd";
-
+import React, { useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
-
-import {
-  errorNotification,
-  successNotification,
-} from "../../../components/Notification";
-
+import { ButtonPrimary } from "../../../components/Button";
 import {
   Card,
   CardContent,
@@ -19,10 +9,15 @@ import {
   CardSubTitle,
   CardTitle,
 } from "../../../components/Card";
-import { ButtonPrimary } from "../../../components/Button";
+import {
+  errorNotification,
+  successNotification,
+} from "../../../components/Notification";
 import Table, { TableButton } from "../../../components/Table";
 import { TabCard, TabsPane } from "../../../components/Tabs";
 import { Tag } from "../../../components/Tag";
+import { useFetch } from "../../../hooks/useFetch";
+import api from "../../../services/api";
 
 const Webhooks: React.FC = () => {
   const [isDataAvailable] = useState(false);
@@ -174,7 +169,6 @@ const Webhooks: React.FC = () => {
       );
     }
   };
-
   return (
     <Card>
       <CardHeader>
