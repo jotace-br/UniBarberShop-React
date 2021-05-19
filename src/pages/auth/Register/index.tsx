@@ -1,14 +1,22 @@
-import { Form } from "antd";
-import MaskedInput from "antd-mask-input";
 import React, { useState } from "react";
+
+import history from "../../../routes/history";
+import api from "../../../services/api";
+
+import { Form } from "antd";
+
+import MaskedInput from "antd-mask-input";
 import ReCAPTCHA from "react-google-recaptcha";
+
 import { IoIosLogIn /* IoMdBusiness */ } from "react-icons/io";
 import { RiAccountBoxLine } from "react-icons/ri";
 import IllustrationRegister from "../../../assets/register.svg";
 import { FormItem, Input, PasswordInput } from "../../../components/Input";
 import { Link } from "../../../components/Link";
-import { errorNotification } from "../../../components/Notification";
-import api from "../../../services/api";
+import {
+  errorNotification,
+  successNotification,
+} from "../../../components/Notification";
 // import Select from "../../../components/Select";
 import {
   AuthButton,
@@ -31,22 +39,19 @@ import {
 
 const Register: React.FC = () => {
   const [token, setToken] = useState(null);
-  const [isFinished, setIsFinished] = useState(false);
   const [form] = Form.useForm();
 
   const onFinish = async (body: object) => {
     try {
-      if (isFinished && token) {
-        await api.post("/register", body);
-      } else {
-        errorNotification(
-          "Não foi possível criar sua conta.",
-          "Por favor, tente novamente."
-        );
-      }
+      if (!token)
+        errorNotification("Por favor, verifique se você não é um robô.");
+
+      await api.post("/register", body);
+      successNotification("Usuário cadastrado com sucesso!");
+
+      history.push("/login");
     } catch (err) {
-      console.log(err);
-      setIsFinished(false);
+      errorNotification(err.response.data.message);
     }
   };
 
@@ -125,7 +130,6 @@ const Register: React.FC = () => {
                   color: "#E8E8E8",
                 }}
               />
-              {/* <Input placeholder="Digite seu número de telefone..." /> */}
             </FormItem>
             <DividerIcon>
               <hr />
@@ -264,7 +268,10 @@ const Register: React.FC = () => {
                 sitekey="6Ldn0NQaAAAAAPMwZPGhiDodUC8P0FCGf_7SMa3G"
                 onChange={(token: any) => setToken(token)}
                 onExpired={() =>
-                  console.log("Verification has expired, re-verify.")
+                  errorNotification(
+                    "A verificação expirou.",
+                    "Por favor, confirme que não é um robô."
+                  )
                 }
                 theme="dark"
                 size="normal"
