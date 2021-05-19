@@ -147,7 +147,6 @@ const Login: React.FC = () => {
                   onSuccess={handleLogin}
                   onFailure={handleLogin}
                   cookiePolicy={"single_host_origin"}
-                  isSignedIn={true}
                 />
               </ContainerSocial>
             </FormItem>

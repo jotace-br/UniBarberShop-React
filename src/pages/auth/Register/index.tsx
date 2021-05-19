@@ -263,6 +263,9 @@ const Register: React.FC = () => {
               <ReCAPTCHA
                 sitekey="6Ldn0NQaAAAAAPMwZPGhiDodUC8P0FCGf_7SMa3G"
                 onChange={(token: any) => setToken(token)}
+                onExpired={() =>
+                  console.log("Verification has expired, re-verify.")
+                }
                 theme="dark"
                 size="normal"
                 hl="pt-BR"
@@ -272,14 +275,6 @@ const Register: React.FC = () => {
               Ao se cadastrar, você concorda com os{" "}
               <Link to="">Termos de Uso</Link> da PXPay.
             </RedirectLabel>
-            <ReCAPTCHA
-              sitekey="6Ldn0NQaAAAAAPMwZPGhiDodUC8P0FCGf_7SMa3G"
-              onChange={(token: any) => setToken(token)}
-              onExpired={() =>
-                console.log("Verification has expired, re-verify.")
-              }
-              theme="dark"
-            />
             <AuthButton htmlType="submit">Cadastrar</AuthButton>
           </Form>
         </ContainerForm>
