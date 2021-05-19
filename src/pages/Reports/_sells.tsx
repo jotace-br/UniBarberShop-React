@@ -1,21 +1,21 @@
-import { Menu, Space } from "antd";
-import React, { useState } from "react";
-import { FaEllipsisV } from "react-icons/fa";
+import { Menu, Space } from 'antd';
+import React, { useState } from 'react';
+import { FaEllipsisV } from 'react-icons/fa';
 import {
   ButtonDropdown,
   ButtonPrimary,
   MenuDropdown,
-} from "../../components/Button";
+} from '../../components/Button';
 import {
   Card,
   CardContent,
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from "../../components/Card";
-import Table, { TableButton } from "../../components/Table";
-import { TabCard, TabsPane } from "../../components/Tabs";
-import { Tag } from "../../components/Tag";
+} from '../../components/Card';
+import Table, { TableButton } from '../../components/Table';
+import { TabCard, TabsPane } from '../../components/Tabs';
+import { Tag } from '../../components/Tag';
 
 // import { Container } from './styles';
 
@@ -24,38 +24,37 @@ const Sells: React.FC = () => {
 
   const columns = [
     {
-      title: "ID Venda",
-      dataIndex: "key",
-      key: "key",
+      title: 'ID Venda',
+      dataIndex: 'key',
+      key: 'key',
     },
     {
-      title: "Cliente",
-      dataIndex: "customer",
-      key: "customer",
+      title: 'Cliente',
+      dataIndex: 'customer',
+      key: 'customer',
       render: (text: string) => {
-        console.log(text);
-        return "".concat(text);
+        return ''.concat(text);
       },
     },
     {
-      title: "Produto",
-      dataIndex: "method",
-      key: "method",
+      title: 'Produto',
+      dataIndex: 'method',
+      key: 'method',
     },
     {
-      title: "valor líquido",
-      dataIndex: "method",
-      key: "method",
+      title: 'valor líquido',
+      dataIndex: 'method',
+      key: 'method',
     },
     {
-      title: "Status",
-      key: "status",
-      dataIndex: "status",
+      title: 'Status',
+      key: 'status',
+      dataIndex: 'status',
       render: (status: string) => (
         <span>
           <Tag
-            status={status.includes("ATIVO") ? "active" : "error"}
-            color={status.includes("ATIVO") ? "sucess" : "error"}
+            status={status.includes('ATIVO') ? 'active' : 'error'}
+            color={status.includes('ATIVO') ? 'sucess' : 'error'}
           >
             {status.toUpperCase()}
           </Tag>
@@ -63,11 +62,11 @@ const Sells: React.FC = () => {
       ),
     },
     {
-      title: "Opções",
-      key: "options",
+      title: 'Opções',
+      key: 'options',
       render: (text: string, record: any) => (
-        <Space size="middle">
-          <TableButton a="edit">
+        <Space size='middle'>
+          <TableButton a='edit'>
             <FaEllipsisV />
           </TableButton>
         </Space>
@@ -87,109 +86,109 @@ const Sells: React.FC = () => {
 
   const data = [
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
     {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
+      key: '1',
+      customer: 'Mussum Ipsum',
+      method: 'POST',
+      status: 'ATIVO',
+      email: 'gabs@gabs.com',
     },
   ];
   // interface DataType {
@@ -204,12 +203,12 @@ const Sells: React.FC = () => {
     onChange: (selectedRowKeys: any, selectedRows: any) => {
       console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
+        'selectedRows: ',
         selectedRows
       );
     },
     getCheckboxProps: (record: any) => ({
-      disabled: record.endpoint === "Disabled User", // Column configuration not to be checked
+      disabled: record.endpoint === 'Disabled User', // Column configuration not to be checked
       endpoint: record.endpoint,
     }),
   };
@@ -219,7 +218,7 @@ const Sells: React.FC = () => {
       return (
         <div>
           <Table
-            rowSelection={{ type: "checkbox", ...rowSelection }}
+            rowSelection={{ type: 'checkbox', ...rowSelection }}
             columns={columns}
             dataSource={data}
             pagination={{ showTotal: showTotal }}
@@ -230,10 +229,10 @@ const Sells: React.FC = () => {
       return (
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <p>
@@ -251,10 +250,10 @@ const Sells: React.FC = () => {
 
   const menu = (
     <MenuDropdown>
-      <Menu.Item key="1">Download em PDF</Menu.Item>
-      <Menu.Item key="2">Download em XLS</Menu.Item>
-      <Menu.Item key="3">Download em DOC.X</Menu.Item>
-      <Menu.Item key="4">Download em TXT</Menu.Item>
+      <Menu.Item key='1'>Download em PDF</Menu.Item>
+      <Menu.Item key='2'>Download em XLS</Menu.Item>
+      <Menu.Item key='3'>Download em DOC.X</Menu.Item>
+      <Menu.Item key='4'>Download em TXT</Menu.Item>
     </MenuDropdown>
   );
 
@@ -270,16 +269,16 @@ const Sells: React.FC = () => {
 
       <CardContent>
         <TabCard>
-          <TabsPane tab="Todas" key="1">
+          <TabsPane tab='Todas' key='1'>
             {isTableEmpty()}
           </TabsPane>
-          <TabsPane tab="Finalizadas" key="2">
+          <TabsPane tab='Finalizadas' key='2'>
             {isTableEmpty()}
           </TabsPane>
-          <TabsPane tab="Pendentes" key="3">
+          <TabsPane tab='Pendentes' key='3'>
             {isTableEmpty()}
           </TabsPane>
-          <TabsPane tab="Canceladas" key="4">
+          <TabsPane tab='Canceladas' key='4'>
             {isTableEmpty()}
           </TabsPane>
         </TabCard>

@@ -31,6 +31,7 @@ import { Link } from '../../../components/Link';
 import { ButtonGoogle } from '../../../components/SocialButton';
 
 import IllustrationLogin from '../../../assets/login.svg';
+import { errorNotification } from '../../../components/Notification';
 
 const Login: React.FC = () => {
   const [form] = Form.useForm();
@@ -40,7 +41,7 @@ const Login: React.FC = () => {
       const { data } = await api.post('/login', body);
       await login(data.token, data.user);
     } catch (err) {
-      console.log(err);
+      errorNotification(err.response.data.message);
     }
   };
 
