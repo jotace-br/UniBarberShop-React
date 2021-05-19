@@ -8,7 +8,10 @@ interface LineGraphProps {
 }
 
 const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
-  const RPChoosenDate = rangePickerDate?.map((initialDate: any) => initialDate);
+  let RPChoosenDate = rangePickerDate?.map((initialDate: any) => initialDate);
+
+  // avoid causing an error on dashboard because user cleared the filter.
+  if (RPChoosenDate === undefined) RPChoosenDate = [];
 
   const initialRPValue = rangePickerDate;
   const [allRangePickerDate, setAllRangePickerDate] = useState(initialRPValue);
