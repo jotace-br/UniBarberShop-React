@@ -15,6 +15,7 @@ import {
   CardSubTitle,
   CardTitle,
 } from "../../../components/Card";
+import Modal from "../../../components/Modal";
 import Select from "../../../components/Select";
 import SmallCard from "../../../components/SmallCards";
 import { SmallCardContainer } from "../../../components/SmallCards/style";
@@ -192,6 +193,7 @@ const Sells: React.FC = () => {
           <TableSells />
         </CardContent>
       </Card>
+      <Modal visible={true} loading={false} />
     </>
   );
 };
