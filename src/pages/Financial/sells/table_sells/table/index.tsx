@@ -1,65 +1,136 @@
 import { Space } from "antd";
 import React, { useState } from "react";
 import { FaEllipsisV } from "react-icons/fa";
-import { ButtonPrimary } from "../../../../../components/Button";
 import Table, { TableButton } from "../../../../../components/Table";
 import { Tag } from "../../../../../components/Tag";
+import { useFetch } from "../../../../../hooks/useFetch";
 
 interface Props {
   filter: string;
 }
 
 const TableSells: React.FC<Props> = ({ filter }) => {
-  const [isDataAvailable] = useState(false);
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(5);
+  const [loading, setLoading] = useState(false);
+  const [paymentFilter, setPaymentFilter] = useState("");
+
+  const { data: dataTable, mutate } = useFetch(
+    `/latest-sales?page_index=${pageIndex}&payment_status=${paymentFilter}`
+  );
+
+  // `/latest-sales?page_index=${pageIndex}&page_size=${pageSize}&payment_status=${paymentFilter}`;
+
+  //`/latest-sales?orderColunm=${colunm}&order=${order}&page_index=${page}&page_size=${rowsPerPage}&produto=${produto}&costume=${comprador}&payment_method=${method}&payment_status=${status}&id=${id}`
+
+  const setStatusType = (status: string) => {
+    const translatedStatus = ["PAGO", "PENDENTE", "ESTORNADO", "CANCELADO"];
+
+    switch (status) {
+      case "PAID":
+        return translatedStatus[0];
+      case "PENDING":
+        return translatedStatus[1];
+      case "REFUND":
+        return translatedStatus[2];
+      case "CANCELED":
+        return translatedStatus[3];
+      default:
+        return "PROCESSANDO";
+    }
+  };
+
+  const setStatusTypeColor = (status: string) => {
+    switch (status) {
+      case "PAID":
+        return (
+          <Tag status="active" color="success">
+            {setStatusType(status)}
+          </Tag>
+        );
+      case "PENDING":
+        return (
+          <Tag status="waiting" color="default">
+            {setStatusType(status)}
+          </Tag>
+        );
+      case "REFUND":
+        return (
+          <Tag status="refunded" color="default">
+            {setStatusType(status)}
+          </Tag>
+        );
+      case "CANCELED":
+        return (
+          <Tag status="error" color="error">
+            {setStatusType(status)}
+          </Tag>
+        );
+      default:
+        return (
+          <Tag status="waiting" color="processing">
+            {setStatusType(status)}
+          </Tag>
+        );
+    }
+  };
+
+  const selectPaymentMethod = (method: number) => {
+    const methods = ["Crédito", "Boleto", "Convite"];
+    return methods[method];
+  };
+
+  const selectInstallmentsValue = (installment: number) => {
+    if (installment > 1) return `${installment}x`;
+    return "-";
+  };
 
   const columns = [
     {
       title: "ID Venda",
-      dataIndex: "key",
-      key: "key",
+      dataIndex: "id",
+      key: "id",
     },
     {
       title: "Cliente",
-      dataIndex: "customer",
-      key: "customer",
-      render: (text: string) => {
-        return "".concat(text);
-      },
+      dataIndex: "lead_name",
+      key: "lead_name",
     },
     {
       title: "Produto",
-      dataIndex: "product",
-      key: "product",
+      dataIndex: "product_name",
+      key: "product_name",
     },
     {
       title: "Valor líquido",
-      dataIndex: "value",
-      key: "value",
+      dataIndex: "amount",
+      key: "amount",
+      render: (amount: number) => {
+        return amount.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        });
+      },
     },
     {
       title: "Status",
-      key: "status",
-      dataIndex: "status",
-      render: (status: string) => (
-        <span>
-          <Tag
-            status={status.includes("ATIVO") ? "active" : "error"}
-            color={status.includes("ATIVO") ? "sucess" : "error"}
-          >
-            {status.toUpperCase()}
-          </Tag>
-        </span>
-      ),
+      key: "payment_status",
+      dataIndex: "payment_status",
+      render: (status: string) => <span>{setStatusTypeColor(status)}</span>,
     },
     {
       title: "Método de pagamento",
-      dataIndex: "method",
-      key: "method",
+      dataIndex: "payment_method",
+      key: "payment_method",
+      render: (method: number) => <span>{selectPaymentMethod(method)}</span>,
     },
     {
       title: "Parcelas",
-      dataIndex: "installments",
-      key: "installments",
+      dataIndex: "number_installments",
+      key: "number_installments",
+      render: (installment: number) => (
+        <span>{selectInstallmentsValue(installment)}</span>
+      ),
     },
     {
       title: "Opções",
@@ -74,129 +145,36 @@ const TableSells: React.FC<Props> = ({ filter }) => {
     },
   ];
 
-  function showTotal(total: any) {
+  function showTotal(total: any, range: any) {
     return (
       <div>
         <p>
-          Mostrando: <span>{total}</span> resultados
+          Mostrando:{" "}
+          <span>
+            {range[0]}-{range[1]}
+          </span>{" "}
+          de <span>{total}</span> resultados
         </p>
       </div>
     );
   }
 
-  const data = [
-    {
-      key: "1",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "2",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "3",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "4",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "5",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "6",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "7",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "8",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "9",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "10",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "11",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "12",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "13",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "14",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-    {
-      key: "15",
-      customer: "Mussum Ipsum",
-      method: "POST",
-      status: "ATIVO",
-      email: "gabs@gabs.com",
-    },
-  ];
-  // interface DataType {
-  //   key: React.Key;
-  //   endpoint: string;
-  //   method: string;
-  //   status: string;
-  // }
+  const handleChange = ({ current, pageSize: pageSizeFC }: any) => {
+    if (current !== pageIndex) {
+      setPageIndex(current - 1);
+      setLoading(true);
+    }
+
+    if (pageSizeFC !== pageSize) {
+      setPageSize(pageSizeFC);
+      setPageIndex(current - 1);
+
+      setLoading(true);
+    }
+
+    mutate();
+    setLoading(false);
+  };
 
   // rowSelection object indicates the need for row selection
   const rowSelection = {
@@ -213,42 +191,30 @@ const TableSells: React.FC<Props> = ({ filter }) => {
     }),
   };
 
-  const isTableEmpty = () => {
-    if (!isDataAvailable) {
-      return (
-        <div>
-          <Table
-            rowSelection={{ type: "checkbox", ...rowSelection }}
-            columns={columns}
-            dataSource={data}
-            pagination={{ showTotal: showTotal }}
-            scroll={{ x: "calc(700px + 50%)" }}
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+  const filteredTable = () => {
+    return (
+      <div>
+        <Table
+          rowSelection={{ type: "checkbox", ...rowSelection }}
+          columns={columns}
+          dataSource={dataTable?.records}
+          pagination={{
+            showTotal: showTotal,
+            showSizeChanger: false,
+            // pageSizeOptions: ["5", "10", "25", "50", "100"],
+            pageSize: pageSize,
+            current: pageIndex + 1,
+            total: dataTable?.records.total_pages,
           }}
-        >
-          <p>
-            <b>Por enquanto, não há tokens de acesso :(</b>
-          </p>
-          <p>Você pode gerar um novo token clicando aqui</p>
-
-          <ButtonPrimary>
-            <p>Adicionar +</p>
-          </ButtonPrimary>
-        </div>
-      );
-    }
+          loading={loading}
+          onChange={(pagination) => handleChange(pagination)}
+          // scroll={{ x: "calc(900px + 50%)" }}
+        />
+      </div>
+    );
   };
-  return isTableEmpty();
+
+  return filteredTable();
 };
 
 export default TableSells;
