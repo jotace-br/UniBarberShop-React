@@ -1,38 +1,45 @@
-import { AccountBalanceWalletOutlined } from "@material-ui/icons";
-import React from "react";
-import {
-  FaCheck,
-  FaChevronDown,
-  FaChevronUp,
-  FaDollarSign,
-  FaExclamation,
-} from "react-icons/fa";
-import { MdBlock, MdLoop } from "react-icons/md";
+import React from 'react';
+
+import { useFetch } from '../../../hooks/useFetch';
+import { useUser } from '../../../services/user';
+
 import {
   Card,
   CardContent,
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from "../../../components/Card";
-import Modal from "../../../components/Modal";
-import Select from "../../../components/Select";
-import SmallCard from "../../../components/SmallCards";
-import { SmallCardContainer } from "../../../components/SmallCards/style";
-import { useFetch } from "../../../hooks/useFetch";
-import { useUser } from "../../../services/user";
-import { ExportContainer } from "../../Dashboard/style";
-import DualAxes from "./graphs/DualAxesGraph";
-import LineFillGraph from "./graphs/LineFillGraph";
-import ProgressBar from "./graphs/ProgressBar";
+} from '../../../components/Card';
+
+import TableSells from './table_sells';
+import DualAxes from './graphs/DualAxesGraph';
+import LineFillGraph from './graphs/LineFillGraph';
+import ProgressBar from './graphs/ProgressBar';
+
+import Modal from '../../../components/Modal';
+import Select from '../../../components/Select';
+import SmallCard from '../../../components/SmallCards';
+import { SmallCardContainer } from '../../../components/SmallCards/style';
+
+import { ExportContainer } from '../../Dashboard/style';
+
 import {
   StatusLabel,
   StatusList,
   StatusListItem,
   StatusValue,
   TwoCardContainer,
-} from "./style";
-import TableSells from "./table_sells";
+} from './style';
+
+import { MdBlock, MdLoop } from 'react-icons/md';
+import { AccountBalanceWalletOutlined } from '@material-ui/icons';
+import {
+  FaCheck,
+  FaChevronDown,
+  FaChevronUp,
+  FaDollarSign,
+  FaExclamation,
+} from 'react-icons/fa';
 
 // import { Container } from './styles';
 const { Option } = Select;
@@ -40,7 +47,7 @@ const Sells: React.FC = () => {
   const {
     data: { user },
   } = useUser();
-  const { data: financialResume } = useFetch("/financial-summary");
+  const { data: financialResume } = useFetch('/financial-summary');
   const { data: balance } = useFetch(`/check-balance/${user.seller_id}`, [
     {
       shouldRetryOnError: false,
@@ -51,34 +58,34 @@ const Sells: React.FC = () => {
     <>
       <SmallCardContainer>
         <SmallCard
-          color="#71E083"
+          color='#71E083'
           value={
             financialResume?.financial_summary.net_value.toLocaleString(
-              "pt-BR",
+              'pt-BR',
               {
-                style: "currency",
-                currency: "BRL",
+                style: 'currency',
+                currency: 'BRL',
               }
-            ) || "R$ 0,00"
+            ) || 'R$ 0,00'
           }
-          label="Saldo disponível"
+          label='Saldo disponível'
           icon={<FaDollarSign />}
         />
         <SmallCard
-          color="#7197E0"
+          color='#7197E0'
           value={
-            balance?.balance.account_balance.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            }) || "R$ 0,00"
+            balance?.balance.account_balance.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            }) || 'R$ 0,00'
           }
-          label="Saldo a receber"
+          label='Saldo a receber'
           icon={<AccountBalanceWalletOutlined />}
         />
         <SmallCard
-          color="#E6BE27"
-          value={financialResume?.financial_summary.sales || "R$ 0,00"}
-          label="Total de transações"
+          color='#E6BE27'
+          value={financialResume?.financial_summary.sales || 'R$ 0,00'}
+          label='Total de transações'
           icon={<FaDollarSign />}
         />
       </SmallCardContainer>
@@ -97,11 +104,11 @@ const Sells: React.FC = () => {
         </CardContent>
         <ExportContainer>
           <p>Exportar em:</p>
-          <Select defaultValue={"pdf"}>
-            <Option value="pdf">PDF</Option>
-            <Option value="excel">XLS</Option>
-            <Option value="excel">DOC.X</Option>
-            <Option value="odf">TXT</Option>
+          <Select defaultValue={'pdf'}>
+            <Option value='pdf'>PDF</Option>
+            <Option value='excel'>XLS</Option>
+            <Option value='excel'>DOC.X</Option>
+            <Option value='odf'>TXT</Option>
           </Select>
         </ExportContainer>
       </Card>
@@ -121,11 +128,11 @@ const Sells: React.FC = () => {
           </CardContent>
           <ExportContainer>
             <p>Exportar em:</p>
-            <Select defaultValue={"pdf"}>
-              <Option value="pdf">PDF</Option>
-              <Option value="excel">XLS</Option>
-              <Option value="excel">DOC.X</Option>
-              <Option value="odf">TXT</Option>
+            <Select defaultValue={'pdf'}>
+              <Option value='pdf'>PDF</Option>
+              <Option value='excel'>XLS</Option>
+              <Option value='excel'>DOC.X</Option>
+              <Option value='odf'>TXT</Option>
             </Select>
           </ExportContainer>
         </Card>
@@ -141,11 +148,11 @@ const Sells: React.FC = () => {
             <StatusList>
               {/* aprovado */}
               <StatusListItem>
-                <StatusLabel color="#71E083">
+                <StatusLabel color='#71E083'>
                   <FaCheck />
                   <p>Aprovado</p>
                 </StatusLabel>
-                <StatusValue color="#71E083">
+                <StatusValue color='#71E083'>
                   <p>R$12.000,00</p>
                   <FaChevronUp />
                 </StatusValue>
@@ -153,11 +160,11 @@ const Sells: React.FC = () => {
 
               {/* não aprovado */}
               <StatusListItem>
-                <StatusLabel color="#FF7070">
+                <StatusLabel color='#FF7070'>
                   <FaExclamation />
                   <p>Não aprovado</p>
                 </StatusLabel>
-                <StatusValue color="#71E083">
+                <StatusValue color='#71E083'>
                   <p>R$12.000,00</p>
                   <FaChevronUp />
                 </StatusValue>
@@ -165,11 +172,11 @@ const Sells: React.FC = () => {
 
               {/* cancelados */}
               <StatusListItem>
-                <StatusLabel color="#A4A4A4">
+                <StatusLabel color='#A4A4A4'>
                   <MdBlock />
                   <p>Cancelados</p>
                 </StatusLabel>
-                <StatusValue color="#FF7070">
+                <StatusValue color='#FF7070'>
                   <p>R$12.000,00</p>
                   <FaChevronDown />
                 </StatusValue>
@@ -177,11 +184,11 @@ const Sells: React.FC = () => {
 
               {/* pendente */}
               <StatusListItem>
-                <StatusLabel color="#D6C52E">
+                <StatusLabel color='#D6C52E'>
                   <MdLoop />
                   <p>Aprovado</p>
                 </StatusLabel>
-                <StatusValue color="#71E083">
+                <StatusValue color='#71E083'>
                   <p>R$12.000,00</p>
                   <FaChevronUp />
                 </StatusValue>
@@ -221,7 +228,7 @@ const Sells: React.FC = () => {
       <Modal
         visible={true}
         loading={false}
-        type="form"
+        type='form'
         singleButton={true}
       ></Modal>
     </>

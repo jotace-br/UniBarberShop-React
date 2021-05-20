@@ -1,26 +1,22 @@
-import React from "react";
-import { TabCard, TabsPane } from "../../../../components/Tabs";
-import Table from "./table";
+import React from 'react';
 
-// import { Container } from './styles';
+import Table from './table';
+import { TabCard, TabsPane } from '../../../../components/Tabs';
 
 const TableSells: React.FC = () => {
   return (
     <TabCard>
-      <TabsPane tab="Ativos" key="1">
-        <Table filter="ativos" />
+      <TabsPane tab='Ativos' key='1'>
+        <Table filter='' />
       </TabsPane>
-      <TabsPane tab="Aprovados" key="2">
-        <Table filter="aprovados" />
+      <TabsPane tab='Aprovados' key='2'>
+        <Table filter='PAID' />
       </TabsPane>
-      <TabsPane tab="Não Aprovados" key="3">
-        <Table filter="nao_aprovados" />
+      <TabsPane tab='Pendentes' key='4'>
+        <Table filter='PENDING' />
       </TabsPane>
-      <TabsPane tab="Pendentes" key="4">
-        <Table filter="pendentes" />
-      </TabsPane>
-      <TabsPane tab="Canceladas" key="5">
-        <Table filter="canceladas" />
+      <TabsPane tab='Estornadas' key='5'>
+        <Table filter='REFUND' />
       </TabsPane>
     </TabCard>
   );
