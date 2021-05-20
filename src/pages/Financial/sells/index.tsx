@@ -19,6 +19,8 @@ import Modal from "../../../components/Modal";
 import Select from "../../../components/Select";
 import SmallCard from "../../../components/SmallCards";
 import { SmallCardContainer } from "../../../components/SmallCards/style";
+import { useFetch } from "../../../hooks/useFetch";
+import { useUser } from "../../../services/user";
 import { ExportContainer } from "../../Dashboard/style";
 import DualAxes from "./graphs/DualAxesGraph";
 import LineFillGraph from "./graphs/LineFillGraph";
@@ -35,24 +37,47 @@ import TableSells from "./table_sells";
 // import { Container } from './styles';
 const { Option } = Select;
 const Sells: React.FC = () => {
+  const {
+    data: { user },
+  } = useUser();
+  const { data: financialResume } = useFetch("/financial-summary");
+  const { data: balance } = useFetch(`/check-balance/${user.seller_id}`, [
+    {
+      shouldRetryOnError: false,
+    },
+  ]);
+
   return (
     <>
       <SmallCardContainer>
         <SmallCard
           color="#71E083"
-          value="123"
+          value={
+            financialResume?.financial_summary.net_value.toLocaleString(
+              "pt-BR",
+              {
+                style: "currency",
+                currency: "BRL",
+              }
+            ) || "R$ 0,00"
+          }
           label="Saldo disponível"
           icon={<FaDollarSign />}
         />
         <SmallCard
           color="#7197E0"
-          value="123"
+          value={
+            balance?.balance.account_balance.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }) || "R$ 0,00"
+          }
           label="Saldo a receber"
           icon={<AccountBalanceWalletOutlined />}
         />
         <SmallCard
           color="#E6BE27"
-          value="123"
+          value={financialResume?.financial_summary.sales || "R$ 0,00"}
           label="Total de transações"
           icon={<FaDollarSign />}
         />
