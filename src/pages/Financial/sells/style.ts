@@ -17,6 +17,9 @@ export const StatusListItem = styled.li`
   justify-content: space-between;
   border-bottom: 1px solid ${(props) => props.theme.colors.black60};
   padding: 16px 0;
+  :last-child {
+    border-bottom: none;
+  }
 `;
 export const StatusValue = styled.div<Props>`
   display: flex;

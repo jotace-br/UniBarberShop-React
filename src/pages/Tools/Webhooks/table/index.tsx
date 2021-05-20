@@ -1,54 +1,33 @@
-import React, { useState } from 'react';
-
-import { useFetch } from '../../../../hooks/useFetch';
-import api from '../../../../services/api';
-
-import Table, { TableButton } from '../../../../components/Table';
-
-import { Space } from 'antd';
-import { ButtonPrimary } from '../../../../components/Button';
-
-import { Tag } from '../../../../components/Tag';
-
-import { FaEdit, FaTrash } from 'react-icons/fa';
-
+import { Space } from "antd";
+import Form from "antd/lib/form/Form";
+import React, { useState } from "react";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { ButtonPrimary } from "../../../../components/Button";
+import { FormItem, Input } from "../../../../components/Input";
 import {
   errorNotification,
   successNotification,
-} from '../../../../components/Notification';
+} from "../../../../components/Notification";
+import Table, { TableAddForm, TableButton } from "../../../../components/Table";
+import { Tag } from "../../../../components/Tag";
+import { useFetch } from "../../../../hooks/useFetch";
+import api from "../../../../services/api";
+
 interface Props {
   filter: string;
 }
 
 const TableWebhooks: React.FC<Props> = ({ filter }) => {
   const [isDataAvailable] = useState(false);
-  const { data: webhooks, mutate } = useFetch('/get_webhook_endpoint');
-
-  // const handleCreate = async (body: any) => {
-  //   // no Form, terá esses três campos
-  //   const body = {
-  //     url_webhook,
-  //     method,
-  //     trigger,
-  //   };
-
-  //   try {
-  //     const response = await api.post("/create_webhook_endpoint", body);
-  //     mutate();
-  //     successNotification(response.data.message);
-  //   } catch (error) {
-  //     errorNotification(error.response.data.message);
-  //   }
-  //   console.log("oops");
-  // };
+  const { data: webhooks, mutate } = useFetch("/get_webhook_endpoint");
 
   const handleDelete = async (id: number) => {
     try {
       await api.delete(`/delete_webhook_endpoint/${id}`);
       mutate();
-      successNotification('Webhook deletado com sucesso!');
+      successNotification("Webhook deletado com sucesso!");
     } catch (error) {
-      errorNotification('Ocorreu um erro ao remover o Webhook.');
+      errorNotification("Ocorreu um erro ao remover o Webhook.");
     }
   };
 
@@ -58,50 +37,50 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
 
   const columns = [
     {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
     },
     {
-      title: 'Endpoint',
-      dataIndex: 'url_webhook',
-      key: 'url_webhook',
+      title: "Endpoint",
+      dataIndex: "url_webhook",
+      key: "url_webhook",
       render: (link: string) => (
-        <a href={link} target='_blank' rel='noreferrer'>
+        <a href={link} target="_blank" rel="noreferrer">
           {link}
         </a>
       ),
     },
     {
-      title: 'Método',
-      dataIndex: 'method',
-      key: 'method',
+      title: "Método",
+      dataIndex: "method",
+      key: "method",
     },
     {
-      title: 'Status',
-      key: 'active',
-      dataIndex: 'active',
+      title: "Status",
+      key: "active",
+      dataIndex: "active",
       render: (status: boolean) => (
         <span>
           <Tag
-            status={status ? 'active' : 'error'}
-            color={status ? 'success' : 'error'}
+            status={status ? "active" : "error"}
+            color={status ? "success" : "error"}
           >
-            {status ? 'ATIVO' : 'FALHA'}
+            {status ? "ATIVO" : "FALHA"}
           </Tag>
         </span>
       ),
     },
     {
-      title: 'Opções',
-      key: 'options',
+      title: "Opções",
+      key: "options",
       render: ({ id }: any, fullObject: any) => (
-        <Space size='middle'>
-          <TableButton a='edit' onClick={() => handleEdit(fullObject)}>
+        <Space size="middle">
+          <TableButton a="edit" onClick={() => handleEdit(fullObject)}>
             <FaEdit />
           </TableButton>
 
-          <TableButton a='trash' onClick={() => handleDelete(id)}>
+          <TableButton a="trash" onClick={() => handleDelete(id)}>
             <FaTrash />
           </TableButton>
         </Space>
@@ -113,8 +92,8 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
     return (
       <div>
         <p>
-          Mostrando: <span>{total}</span>{' '}
-          {total > 1 ? 'resultados' : 'resultado'}
+          Mostrando: <span>{total}</span>{" "}
+          {total > 1 ? "resultados" : "resultado"}
         </p>
       </div>
     );
@@ -125,12 +104,12 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
     onChange: (selectedRowKeys: any, selectedRows: any) => {
       console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
-        'selectedRows: ',
+        "selectedRows: ",
         selectedRows
       );
     },
     getCheckboxProps: (record: any) => ({
-      disabled: record.endpoint === 'Disabled User', // Column configuration not to be checked
+      disabled: record.endpoint === "Disabled User", // Column configuration not to be checked
       endpoint: record.endpoint,
     }),
   };
@@ -139,8 +118,21 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
     if (!isDataAvailable) {
       return (
         <div>
+          <TableAddForm>
+            <Form layout="vertical">
+              <FormItem label="Field A">
+                <Input placeholder="input placeholder" />
+              </FormItem>
+              <FormItem label="Field B">
+                <Input placeholder="input placeholder" />
+              </FormItem>
+              <FormItem>
+                <ButtonPrimary>Salvar</ButtonPrimary>
+              </FormItem>
+            </Form>
+          </TableAddForm>
           <Table
-            rowSelection={{ type: 'checkbox', ...rowSelection }}
+            rowSelection={{ type: "checkbox", ...rowSelection }}
             columns={columns}
             dataSource={webhooks?.data.records.map((items: any) => items)}
             pagination={{ showTotal: showTotal }}
@@ -151,10 +143,10 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
       return (
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <p>

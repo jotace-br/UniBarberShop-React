@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Button, Table as AntdTable } from "antd";
+import styled from "styled-components";
 
 export const Table = styled(AntdTable)`
   .ant-table-thead > tr > th {
@@ -36,114 +36,130 @@ export const Table = styled(AntdTable)`
     }
   }
   .ant-table-tbody > tr.ant-table-row:hover > td,
-  .ant-table-tbody > tr.ant-table-row-selected > td{
+  .ant-table-tbody > tr.ant-table-row-selected > td {
     background-color: unset;
   }
-  .ant-table-tbody > tr > td{
+  .ant-table-tbody > tr > td {
     border-bottom: 0;
     color: #fff;
     font: ${(props) => props.theme.text.subtitle};
   }
-  .ant-table-tbody > tr > td>a{
-    color: #fff
+  .ant-table-tbody > tr > td > a {
+    color: #fff;
   }
-  .ant-table-tbody > tr:nth-child(odd){
+  .ant-table-tbody > tr:nth-child(odd) {
     background-color: ${(props) => props.theme.colors.black90};
   }
-  .ant-table-tbody > tr:nth-child(even){
+  .ant-table-tbody > tr:nth-child(even) {
     background-color: ${(props) => props.theme.colors.black70};
   }
-  .ant-pagination{
+  .ant-pagination {
     margin: 0;
     padding: 16px 30px;
-    background-color: rgba(34,34,34,.70);
+    background-color: rgba(34, 34, 34, 0.7);
     border-radius: 0 0 5px 5px;
-    
   }
   .ant-pagination .ant-pagination-prev,
-  .ant-pagination .ant-pagination-next{
+  .ant-pagination .ant-pagination-next {
     background-color: ${(props) => props.theme.colors.black90};
     border: 0;
-    color:  ${(props) => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.white};
     box-shadow: 0 4px 15px #00000025;
     padding: 4px 7px;
     border-radius: 5px;
     padding: 0;
-    button{
+    button {
       background-color: transparent;
       border: none;
       padding: 0;
-      color: #fff
+      color: #fff;
     }
   }
-  .ant-pagination-item{
+  .ant-pagination-item {
     background-color: transparent;
     border: 0;
-    color:  ${(props) => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.white};
     padding: 4px 7px;
     border-radius: 5px;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    a{
+    a {
       color: #fff;
       font: ${(props) => props.theme.text.subtitle};
     }
-  } 
-  .ant-pagination-item.ant-pagination-item-active{
+  }
+  .ant-pagination-item.ant-pagination-item-active {
     background-color: ${(props) => props.theme.colors.primary100};
-    box-shadow: 0 4px 10px rgba(230, 194, 39, .25);
-    a{
+    box-shadow: 0 4px 10px rgba(230, 194, 39, 0.25);
+    a {
       font: ${(props) => props.theme.text.subtitle_bold};
     }
   }
-  .ant-pagination-total-text{
+  .ant-pagination-total-text {
     margin-right: auto;
-    div{
+    div {
       height: 100%;
       display: flex;
-      align-items: center;  
+      align-items: center;
     }
-    div>p{
+    div > p {
       color: ${(props) => props.theme.colors.black30} !important;
       font: ${(props) => props.theme.text.subtitle_small};
     }
-    div>p>span{
+    div > p > span {
       font: ${(props) => props.theme.text.subtitle_small_bold};
     }
   }
-
 `;
 
 export default Table;
 
-
-interface TableButtonProps{
-  a: string
+interface TableButtonProps {
+  a: string;
 }
 export const TableButton = styled(Button)<TableButtonProps>`
   width: 26px;
   height: 26px;
   background-color: ${(props) => props.theme.colors.black90};
   border: 0;
-  color:  ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   box-shadow: 0 4px 15px #00000025;
   padding: 4px 7px;
   border-radius: 5px;
   &[a="trash"],
   &[a="trash"]:hover,
   &[a="trash"]:active,
-  &[a="trash"]:focus{
-    color: #FF7070; 
+  &[a="trash"]:focus {
+    color: #ff7070;
     box-shadow: none;
   }
   :hover,
   :active,
-  :focus{
-    color:  ${(props) => props.theme.colors.white}; 
+  :focus {
+    color: ${(props) => props.theme.colors.white};
     background-color: ${(props) => props.theme.colors.black70};
     box-shadow: none;
   }
-  
+`;
+export const TableAddForm = styled.div`
+  background-color: ${(props) => props.theme.colors.black80};
+
+  .ant-form {
+    display: flex;
+    align-items: flex-end;
+    padding: 20px 0;
+    border-top: 1px solid ${(props) => props.theme.colors.black60};
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    position: relative;
+    border-radius: 0px 0px 15px 15px;
+    .ant-row {
+      margin: 0 20px;
+      :last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 `;
