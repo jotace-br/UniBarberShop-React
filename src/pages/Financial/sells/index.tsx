@@ -1,4 +1,37 @@
 import React from "react";
+
+import { useFetch } from "../../../hooks/useFetch";
+import { useUser } from "../../../services/user";
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardSubTitle,
+  CardTitle,
+} from "../../../components/Card";
+
+import TableSells from "./table_sells";
+import DualAxes from "./graphs/DualAxesGraph";
+import LineFillGraph from "./graphs/LineFillGraph";
+import ProgressBar from "./graphs/ProgressBar";
+
+import Modal from "../../../components/Modal";
+import Select from "../../../components/Select";
+import SmallCard from "../../../components/SmallCards";
+import { SmallCardContainer } from "../../../components/SmallCards/style";
+
+import { ExportContainer } from "../../Dashboard/style";
+
+import {
+  StatusLabel,
+  StatusList,
+  StatusListItem,
+  StatusValue,
+  TwoCardContainer,
+} from "./style";
+
+import { MdBlock, MdLoop } from "react-icons/md";
 import { AccountBalanceWalletOutlined } from "@material-ui/icons";
 import {
   FaCheck,
@@ -7,32 +40,6 @@ import {
   FaDollarSign,
   FaExclamation,
 } from "react-icons/fa";
-import { MdBlock, MdLoop } from "react-icons/md";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardSubTitle,
-  CardTitle,
-} from "../../../components/Card";
-import Modal from "../../../components/Modal";
-import Select from "../../../components/Select";
-import SmallCard from "../../../components/SmallCards";
-import { SmallCardContainer } from "../../../components/SmallCards/style";
-import { useFetch } from "../../../hooks/useFetch";
-import { useUser } from "../../../services/user";
-import { ExportContainer } from "../../Dashboard/style";
-import DualAxes from "./graphs/DualAxesGraph";
-import LineFillGraph from "./graphs/LineFillGraph";
-import ProgressBar from "./graphs/ProgressBar";
-import {
-  StatusLabel,
-  StatusList,
-  StatusListItem,
-  StatusValue,
-  TwoCardContainer,
-} from "./style";
-import TableSells from "./table_sells";
 
 // import { Container } from './styles';
 const { Option } = Select;
