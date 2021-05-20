@@ -3,13 +3,16 @@ import styled from "styled-components";
 
 export const StyledModal = styled(AntdModal)`
   .ant-modal-content {
+    width: 550px;
     background-color: ${(props) => props.theme.colors.black100};
+    padding: 32px;
+    border-radius: 20px;
     .ant-modal-close-x {
       color: ${(props) => props.theme.colors.black30};
     }
     .ant-modal-header {
       border-bottom: 1px solid ${(props) => props.theme.colors.black70};
-      margin: 0 32px;
+
       .ant-modal-title {
         color: #fff;
         font: ${(props) => props.theme.text.text_large_bold};
@@ -21,11 +24,18 @@ export const StyledModal = styled(AntdModal)`
       background-color: ${(props) => props.theme.colors.black100};
     }
     .ant-modal-body {
-      padding: 24px 32px;
+      padding: 30px 22px;
+      text-align: center;
       font: ${(props) => props.theme.text.text_medium};
+      color: ${(props) => props.theme.colors.black20};
     }
     .ant-modal-footer {
       border-top: none;
+      display: flex;
+      justify-content: center;
+      button {
+        margin: 0 12px;
+      }
     }
   }
 `;

@@ -1,3 +1,4 @@
+import Title from "antd/lib/typography/Title";
 import React, { useState } from "react";
 import CheckIllustration from "../../assets/modal_illustrations/check_modal.svg";
 import FormIllustration from "../../assets/modal_illustrations/form_modal.svg";
@@ -8,6 +9,7 @@ import { ContainerButtons, Illustration, StyledModal } from "./style";
 
 // import { Container } from './styles';
 interface Props {
+  title: string;
   visible: boolean;
   loading: boolean;
   type?: string;
@@ -21,6 +23,7 @@ const Modal: React.FC<Props> = ({
   children,
   type,
   singleButton,
+  title,
 }) => {
   const [load, setLoading] = useState(loading);
   const [visi, setVisible] = useState(visible);
@@ -38,7 +41,6 @@ const Modal: React.FC<Props> = ({
   };
 
   const getImage = () => {
-    console.log(type);
     switch (type) {
       case "warning":
         return WarningIllustration;
@@ -58,7 +60,7 @@ const Modal: React.FC<Props> = ({
       title={[
         <>
           {getImage() ? <Illustration src={getImage()} alt="img" /> : null}
-          <p>Title</p>
+          <p>{title}</p>
         </>,
       ]}
       onOk={handleOk}
@@ -73,12 +75,12 @@ const Modal: React.FC<Props> = ({
               </ContainerButtons>,
             ]
           : [
-              <ButtonSecondary key="back" onClick={handleCancel}>
-                Cancelar
-              </ButtonSecondary>,
               <ButtonPrimary key="submit" loading={load} onClick={handleOk}>
                 Confimar
               </ButtonPrimary>,
+              <ButtonSecondary key="back" onClick={handleCancel}>
+                Cancelar
+              </ButtonSecondary>,
             ]
       }
     >

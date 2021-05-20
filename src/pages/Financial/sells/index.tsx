@@ -1,5 +1,5 @@
-import { AccountBalanceWalletOutlined } from "@material-ui/icons";
 import React from "react";
+import { AccountBalanceWalletOutlined } from "@material-ui/icons";
 import {
   FaCheck,
   FaChevronDown,
@@ -219,11 +219,15 @@ const Sells: React.FC = () => {
         </CardContent>
       </Card>
       <Modal
+        title="Titulo"
         visible={true}
         loading={false}
         type="form"
         singleButton={true}
-      ></Modal>
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget
+        est molestie, consectetur ipsum vel, imperdiet risus.
+      </Modal>
     </>
   );
 };
