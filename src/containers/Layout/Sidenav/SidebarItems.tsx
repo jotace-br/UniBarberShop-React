@@ -2,7 +2,6 @@ import React from "react";
 import {
   RiBarChartBoxFill,
   RiDashboardFill,
-  RiFileTextFill,
   RiGridFill,
   RiGroupFill,
   RiMailFill,
@@ -49,12 +48,6 @@ const SidebarItems = [
       { name: "Página 2", route: "/produtos/page2" },
       { name: "Página 3", route: "/produtos/page3" },
     ],
-  },
-  {
-    name: "Relatórios",
-    isDrop: false,
-    icon: <RiFileTextFill />,
-    route: "/relatorios",
   },
   {
     name: "Ferramentas",

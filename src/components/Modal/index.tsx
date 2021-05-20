@@ -1,13 +1,27 @@
 import React, { useState } from "react";
+import CheckIllustration from "../../assets/modal_illustrations/check_modal.svg";
+import FormIllustration from "../../assets/modal_illustrations/form_modal.svg";
+import QuestionIllustration from "../../assets/modal_illustrations/question_modal.svg";
+import WarningIllustration from "../../assets/modal_illustrations/warning_modal.svg";
 import { ButtonPrimary, ButtonSecondary } from "../Button";
-import { StyledModal } from "./style";
+import { ContainerButtons, Illustration, StyledModal } from "./style";
+
 // import { Container } from './styles';
 interface Props {
   visible: boolean;
   loading: boolean;
+  type?: string;
+  singleButton?: boolean;
+  children?: React.ReactNode;
 }
 
-const Modal: React.FC<Props> = ({ loading, visible }) => {
+const Modal: React.FC<Props> = ({
+  loading,
+  visible,
+  children,
+  type,
+  singleButton,
+}) => {
   const [load, setLoading] = useState(loading);
   const [visi, setVisible] = useState(visible);
 
@@ -22,26 +36,53 @@ const Modal: React.FC<Props> = ({ loading, visible }) => {
   const handleCancel = () => {
     setVisible(false);
   };
+
+  const getImage = () => {
+    console.log(type);
+    switch (type) {
+      case "warning":
+        return WarningIllustration;
+      case "form":
+        return FormIllustration;
+      case "question":
+        return QuestionIllustration;
+      case "success":
+        return CheckIllustration;
+      default:
+        return undefined;
+    }
+  };
   return (
     <StyledModal
       visible={visi}
-      title="Title"
+      title={[
+        <>
+          {getImage() ? <Illustration src={getImage()} alt="img" /> : null}
+          <p>Title</p>
+        </>,
+      ]}
       onOk={handleOk}
       onCancel={handleCancel}
-      footer={[
-        <ButtonSecondary key="back" onClick={handleCancel}>
-          Return
-        </ButtonSecondary>,
-        <ButtonPrimary key="submit" loading={load} onClick={handleOk}>
-          Submit
-        </ButtonPrimary>,
-      ]}
+      footer={
+        singleButton
+          ? [
+              <ContainerButtons>
+                <ButtonPrimary key="submit" loading={load} onClick={handleOk}>
+                  Ok
+                </ButtonPrimary>
+              </ContainerButtons>,
+            ]
+          : [
+              <ButtonSecondary key="back" onClick={handleCancel}>
+                Cancelar
+              </ButtonSecondary>,
+              <ButtonPrimary key="submit" loading={load} onClick={handleOk}>
+                Confimar
+              </ButtonPrimary>,
+            ]
+      }
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      {children}
     </StyledModal>
   );
 };

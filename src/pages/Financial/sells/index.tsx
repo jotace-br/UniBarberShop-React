@@ -30,7 +30,7 @@ import {
   StatusValue,
   TwoCardContainer,
 } from "./style";
-import TableSells from "./table";
+import TableSells from "./table_sells";
 
 // import { Container } from './styles';
 const { Option } = Select;
@@ -193,7 +193,12 @@ const Sells: React.FC = () => {
           <TableSells />
         </CardContent>
       </Card>
-      <Modal visible={true} loading={false} />
+      <Modal
+        visible={true}
+        loading={false}
+        type="form"
+        singleButton={true}
+      ></Modal>
     </>
   );
 };

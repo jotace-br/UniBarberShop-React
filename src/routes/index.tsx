@@ -1,9 +1,5 @@
 import React from "react";
 import { Redirect, Switch } from "react-router-dom";
-
-import GuestRoute from "./guest";
-import PrivateRoute from "./private";
-
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
@@ -14,13 +10,14 @@ import Emails from "../pages/Emails";
 import FinancialResume from "../pages/Financial";
 import Products from "../pages/Products";
 import Registrations from "../pages/Registrations";
-import Reports from "../pages/Reports";
 import Api from "../pages/Tools/Api";
 //ferramentas
 import {
   default as Integrations,
   default as Webhooks,
 } from "../pages/Tools/Webhooks";
+import GuestRoute from "./guest";
+import PrivateRoute from "./private";
 
 const Routes: React.FC = () => (
   <Switch>
@@ -37,7 +34,6 @@ const Routes: React.FC = () => (
     <PrivateRoute exact path="/produtos/page1" component={Products} />
     <PrivateRoute exact path="/produtos/page2" component={Products} />
     <PrivateRoute exact path="/produtos/page3" component={Products} />
-    <PrivateRoute exact path="/relatorios" component={Reports} />
     <PrivateRoute
       exact
       path="/ferramentas/integracoes"
