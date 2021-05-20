@@ -1,35 +1,42 @@
-import { AccountBalanceWalletOutlined } from "@material-ui/icons";
-import React from "react";
-import {
-  FaCheck,
-  FaChevronDown,
-  FaChevronUp,
-  FaDollarSign,
-  FaExclamation,
-} from "react-icons/fa";
-import { MdBlock, MdLoop } from "react-icons/md";
+import React from 'react';
+
 import {
   Card,
   CardContent,
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from "../../../components/Card";
-import Select from "../../../components/Select";
-import SmallCard from "../../../components/SmallCards";
-import { SmallCardContainer } from "../../../components/SmallCards/style";
-import { ExportContainer } from "../../Dashboard/style";
-import DualAxes from "./graphs/DualAxesGraph";
-import LineFillGraph from "./graphs/LineFillGraph";
-import ProgressBar from "./graphs/ProgressBar";
+} from '../../../components/Card';
+
+import TableSells from './table';
+import LineFillGraph from './graphs/LineFillGraph';
+import ProgressBar from './graphs/ProgressBar';
+import DualAxes from './graphs/DualAxesGraph';
+
+import Select from '../../../components/Select';
+import SmallCard from '../../../components/SmallCards';
+
+import { SmallCardContainer } from '../../../components/SmallCards/style';
+import { ExportContainer } from '../../Dashboard/style';
+
 import {
   StatusLabel,
   StatusList,
   StatusListItem,
   StatusValue,
   TwoCardContainer,
-} from "./style";
-import TableSells from "./table";
+} from './style';
+
+import { AccountBalanceWalletOutlined } from '@material-ui/icons';
+import { MdBlock, MdLoop } from 'react-icons/md';
+
+import {
+  FaCheck,
+  FaChevronDown,
+  FaChevronUp,
+  FaDollarSign,
+  FaExclamation,
+} from 'react-icons/fa';
 
 // import { Container } from './styles';
 const { Option } = Select;
@@ -38,21 +45,21 @@ const Sells: React.FC = () => {
     <>
       <SmallCardContainer>
         <SmallCard
-          color="#71E083"
-          value="123"
-          label="Saldo disponível"
+          color='#71E083'
+          value='123'
+          label='Saldo disponível'
           icon={<FaDollarSign />}
         />
         <SmallCard
-          color="#7197E0"
-          value="123"
-          label="Saldo a receber"
+          color='#7197E0'
+          value='123'
+          label='Saldo a receber'
           icon={<AccountBalanceWalletOutlined />}
         />
         <SmallCard
-          color="#E6BE27"
-          value="123"
-          label="Total de transações"
+          color='#E6BE27'
+          value='123'
+          label='Total de transações'
           icon={<FaDollarSign />}
         />
       </SmallCardContainer>
@@ -71,11 +78,11 @@ const Sells: React.FC = () => {
         </CardContent>
         <ExportContainer>
           <p>Exportar em:</p>
-          <Select defaultValue={"pdf"}>
-            <Option value="pdf">PDF</Option>
-            <Option value="excel">XLS</Option>
-            <Option value="excel">DOC.X</Option>
-            <Option value="odf">TXT</Option>
+          <Select defaultValue={'pdf'}>
+            <Option value='pdf'>PDF</Option>
+            <Option value='excel'>XLS</Option>
+            <Option value='excel'>DOC.X</Option>
+            <Option value='odf'>TXT</Option>
           </Select>
         </ExportContainer>
       </Card>
@@ -95,11 +102,11 @@ const Sells: React.FC = () => {
           </CardContent>
           <ExportContainer>
             <p>Exportar em:</p>
-            <Select defaultValue={"pdf"}>
-              <Option value="pdf">PDF</Option>
-              <Option value="excel">XLS</Option>
-              <Option value="excel">DOC.X</Option>
-              <Option value="odf">TXT</Option>
+            <Select defaultValue={'pdf'}>
+              <Option value='pdf'>PDF</Option>
+              <Option value='excel'>XLS</Option>
+              <Option value='excel'>DOC.X</Option>
+              <Option value='odf'>TXT</Option>
             </Select>
           </ExportContainer>
         </Card>
@@ -115,11 +122,11 @@ const Sells: React.FC = () => {
             <StatusList>
               {/* aprovado */}
               <StatusListItem>
-                <StatusLabel color="#71E083">
+                <StatusLabel color='#71E083'>
                   <FaCheck />
                   <p>Aprovado</p>
                 </StatusLabel>
-                <StatusValue color="#71E083">
+                <StatusValue color='#71E083'>
                   <p>R$12.000,00</p>
                   <FaChevronUp />
                 </StatusValue>
@@ -127,11 +134,11 @@ const Sells: React.FC = () => {
 
               {/* não aprovado */}
               <StatusListItem>
-                <StatusLabel color="#FF7070">
+                <StatusLabel color='#FF7070'>
                   <FaExclamation />
                   <p>Não aprovado</p>
                 </StatusLabel>
-                <StatusValue color="#71E083">
+                <StatusValue color='#71E083'>
                   <p>R$12.000,00</p>
                   <FaChevronUp />
                 </StatusValue>
@@ -139,11 +146,11 @@ const Sells: React.FC = () => {
 
               {/* cancelados */}
               <StatusListItem>
-                <StatusLabel color="#A4A4A4">
+                <StatusLabel color='#A4A4A4'>
                   <MdBlock />
                   <p>Cancelados</p>
                 </StatusLabel>
-                <StatusValue color="#FF7070">
+                <StatusValue color='#FF7070'>
                   <p>R$12.000,00</p>
                   <FaChevronDown />
                 </StatusValue>
@@ -151,11 +158,11 @@ const Sells: React.FC = () => {
 
               {/* pendente */}
               <StatusListItem>
-                <StatusLabel color="#D6C52E">
+                <StatusLabel color='#D6C52E'>
                   <MdLoop />
                   <p>Aprovado</p>
                 </StatusLabel>
-                <StatusValue color="#71E083">
+                <StatusValue color='#71E083'>
                   <p>R$12.000,00</p>
                   <FaChevronUp />
                 </StatusValue>
