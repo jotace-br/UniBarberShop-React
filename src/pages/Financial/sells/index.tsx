@@ -12,12 +12,14 @@ import {
 } from '../../../components/Card';
 
 import TableSells from './table';
+import DualAxes from './graphs/DualAxesGraph';
 import LineFillGraph from './graphs/LineFillGraph';
 import ProgressBar from './graphs/ProgressBar';
-import DualAxes from './graphs/DualAxesGraph';
 
 import Select from '../../../components/Select';
 import SmallCard from '../../../components/SmallCards';
+
+import Modal from '../../../components/Modal';
 
 import { SmallCardContainer } from '../../../components/SmallCards/style';
 import { ExportContainer } from '../../Dashboard/style';
@@ -31,8 +33,6 @@ import {
 } from './style';
 
 import { AccountBalanceWalletOutlined } from '@material-ui/icons';
-import { MdBlock, MdLoop } from 'react-icons/md';
-
 import {
   FaCheck,
   FaChevronDown,
@@ -40,6 +40,7 @@ import {
   FaDollarSign,
   FaExclamation,
 } from 'react-icons/fa';
+import { MdBlock, MdLoop } from 'react-icons/md';
 
 // import { Container } from './styles';
 const { Option } = Select;
@@ -225,6 +226,7 @@ const Sells: React.FC = () => {
           <TableSells />
         </CardContent>
       </Card>
+      <Modal visible={true} loading={false} />
     </>
   );
 };
