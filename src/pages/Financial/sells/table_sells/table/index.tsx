@@ -21,11 +21,10 @@ const TableSells: React.FC<Props> = ({ filter }) => {
   const [pageSize, setPageSize] = useState(5)
 
   const { data: dataTable, mutate } = useFetch(
-    `/latest-sales?page_index=${pageIndex}&payment_status=${filter}`,
+    `/latest-sales?&payment_status=${filter}`,
   )
 
   // `/latest-sales?page_index=${pageIndex}&page_size=${pageSize}&payment_status=${paymentFilter}`;
-
   //`/latest-sales?orderColunm=${colunm}&order=${order}&page_index=${page}&page_size=${rowsPerPage}&produto=${produto}&costume=${comprador}&payment_method=${method}&payment_status=${status}&id=${id}`
 
   const setStatusType = (status: string) => {
@@ -81,37 +80,46 @@ const TableSells: React.FC<Props> = ({ filter }) => {
     if (installment > 1) return `${installment}x`
     return '-'
   }
-  const menu = (
-    <MenuDropdown>
-      <MenuDropdown.Item>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-        >
-          1st menu item
-        </a>
-      </MenuDropdown.Item>
-      <MenuDropdown.Item>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.aliyun.com"
-        >
-          2nd menu item
-        </a>
-      </MenuDropdown.Item>
-      <MenuDropdown.Item>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
-        >
-          3rd menu item
-        </a>
-      </MenuDropdown.Item>
-    </MenuDropdown>
-  )
+
+  const handleDropdownMenu = (record: any) => {
+    console.log(record)
+
+    return (
+      <MenuDropdown>
+        <MenuDropdown.Item>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.antgroup.com"
+          >
+            Detalhar
+          </a>
+        </MenuDropdown.Item>
+
+        <MenuDropdown.Item>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.aliyun.com"
+          >
+            Estornar pagamento
+          </a>
+        </MenuDropdown.Item>
+        <MenuDropdown.Item>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`https://wa.me/+55${record.lead_cel_phone
+              .replace(/[^A-Z0-9]/gi, '')
+              .trim()}`}
+          >
+            Entrar em contato
+          </a>
+        </MenuDropdown.Item>
+      </MenuDropdown>
+    )
+  }
+
   const columns = [
     {
       title: 'ID Venda',
@@ -161,10 +169,10 @@ const TableSells: React.FC<Props> = ({ filter }) => {
     },
     {
       title: 'Opções',
-      key: 'options',
-      render: (text: string, record: any) => (
+      key: 'action',
+      render: (record: any) => (
         <Space size="middle">
-          <TableDropdownButton overlay={menu}>
+          <TableDropdownButton overlay={() => handleDropdownMenu(record)}>
             <FaEllipsisV />
           </TableDropdownButton>
         </Space>
@@ -202,8 +210,8 @@ const TableSells: React.FC<Props> = ({ filter }) => {
       )
     },
     getCheckboxProps: (record: any) => ({
-      disabled: record.endpoint === 'Disabled User', // Column configuration not to be checked
-      endpoint: record.endpoint,
+      disabled: record.lead_name === 'Disabled User', // Column configuration not to be checked
+      lead_name: record.lead_name,
     }),
   }
 
