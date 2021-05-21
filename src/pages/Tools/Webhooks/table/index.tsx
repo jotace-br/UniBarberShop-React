@@ -150,7 +150,7 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
       render: ({ id }: any, fullObject: any) => (
         <Space size="middle">
           <TableButton
-            a="edit"
+            variant="edit"
             onClick={() => {
               setIsEditingMode(true)
               webhookContent(fullObject)
@@ -158,8 +158,7 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
           >
             <FaEdit />
           </TableButton>
-
-          <TableButton a="trash" onClick={() => handleDelete(id)}>
+          <TableButton variant="trash" onClick={() => handleDelete(id)}>
             <FaTrash />
           </TableButton>
         </Space>
@@ -257,7 +256,7 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
 
               <Tooltip title="Limpar todos os campos e adicionar um novo webhook.">
                 <TableButton
-                  a="trash"
+                  variant="trash"
                   onClick={() => {
                     form.resetFields()
                     setIsEditingMode(false)
