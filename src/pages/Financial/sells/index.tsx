@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
-import { useFetch } from "../../../hooks/useFetch";
-import { useUser } from "../../../services/user";
+import { useFetch } from '../../../hooks/useFetch'
+import { useUser } from '../../../services/user'
 
 import {
   Card,
@@ -9,19 +9,18 @@ import {
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from "../../../components/Card";
+} from '../../../components/Card'
 
-import TableSells from "./table_sells";
-import DualAxes from "./graphs/DualAxesGraph";
-import LineFillGraph from "./graphs/LineFillGraph";
-import ProgressBar from "./graphs/ProgressBar";
+import TableSells from './table_sells'
+import DualAxes from './graphs/DualAxesGraph'
+import LineFillGraph from './graphs/LineFillGraph'
+import ProgressBar from './graphs/ProgressBar'
 
-import Modal from "../../../components/Modal";
-import Select from "../../../components/Select";
-import SmallCard from "../../../components/SmallCards";
-import { SmallCardContainer } from "../../../components/SmallCards/style";
+import Select from '../../../components/Select'
+import SmallCard from '../../../components/SmallCards'
+import { SmallCardContainer } from '../../../components/SmallCards/style'
 
-import { ExportContainer } from "../../Dashboard/style";
+import { ExportContainer } from '../../Dashboard/style'
 
 import {
   StatusLabel,
@@ -29,30 +28,30 @@ import {
   StatusListItem,
   StatusValue,
   TwoCardContainer,
-} from "./style";
+} from './style'
 
-import { MdBlock, MdLoop } from "react-icons/md";
-import { AccountBalanceWalletOutlined } from "@material-ui/icons";
+import { MdBlock, MdLoop } from 'react-icons/md'
+import { AccountBalanceWalletOutlined } from '@material-ui/icons'
 import {
   FaCheck,
   FaChevronDown,
   FaChevronUp,
   FaDollarSign,
   FaExclamation,
-} from "react-icons/fa";
+} from 'react-icons/fa'
 
 // import { Container } from './styles';
-const { Option } = Select;
+const { Option } = Select
 const Sells: React.FC = () => {
   const {
     data: { user },
-  } = useUser();
-  const { data: financialResume } = useFetch("/financial-summary");
+  } = useUser()
+  const { data: financialResume } = useFetch('/financial-summary')
   const { data: balance } = useFetch(`/check-balance/${user.seller_id}`, [
     {
       shouldRetryOnError: false,
     },
-  ]);
+  ])
 
   return (
     <>
@@ -61,12 +60,12 @@ const Sells: React.FC = () => {
           color="#71E083"
           value={
             financialResume?.financial_summary.net_value.toLocaleString(
-              "pt-BR",
+              'pt-BR',
               {
-                style: "currency",
-                currency: "BRL",
-              }
-            ) || "R$ 0,00"
+                style: 'currency',
+                currency: 'BRL',
+              },
+            ) || 'R$ 0,00'
           }
           label="Saldo disponível"
           icon={<FaDollarSign />}
@@ -74,17 +73,17 @@ const Sells: React.FC = () => {
         <SmallCard
           color="#7197E0"
           value={
-            balance?.balance.account_balance.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            }) || "R$ 0,00"
+            balance?.balance.account_balance.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            }) || 'R$ 0,00'
           }
           label="Saldo a receber"
           icon={<AccountBalanceWalletOutlined />}
         />
         <SmallCard
           color="#E6BE27"
-          value={financialResume?.financial_summary.sales || "R$ 0,00"}
+          value={financialResume?.financial_summary.sales || 'R$ 0,00'}
           label="Total de transações"
           icon={<FaDollarSign />}
         />
@@ -104,7 +103,7 @@ const Sells: React.FC = () => {
         </CardContent>
         <ExportContainer>
           <p>Exportar em:</p>
-          <Select defaultValue={"pdf"}>
+          <Select defaultValue={'pdf'}>
             <Option value="pdf">PDF</Option>
             <Option value="excel">XLS</Option>
             <Option value="excel">DOC.X</Option>
@@ -128,7 +127,7 @@ const Sells: React.FC = () => {
           </CardContent>
           <ExportContainer>
             <p>Exportar em:</p>
-            <Select defaultValue={"pdf"}>
+            <Select defaultValue={'pdf'}>
               <Option value="pdf">PDF</Option>
               <Option value="excel">XLS</Option>
               <Option value="excel">DOC.X</Option>
@@ -225,18 +224,8 @@ const Sells: React.FC = () => {
           <TableSells />
         </CardContent>
       </Card>
-      <Modal
-        title="Titulo"
-        visible={true}
-        loading={false}
-        type="form"
-        singleButton={true}
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget
-        est molestie, consectetur ipsum vel, imperdiet risus.
-      </Modal>
     </>
-  );
-};
+  )
+}
 
-export default Sells;
+export default Sells
