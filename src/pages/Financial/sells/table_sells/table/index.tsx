@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { useFetch } from '../../../../../hooks/useFetch'
 
 import Table, {
-  TableButton,
   MenuDropdown,
   TableDropdownButton,
 } from '../../../../../components/Table'

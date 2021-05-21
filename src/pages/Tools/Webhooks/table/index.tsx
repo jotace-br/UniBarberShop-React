@@ -8,12 +8,7 @@ import {
   errorNotification,
   successNotification,
 } from '../../../../components/Notification'
-import Table, {
-  MenuDropdown,
-  TableAddForm,
-  TableButton,
-  TableDropdownButton,
-} from '../../../../components/Table'
+import Table, { TableAddForm, TableButton } from '../../../../components/Table'
 import { Tag } from '../../../../components/Tag'
 import { useFetch } from '../../../../hooks/useFetch'
 import api from '../../../../services/api'
@@ -39,37 +34,6 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
   const handleEdit = async (element: object) => {
     console.log(element)
   }
-  const menu = (
-    <MenuDropdown>
-      <MenuDropdown.Item>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-        >
-          1st menu item
-        </a>
-      </MenuDropdown.Item>
-      <MenuDropdown.Item>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.aliyun.com"
-        >
-          2nd menu item
-        </a>
-      </MenuDropdown.Item>
-      <MenuDropdown.Item>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
-        >
-          3rd menu item
-        </a>
-      </MenuDropdown.Item>
-    </MenuDropdown>
-  )
 
   const columns = [
     {
@@ -112,13 +76,9 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
       key: 'options',
       render: ({ id }: any, fullObject: any) => (
         <Space size="middle">
-          <TableDropdownButton
-            overlay={menu}
-            placement="bottomLeft"
-            // onClick={() => handleEdit(fullObject)}
-          >
+          <TableButton variant="edit" onClick={() => handleEdit(fullObject)}>
             <FaEdit />
-          </TableDropdownButton>
+          </TableButton>
 
           <TableButton variant="trash" onClick={() => handleDelete(id)}>
             <FaTrash />

@@ -143,8 +143,11 @@ export const TableButton = styled(Button)<TableButtonProps>`
   border: 0;
   color: ${props => props.theme.colors.white};
   box-shadow: 0 4px 15px #00000025;
-  padding: 7px 10px;
   border-radius: 5px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &[variant='trash'],
   &[variant='trash']:hover,
   &[variant='trash']:active,
@@ -162,7 +165,6 @@ export const TableButton = styled(Button)<TableButtonProps>`
 `
 export const TableAddForm = styled.div`
   background-color: ${props => props.theme.colors.black80};
-
   .ant-form {
     display: flex;
     align-items: flex-end;
@@ -180,43 +182,7 @@ export const TableAddForm = styled.div`
     }
   }
 `
-// export const ButtonDropdown = styled(Dropdown.Button)`
-//   .ant-btn.ant-btn-default {
-//     background-color: #e6be27;
-//     color: #fff8dc;
-//     -webkit-box-shadow: 0px 4px 15px 0px rgba(252, 215, 74, 0.25);
-//     -moz-box-shadow: 0px 4px 15px 0px rgba(252, 215, 74, 0.25);
-//     box-shadow: 0px 4px 15px 0px rgba(252, 215, 74, 0.25);
-//     :hover,
-//     :active,
-//     :focus {
-//       background-color: #edd168;
-//       color: #fff8dc;
-//     }
-//     height: 36px;
 
-//     font-weight: 700;
-//     font-size: 12px;
-//     text-shadow: none;
-//     border: none;
-//     &[disabled] {
-//       background-color: #777777;
-//       :hover {
-//         background-color: #777777;
-//       }
-//     }
-//   }
-//   .ant-btn:first-child:not(:last-child),
-//   span:first-child:not(:last-child) > .ant-btn {
-//     border-top-left-radius: 6px !important;
-//     border-bottom-left-radius: 6px !important;
-//   }
-//   .ant-btn:last-child:not(:first-child),
-//   span:last-child:not(:first-child) > .ant-btn {
-//     border-top-right-radius: 6px !important;
-//     border-bottom-right-radius: 6px !important;
-//   }
-// `;
 export const MenuDropdown = styled(Menu)`
   background-color: ${props => props.theme.colors.black70};
   width: 248px;
