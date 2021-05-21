@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   RiBarChartBoxFill,
   RiDashboardFill,
@@ -6,20 +6,20 @@ import {
   RiGroupFill,
   RiMailFill,
   RiShoppingCart2Fill,
-} from "react-icons/ri";
+} from 'react-icons/ri'
 
 const SidebarItems = [
   {
-    name: "Dashboard",
+    name: 'Dashboard',
     isDrop: false,
     icon: <RiDashboardFill />,
-    route: "/dashboard",
+    route: '/dashboard',
   },
   {
-    name: "Vendas",
+    name: 'Vendas',
     isDrop: false,
     icon: <RiBarChartBoxFill />,
-    route: "/vendas",
+    route: '/vendas',
   },
   // {
   //   name: "Gestor Financeiro",
@@ -28,43 +28,38 @@ const SidebarItems = [
   //   route: "/vendas",
   // },
   {
-    name: "Clientes",
+    name: 'Clientes',
     isDrop: true,
     icon: <RiGroupFill />,
-    route: "/clientes",
+    route: '/clientes',
     labels: [
-      { name: "Página 1", route: "/clientes/page1" },
-      { name: "Página 2", route: "/clientes/page2" },
-      { name: "Página 3", route: "/clientes/page3" },
+      { name: 'Página 1', route: '/clientes/page1' },
+      { name: 'Página 2', route: '/clientes/page2' },
+      { name: 'Página 3', route: '/clientes/page3' },
     ],
   },
   {
-    name: "Produtos",
-    isDrop: true,
+    name: 'Produtos',
+    isDrop: false,
     icon: <RiShoppingCart2Fill />,
-    route: "/produtos",
-    labels: [
-      { name: "Página 1", route: "/produtos/page1" },
-      { name: "Página 2", route: "/produtos/page2" },
-      { name: "Página 3", route: "/produtos/page3" },
-    ],
+    route: '/produtos',
   },
   {
-    name: "Ferramentas",
+    name: 'Ferramentas',
     isDrop: true,
     icon: <RiGridFill />,
-    route: "/ferramentas",
+    route: '/ferramentas',
     labels: [
-      { name: "Integrações", route: "/ferramentas/integracoes" },
-      { name: "API", route: "/ferramentas/api" },
-      { name: "Webhooks", route: "/ferramentas/webhooks" },
+      { name: 'Integrações', route: '/ferramentas/integracoes' },
+      { name: 'API', route: '/ferramentas/api' },
+      { name: 'Webhooks', route: '/ferramentas/webhooks' },
     ],
   },
   {
-    name: "Emails",
+    name: 'Emails',
     isDrop: false,
     icon: <RiMailFill />,
-    route: "/emails",
+    route: '/emails',
   },
   // {
   //   name: "Cadastros",
@@ -77,6 +72,6 @@ const SidebarItems = [
   //     { name: "Página 3", route: "/cadastros/page3" },
   //   ],
   // },
-];
+]
 
-export default SidebarItems;
+export default SidebarItems
