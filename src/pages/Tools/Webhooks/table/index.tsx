@@ -43,9 +43,7 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
 
   const { data: webhooks, mutate } = useFetch('/get_webhook_endpoint')
 
-  const [isDataAvailable, setIsDataAvailable] = useState(
-    webhooks?.data.records.length > 0,
-  )
+  const [isDataAvailable, setIsDataAvailable] = useState(false)
 
   const handleDelete = async (id: number) => {
     try {
@@ -193,8 +191,7 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
   }
 
   const isTableEmpty = () => {
-    console.log(isDataAvailable)
-    if (isDataAvailable) {
+    if (webhooks?.data.records.length > 0 || isDataAvailable) {
       return (
         <div>
           <TableAddForm>
@@ -291,9 +288,9 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
           }}
         >
           <p>
-            <b>Por enquanto, não há tokens de acesso :(</b>
+            <b>Por enquanto, esta tabela está vazia :(</b>
           </p>
-          <p>Você pode gerar um novo token clicando aqui</p>
+          <p>Você pode adicionar novos webhooks clicando aqui</p>
 
           <ButtonPrimary
             onClick={() => {
