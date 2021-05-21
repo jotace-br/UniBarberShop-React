@@ -1,84 +1,118 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-import { useFetch } from '../../../../../hooks/useFetch';
+import { useFetch } from '../../../../../hooks/useFetch'
 
-import Table, { TableButton } from '../../../../../components/Table';
+import Table, {
+  TableButton,
+  MenuDropdown,
+  TableDropdownButton,
+} from '../../../../../components/Table'
 
-import { Tag } from '../../../../../components/Tag';
-import { Space } from 'antd';
+import { Tag } from '../../../../../components/Tag'
+import { Space } from 'antd'
 
-import { FaEllipsisV } from 'react-icons/fa';
+import { FaEllipsisV } from 'react-icons/fa'
 
 interface Props {
-  filter?: string;
+  filter?: string
 }
 
 const TableSells: React.FC<Props> = ({ filter }) => {
-  const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageIndex, setPageIndex] = useState(0)
+  const [pageSize, setPageSize] = useState(5)
 
   const { data: dataTable, mutate } = useFetch(
-    `/latest-sales?page_index=${pageIndex}&payment_status=${filter}`
-  );
+    `/latest-sales?page_index=${pageIndex}&payment_status=${filter}`,
+  )
 
   // `/latest-sales?page_index=${pageIndex}&page_size=${pageSize}&payment_status=${paymentFilter}`;
 
   //`/latest-sales?orderColunm=${colunm}&order=${order}&page_index=${page}&page_size=${rowsPerPage}&produto=${produto}&costume=${comprador}&payment_method=${method}&payment_status=${status}&id=${id}`
 
   const setStatusType = (status: string) => {
-    const translatedStatus = ['PAGO', 'PENDENTE', 'ESTORNADO'];
+    const translatedStatus = ['PAGO', 'PENDENTE', 'ESTORNADO']
 
     switch (status) {
       case 'PAID':
-        return translatedStatus[0];
+        return translatedStatus[0]
       case 'PENDING':
-        return translatedStatus[1];
+        return translatedStatus[1]
       case 'REFUND':
-        return translatedStatus[2];
+        return translatedStatus[2]
       default:
-        return 'PROCESSANDO';
+        return 'PROCESSANDO'
     }
-  };
+  }
 
   const setStatusTypeColor = (status: string) => {
     switch (status) {
       case 'PAID':
         return (
-          <Tag status='active' color='success'>
+          <Tag status="active" color="success">
             {setStatusType(status)}
           </Tag>
-        );
+        )
       case 'PENDING':
         return (
-          <Tag status='waiting' color='default'>
+          <Tag status="waiting" color="default">
             {setStatusType(status)}
           </Tag>
-        );
+        )
       case 'REFUND':
         return (
-          <Tag status='refunded' color='default'>
+          <Tag status="refunded" color="default">
             {setStatusType(status)}
           </Tag>
-        );
+        )
       default:
         return (
-          <Tag status='waiting' color='processing'>
+          <Tag status="waiting" color="processing">
             {setStatusType(status)}
           </Tag>
-        );
+        )
     }
-  };
+  }
 
   const selectPaymentMethod = (method: number) => {
-    const methods = ['Crédito', 'Boleto', 'Convite'];
-    return methods[method];
-  };
+    const methods = ['Crédito', 'Boleto', 'Convite']
+    return methods[method]
+  }
 
   const selectInstallmentsValue = (installment: number) => {
-    if (installment > 1) return `${installment}x`;
-    return '-';
-  };
-
+    if (installment > 1) return `${installment}x`
+    return '-'
+  }
+  const menu = (
+    <MenuDropdown>
+      <MenuDropdown.Item>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+        >
+          1st menu item
+        </a>
+      </MenuDropdown.Item>
+      <MenuDropdown.Item>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.aliyun.com"
+        >
+          2nd menu item
+        </a>
+      </MenuDropdown.Item>
+      <MenuDropdown.Item>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.luohanacademy.com"
+        >
+          3rd menu item
+        </a>
+      </MenuDropdown.Item>
+    </MenuDropdown>
+  )
   const columns = [
     {
       title: 'ID Venda',
@@ -103,7 +137,7 @@ const TableSells: React.FC<Props> = ({ filter }) => {
         return amount.toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL',
-        });
+        })
       },
     },
     {
@@ -130,14 +164,14 @@ const TableSells: React.FC<Props> = ({ filter }) => {
       title: 'Opções',
       key: 'options',
       render: (text: string, record: any) => (
-        <Space size='middle'>
-          <TableButton a='edit'>
+        <Space size="middle">
+          <TableDropdownButton overlay={menu}>
             <FaEllipsisV />
-          </TableButton>
+          </TableDropdownButton>
         </Space>
       ),
     },
-  ];
+  ]
 
   function showTotal(total: any, range: any) {
     return (
@@ -150,14 +184,14 @@ const TableSells: React.FC<Props> = ({ filter }) => {
           de <span>{total}</span> resultados
         </p>
       </div>
-    );
+    )
   }
 
   const handleChange = ({ current, pageSize }: any) => {
-    setPageSize(pageSize);
-    setPageIndex(current - 1);
-    mutate();
-  };
+    setPageSize(pageSize)
+    setPageIndex(current - 1)
+    mutate()
+  }
 
   // rowSelection object indicates the need for row selection
   const rowSelection = {
@@ -165,14 +199,14 @@ const TableSells: React.FC<Props> = ({ filter }) => {
       console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
         'selectedRows: ',
-        selectedRows
-      );
+        selectedRows,
+      )
     },
     getCheckboxProps: (record: any) => ({
       disabled: record.endpoint === 'Disabled User', // Column configuration not to be checked
       endpoint: record.endpoint,
     }),
-  };
+  }
 
   const filteredTable = () => {
     return (
@@ -189,14 +223,14 @@ const TableSells: React.FC<Props> = ({ filter }) => {
             current: pageIndex + 1,
             total: dataTable?.records.total_pages,
           }}
-          onChange={(pagination) => handleChange(pagination)}
+          onChange={pagination => handleChange(pagination)}
           // scroll={{ x: "calc(900px + 50%)" }}
         />
       </div>
-    );
-  };
+    )
+  }
 
-  return filteredTable();
-};
+  return filteredTable()
+}
 
-export default TableSells;
+export default TableSells

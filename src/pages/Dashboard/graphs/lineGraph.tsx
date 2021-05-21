@@ -1,61 +1,61 @@
-import { Line } from '@ant-design/charts';
-import React, { useEffect, useState } from 'react';
-import { useFetch } from '../../../hooks/useFetch';
+import { Line } from '@ant-design/charts'
+import React, { useEffect, useState } from 'react'
+import { useFetch } from '../../../hooks/useFetch'
 
 interface LineGraphProps {
-  rangePickerDate?: any;
-  isRangePickerOpen?: boolean;
+  rangePickerDate?: any
+  isRangePickerOpen?: boolean
 }
 
 const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
-  let RPChoosenDate = rangePickerDate?.map((initialDate: any) => initialDate);
+  let RPChoosenDate = rangePickerDate?.map((initialDate: any) => initialDate)
 
   // avoid causing an error on dashboard because user cleared the filter.
-  if (RPChoosenDate === undefined) RPChoosenDate = [];
+  if (RPChoosenDate === undefined) RPChoosenDate = []
 
-  const initialRPValue = rangePickerDate;
-  const [allRangePickerDate, setAllRangePickerDate] = useState(initialRPValue);
-  const [isDateReady, setIsDateReady] = useState(false);
+  const initialRPValue = rangePickerDate
+  const [allRangePickerDate, setAllRangePickerDate] = useState(initialRPValue)
+  const [isDateReady, setIsDateReady] = useState(false)
 
   const { data: graphicData } = useFetch(
     `/financial-chart/${
       isDateReady ? allRangePickerDate[0] : RPChoosenDate[0]
-    }/${isDateReady ? allRangePickerDate[1] : RPChoosenDate[1]}`
-  );
+    }/${isDateReady ? allRangePickerDate[1] : RPChoosenDate[1]}`,
+  )
 
   useEffect(() => {
     const filterByGivenDate = () => {
       if (!isRangePickerOpen && rangePickerDate?.length !== 0) {
-        setAllRangePickerDate(rangePickerDate?.map((date: any) => date));
-        setIsDateReady(true);
+        setAllRangePickerDate(rangePickerDate?.map((date: any) => date))
+        setIsDateReady(true)
       }
-      setIsDateReady(false);
-    };
+      setIsDateReady(false)
+    }
 
-    filterByGivenDate();
-  }, [isRangePickerOpen, rangePickerDate]);
+    filterByGivenDate()
+  }, [isRangePickerOpen, rangePickerDate])
 
-  if (!graphicData) return <p>Nenhum método de pagamento disponível.</p>;
+  if (!graphicData) return <p>Nenhum método de pagamento disponível.</p>
 
   const getData = () => {
-    const rows: any = [];
+    const rows: any = []
 
     graphicData?.forEach((data: any) => {
       const convertToDate = new Date(
         data.year,
         data.month - 1,
-        data.day
-      ).toLocaleString('us', { dateStyle: 'short' });
+        data.day,
+      ).toLocaleString('us', { dateStyle: 'short' })
 
       rows.push({
         name: data.name,
         date: convertToDate,
         amount: data.amount,
-      });
-    });
+      })
+    })
 
-    return rows;
-  };
+    return rows
+  }
 
   const config = {
     data: getData(),
@@ -71,9 +71,9 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
           fontSize: 12,
         },
         formatter: function formatter(v: any) {
-          let date = new Date(v);
-          let dateFormat = date.getDate() + '/' + (date.getMonth() + 1);
-          return dateFormat;
+          let date = new Date(v)
+          let dateFormat = date.getDate() + '/' + (date.getMonth() + 1)
+          return dateFormat
         },
       },
       grid: {
@@ -94,9 +94,9 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
         },
         formatter: function formatter(v: any) {
           if (v < 100) {
-            return v;
+            return v
           } else {
-            return ''.concat(v, '+');
+            return ''.concat(v, '+')
           }
         },
       },
@@ -120,7 +120,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
           shadowOffsetX: 0,
           shadowOffsetY: 0,
           cursor: 'pointer',
-        };
+        }
       } else if (data.name === 'Boleto') {
         return {
           stroke: '#66FFE3',
@@ -131,7 +131,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
           shadowOffsetX: 0,
           shadowOffsetY: 0,
           cursor: 'pointer',
-        };
+        }
       } else {
         return {
           stroke: '#fff',
@@ -142,7 +142,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
           shadowOffsetX: 0,
           shadowOffsetY: 0,
           cursor: 'pointer',
-        };
+        }
       }
     },
     legend: {
@@ -169,9 +169,9 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
       },
     },
     color: ['#66FFE3', '#FEF756'],
-  };
+  }
 
-  return <Line {...config} />;
-};
+  return <Line {...config} />
+}
 
-export default LineGraph;
+export default LineGraph

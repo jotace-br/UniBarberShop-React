@@ -1,20 +1,19 @@
-import Title from "antd/lib/typography/Title";
-import React, { useState } from "react";
-import CheckIllustration from "../../assets/modal_illustrations/check_modal.svg";
-import FormIllustration from "../../assets/modal_illustrations/form_modal.svg";
-import QuestionIllustration from "../../assets/modal_illustrations/question_modal.svg";
-import WarningIllustration from "../../assets/modal_illustrations/warning_modal.svg";
-import { ButtonPrimary, ButtonSecondary } from "../Button";
-import { ContainerButtons, Illustration, StyledModal } from "./style";
+import React, { useState } from 'react'
+import CheckIllustration from '../../assets/modal_illustrations/check_modal.svg'
+import FormIllustration from '../../assets/modal_illustrations/form_modal.svg'
+import QuestionIllustration from '../../assets/modal_illustrations/question_modal.svg'
+import WarningIllustration from '../../assets/modal_illustrations/warning_modal.svg'
+import { ButtonPrimary, ButtonSecondary } from '../Button'
+import { ContainerButtons, Illustration, StyledModal } from './style'
 
 // import { Container } from './styles';
 interface Props {
-  title: string;
-  visible: boolean;
-  loading: boolean;
-  type?: string;
-  singleButton?: boolean;
-  children?: React.ReactNode;
+  title: string
+  visible: boolean
+  loading: boolean
+  type?: string
+  singleButton?: boolean
+  children?: React.ReactNode
 }
 
 const Modal: React.FC<Props> = ({
@@ -25,35 +24,35 @@ const Modal: React.FC<Props> = ({
   singleButton,
   title,
 }) => {
-  const [load, setLoading] = useState(loading);
-  const [visi, setVisible] = useState(visible);
+  const [load, setLoading] = useState(loading)
+  const [visi, setVisible] = useState(visible)
 
   const handleOk = () => {
-    setLoading(true);
+    setLoading(true)
     setTimeout(() => {
-      setLoading(false);
-      setVisible(false);
-    }, 3000);
-  };
+      setLoading(false)
+      setVisible(false)
+    }, 3000)
+  }
 
   const handleCancel = () => {
-    setVisible(false);
-  };
+    setVisible(false)
+  }
 
   const getImage = () => {
     switch (type) {
-      case "warning":
-        return WarningIllustration;
-      case "form":
-        return FormIllustration;
-      case "question":
-        return QuestionIllustration;
-      case "success":
-        return CheckIllustration;
+      case 'warning':
+        return WarningIllustration
+      case 'form':
+        return FormIllustration
+      case 'question':
+        return QuestionIllustration
+      case 'success':
+        return CheckIllustration
       default:
-        return undefined;
+        return undefined
     }
-  };
+  }
   return (
     <StyledModal
       visible={visi}
@@ -86,7 +85,7 @@ const Modal: React.FC<Props> = ({
     >
       {children}
     </StyledModal>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal

@@ -1,50 +1,86 @@
-import { Space } from "antd";
-import Form from "antd/lib/form/Form";
-import React, { useState } from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
-import { ButtonPrimary } from "../../../../components/Button";
-import { FormItem, Input } from "../../../../components/Input";
+import { Space } from 'antd'
+import Form from 'antd/lib/form/Form'
+import React, { useState } from 'react'
+import { FaEdit, FaTrash } from 'react-icons/fa'
+import { ButtonPrimary } from '../../../../components/Button'
+import { FormItem, Input } from '../../../../components/Input'
 import {
   errorNotification,
   successNotification,
-} from "../../../../components/Notification";
-import Table, { TableAddForm, TableButton } from "../../../../components/Table";
-import { Tag } from "../../../../components/Tag";
-import { useFetch } from "../../../../hooks/useFetch";
-import api from "../../../../services/api";
+} from '../../../../components/Notification'
+import Table, {
+  MenuDropdown,
+  TableAddForm,
+  TableButton,
+  TableDropdownButton,
+} from '../../../../components/Table'
+import { Tag } from '../../../../components/Tag'
+import { useFetch } from '../../../../hooks/useFetch'
+import api from '../../../../services/api'
 
 interface Props {
-  filter: string;
+  filter: string
 }
 
 const TableWebhooks: React.FC<Props> = ({ filter }) => {
-  const [isDataAvailable] = useState(false);
-  const { data: webhooks, mutate } = useFetch("/get_webhook_endpoint");
+  const [isDataAvailable] = useState(false)
+  const { data: webhooks, mutate } = useFetch('/get_webhook_endpoint')
 
   const handleDelete = async (id: number) => {
     try {
-      await api.delete(`/delete_webhook_endpoint/${id}`);
-      mutate();
-      successNotification("Webhook deletado com sucesso!");
+      await api.delete(`/delete_webhook_endpoint/${id}`)
+      mutate()
+      successNotification('Webhook deletado com sucesso!')
     } catch (error) {
-      errorNotification("Ocorreu um erro ao remover o Webhook.");
+      errorNotification('Ocorreu um erro ao remover o Webhook.')
     }
-  };
+  }
 
   const handleEdit = async (element: object) => {
-    console.log(element);
-  };
+    console.log(element)
+  }
+  const menu = (
+    <MenuDropdown>
+      <MenuDropdown.Item>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+        >
+          1st menu item
+        </a>
+      </MenuDropdown.Item>
+      <MenuDropdown.Item>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.aliyun.com"
+        >
+          2nd menu item
+        </a>
+      </MenuDropdown.Item>
+      <MenuDropdown.Item>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.luohanacademy.com"
+        >
+          3rd menu item
+        </a>
+      </MenuDropdown.Item>
+    </MenuDropdown>
+  )
 
   const columns = [
     {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
     },
     {
-      title: "Endpoint",
-      dataIndex: "url_webhook",
-      key: "url_webhook",
+      title: 'Endpoint',
+      dataIndex: 'url_webhook',
+      key: 'url_webhook',
       render: (link: string) => (
         <a href={link} target="_blank" rel="noreferrer">
           {link}
@@ -52,51 +88,55 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
       ),
     },
     {
-      title: "Método",
-      dataIndex: "method",
-      key: "method",
+      title: 'Método',
+      dataIndex: 'method',
+      key: 'method',
     },
     {
-      title: "Status",
-      key: "active",
-      dataIndex: "active",
+      title: 'Status',
+      key: 'active',
+      dataIndex: 'active',
       render: (status: boolean) => (
         <span>
           <Tag
-            status={status ? "active" : "error"}
-            color={status ? "success" : "error"}
+            status={status ? 'active' : 'error'}
+            color={status ? 'success' : 'error'}
           >
-            {status ? "ATIVO" : "FALHA"}
+            {status ? 'ATIVO' : 'FALHA'}
           </Tag>
         </span>
       ),
     },
     {
-      title: "Opções",
-      key: "options",
+      title: 'Opções',
+      key: 'options',
       render: ({ id }: any, fullObject: any) => (
         <Space size="middle">
-          <TableButton a="edit" onClick={() => handleEdit(fullObject)}>
+          <TableDropdownButton
+            overlay={menu}
+            placement="bottomLeft"
+            // onClick={() => handleEdit(fullObject)}
+          >
             <FaEdit />
-          </TableButton>
+          </TableDropdownButton>
 
-          <TableButton a="trash" onClick={() => handleDelete(id)}>
+          <TableButton variant="trash" onClick={() => handleDelete(id)}>
             <FaTrash />
           </TableButton>
         </Space>
       ),
     },
-  ];
+  ]
 
   function showTotal(total: any) {
     return (
       <div>
         <p>
-          Mostrando: <span>{total}</span>{" "}
-          {total > 1 ? "resultados" : "resultado"}
+          Mostrando: <span>{total}</span>{' '}
+          {total > 1 ? 'resultados' : 'resultado'}
         </p>
       </div>
-    );
+    )
   }
 
   // rowSelection object indicates the need for row selection
@@ -104,15 +144,15 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
     onChange: (selectedRowKeys: any, selectedRows: any) => {
       console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
+        'selectedRows: ',
+        selectedRows,
+      )
     },
     getCheckboxProps: (record: any) => ({
-      disabled: record.endpoint === "Disabled User", // Column configuration not to be checked
+      disabled: record.endpoint === 'Disabled User', // Column configuration not to be checked
       endpoint: record.endpoint,
     }),
-  };
+  }
 
   const isTableEmpty = () => {
     if (!isDataAvailable) {
@@ -132,21 +172,21 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
             </Form>
           </TableAddForm>
           <Table
-            rowSelection={{ type: "checkbox", ...rowSelection }}
+            rowSelection={{ type: 'checkbox', ...rowSelection }}
             columns={columns}
             dataSource={webhooks?.data.records.map((items: any) => items)}
             pagination={{ showTotal: showTotal }}
           />
         </div>
-      );
+      )
     } else {
       return (
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <p>
@@ -158,10 +198,10 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
             <p>Adicionar +</p>
           </ButtonPrimary>
         </div>
-      );
+      )
     }
-  };
-  return isTableEmpty();
-};
+  }
+  return isTableEmpty()
+}
 
-export default TableWebhooks;
+export default TableWebhooks
