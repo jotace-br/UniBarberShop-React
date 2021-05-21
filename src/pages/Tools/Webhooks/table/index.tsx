@@ -1,25 +1,49 @@
-import { Space } from 'antd'
-import Form from 'antd/lib/form/Form'
 import React, { useState } from 'react'
-import { FaEdit, FaTrash } from 'react-icons/fa'
-import { ButtonPrimary } from '../../../../components/Button'
+
+import { useFetch } from '../../../../hooks/useFetch'
+import api from '../../../../services/api'
+
+import Table, { TableAddForm, TableButton } from '../../../../components/Table'
+
+import { Form, Space, Tooltip } from 'antd'
+
 import { FormItem, Input } from '../../../../components/Input'
+import { ButtonPrimary } from '../../../../components/Button'
+import Select from '../../../../components/Select'
+
+import { Tag } from '../../../../components/Tag'
+
 import {
   errorNotification,
   successNotification,
 } from '../../../../components/Notification'
-import Table, { TableAddForm, TableButton } from '../../../../components/Table'
-import { Tag } from '../../../../components/Tag'
-import { useFetch } from '../../../../hooks/useFetch'
-import api from '../../../../services/api'
+
+import { FaEdit, FaTrash } from 'react-icons/fa'
+import { FcEmptyTrash } from 'react-icons/fc'
+
+const { Option } = Select
 
 interface Props {
   filter: string
 }
 
+interface EditProps {
+  url_webhook: string
+  trigger: string
+  method: string
+  active: boolean
+  id: number
+}
+
 const TableWebhooks: React.FC<Props> = ({ filter }) => {
-  const [isDataAvailable] = useState(false)
+  const [form] = Form.useForm()
+
+  const [isEditingMode, setIsEditingMode] = useState(false)
+  const [bodyToEdit, setBodyToEdit] = useState<EditProps>()
+
   const { data: webhooks, mutate } = useFetch('/get_webhook_endpoint')
+
+  const [isDataAvailable, setIsDataAvailable] = useState(false)
 
   const handleDelete = async (id: number) => {
     try {
@@ -31,8 +55,55 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
     }
   }
 
-  const handleEdit = async (element: object) => {
-    console.log(element)
+  const handleCreate = async (body: object) => {
+    setIsEditingMode(false)
+    try {
+      const { data } = await api.post('/create_webhook_endpoint', body)
+      successNotification(data.message)
+    } catch (error) {
+      errorNotification(error.response.data.message)
+    } finally {
+      form.resetFields()
+      mutate()
+    }
+  }
+
+  const webhookContent = (element: any) => {
+    form.setFieldsValue({
+      url_webhook: element.url_webhook,
+      trigger: element.trigger,
+      method: element.method,
+    })
+
+    setBodyToEdit(element)
+  }
+
+  const handleEdit = async (body: any) => {
+    const editWebhook = {
+      active: bodyToEdit?.active,
+      id: bodyToEdit?.id,
+      method: body.method,
+      trigger: body.method,
+      url_webhook: body.url_webhook,
+    }
+
+    try {
+      console.log(editWebhook)
+
+      // falta criar a rota para isso
+      // const { data } = await api.put(`/edit_webhook_endpoint${editWebhook.id}`, editWebhook)
+      // successNotification(data.message)
+    } catch (error) {
+      errorNotification(error.response.data.message)
+    } finally {
+      // mutate()
+      form.resetFields()
+      setIsEditingMode(false)
+    }
+  }
+
+  const handleIsEditingOrCreating = (body: any) => {
+    isEditingMode ? handleEdit(body) : handleCreate(body)
   }
 
   const columns = [
@@ -76,10 +147,15 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
       key: 'options',
       render: ({ id }: any, fullObject: any) => (
         <Space size="middle">
-          <TableButton variant="edit" onClick={() => handleEdit(fullObject)}>
+          <TableButton
+            variant="edit"
+            onClick={() => {
+              setIsEditingMode(true)
+              webhookContent(fullObject)
+            }}
+          >
             <FaEdit />
           </TableButton>
-
           <TableButton variant="trash" onClick={() => handleDelete(id)}>
             <FaTrash />
           </TableButton>
@@ -88,11 +164,11 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
     },
   ]
 
-  function showTotal(total: any) {
+  function showTotal(total: any, range: any) {
     return (
       <div>
         <p>
-          Mostrando: <span>{total}</span>{' '}
+          Mostrando: {range[0]}-{range[1]} de <span>{total}</span>{' '}
           {total > 1 ? 'resultados' : 'resultado'}
         </p>
       </div>
@@ -115,19 +191,81 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
   }
 
   const isTableEmpty = () => {
-    if (!isDataAvailable) {
+    if (webhooks?.data.records.length > 0 || isDataAvailable) {
       return (
         <div>
           <TableAddForm>
-            <Form layout="vertical">
-              <FormItem label="Field A">
-                <Input placeholder="input placeholder" />
+            <Form
+              form={form}
+              layout="vertical"
+              onFinish={handleIsEditingOrCreating}
+            >
+              <FormItem
+                name="url_webhook"
+                label="Endpoint"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Por favor, insira o link do webhook.',
+                  },
+                ]}
+                hasFeedback
+              >
+                <Input placeholder="Insira o endpoint..." autoFocus />
               </FormItem>
-              <FormItem label="Field B">
-                <Input placeholder="input placeholder" />
+
+              <FormItem
+                name="trigger"
+                label="Gatilho"
+                rules={[
+                  {
+                    required: true,
+                    message:
+                      'Por favor, selecione um gatilho para seu webhook.',
+                  },
+                ]}
+                hasFeedback
+              >
+                <Select placeholder="Selecione um gatilho">
+                  <Option value="OnStatusSubscriberUpdate">
+                    Ao atualizar status do assinante
+                  </Option>
+                  <Option value="OnSale">Ao completar uma compra</Option>
+                </Select>
               </FormItem>
+
+              <FormItem
+                name="method"
+                label="Método"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Por favor, selecione o método do seu webhook.',
+                  },
+                ]}
+                hasFeedback
+              >
+                <Select placeholder="Selecione um método">
+                  <Option value="POST">POST</Option>
+                  <Option value="PUT">PUT</Option>
+                </Select>
+              </FormItem>
+
+              <Tooltip title="Limpar todos os campos e adicionar um novo webhook.">
+                <TableButton
+                  variant="trash"
+                  onClick={() => {
+                    form.resetFields()
+                    setIsEditingMode(false)
+                  }}
+                  hidden={!isEditingMode}
+                >
+                  <FcEmptyTrash />
+                </TableButton>
+              </Tooltip>
+
               <FormItem>
-                <ButtonPrimary>Salvar</ButtonPrimary>
+                <ButtonPrimary htmlType="submit">Salvar</ButtonPrimary>
               </FormItem>
             </Form>
           </TableAddForm>
@@ -150,11 +288,15 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
           }}
         >
           <p>
-            <b>Por enquanto, não há tokens de acesso :(</b>
+            <b>Por enquanto, esta tabela está vazia :(</b>
           </p>
-          <p>Você pode gerar um novo token clicando aqui</p>
+          <p>Você pode adicionar novos webhooks clicando aqui</p>
 
-          <ButtonPrimary>
+          <ButtonPrimary
+            onClick={() => {
+              setIsDataAvailable(true)
+            }}
+          >
             <p>Adicionar +</p>
           </ButtonPrimary>
         </div>

@@ -1,23 +1,23 @@
-import React from 'react';
+import React from 'react'
 
-import Financial from './financial';
-import Recurrences from './recurrences';
-import Sells from './sells';
+import Financial from './financial'
+import Recurrences from './recurrences'
+import Sells from './sells'
 
-import { IconTab, Tabs, TabsPane } from '../../components/Tabs';
+import { IconTab, Tabs, TabsPane } from '../../components/Tabs'
 
 import {
   MdAccountBalance,
   MdAttachMoney,
   MdMonetizationOn,
-} from 'react-icons/md';
+} from 'react-icons/md'
 
 // import { Container } from './styles';
 
 const FinancialResume: React.FC = () => {
   return (
     <>
-      <Tabs defaultActiveKey='2'>
+      <Tabs defaultActiveKey="1">
         <TabsPane
           tab={
             <IconTab>
@@ -25,7 +25,7 @@ const FinancialResume: React.FC = () => {
               Recorrências
             </IconTab>
           }
-          key='1'
+          key="1"
         >
           <Recurrences />
         </TabsPane>
@@ -36,7 +36,7 @@ const FinancialResume: React.FC = () => {
               Vendas
             </IconTab>
           }
-          key='2'
+          key="2"
         >
           <Sells />
         </TabsPane>
@@ -47,13 +47,13 @@ const FinancialResume: React.FC = () => {
               Financeiro
             </IconTab>
           }
-          key='3'
+          key="3"
         >
           <Financial />
         </TabsPane>
       </Tabs>
     </>
-  );
-};
+  )
+}
 
-export default FinancialResume;
+export default FinancialResume
