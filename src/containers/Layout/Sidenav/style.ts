@@ -1,19 +1,19 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-import { Layout, Menu } from "antd";
-import SubMenu from "antd/lib/menu/SubMenu";
-import { ButtonPrimary } from "../../../components/Button";
+import { Layout, Menu } from 'antd'
+import SubMenu from 'antd/lib/menu/SubMenu'
+import { ButtonPrimary } from '../../../components/Button'
 
-const { Sider } = Layout;
+const { Sider } = Layout
 
 export const Logo = styled.img`
   width: 139px;
   height: 58px;
   margin-top: 25px;
   margin-bottom: 25px;
-  --webkit-filter: drop-shadow(  4px 0px 15px rgba(0, 0, 0, 0.3));
-  filter: drop-shadow( 4px 3px 2px rgba(0, 0, 0, 0.3));
-`;
+  --webkit-filter: drop-shadow(4px 0px 15px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(4px 3px 2px rgba(0, 0, 0, 0.3));
+`
 
 export const StyledSider = styled(Sider)`
   margin-left: 39px;
@@ -23,7 +23,7 @@ export const StyledSider = styled(Sider)`
     background-color: transparent;
     border-right: none;
   }
-`;
+`
 export const UpgradeButton = styled(ButtonPrimary)`
   margin-top: 56px;
   width: 207px;
@@ -51,13 +51,13 @@ export const UpgradeButton = styled(ButtonPrimary)`
     height: 41px;
     opacity: 0.6;
   }
-`;
+`
 export const Divider = styled.hr`
   margin: 30px 0px;
   color: ${props => props.theme.colors.black70};
   border: 1px solid ${props => props.theme.colors.black70};
   background-color: ${props => props.theme.colors.black70};
-`;
+`
 export const UserInfo = styled.div`
   display: flex;
   align-items: center;
@@ -96,7 +96,7 @@ export const UserInfo = styled.div`
     margin-left: 24px;
     margin-right: -16px;
   }
-`;
+`
 export const StyledMenu = styled(Menu)`
   .ant-menu-item,
   .ant-menu-submenu-title {
@@ -163,9 +163,9 @@ export const StyledMenu = styled(Menu)`
       border: 0;
     }
   }
-`;
+`
 export const StyledSubMenu = styled(SubMenu)`
   svg {
     margin-right: 12px;
   }
-`;
+`
