@@ -30,25 +30,23 @@ const SmallCards: React.FC<Props> = ({
 }) => {
   return (
     <SmallCard>
-      <div>
-        <InfoCardContainer>
-          <CardIcon color={color}>{icon}</CardIcon>
-          <SmallCardText>
-            <p>{value}</p>
-            <p>{label}</p>
-          </SmallCardText>
-        </InfoCardContainer>
-        {linkTo ? (
-          <SmallCardAction>
-            <Link to={linkTo}>
-              <FaChevronRight />
-            </Link>
-          </SmallCardAction>
-        ) : (
-          <></>
-        )}
-      </div>
-      {progress ? <ProgressBar color={color} percent={progress} /> : <></>}
+      <InfoCardContainer>
+        <CardIcon color={color}>{icon}</CardIcon>
+        <SmallCardText>
+          <p>{value}</p>
+          <p>{label}</p>
+          {progress ? <ProgressBar color={color} percent={progress} /> : <></>}
+        </SmallCardText>
+      </InfoCardContainer>
+      {linkTo ? (
+        <SmallCardAction>
+          <Link to={linkTo}>
+            <FaChevronRight />
+          </Link>
+        </SmallCardAction>
+      ) : (
+        <></>
+      )}
     </SmallCard>
   )
 }

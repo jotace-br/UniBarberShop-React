@@ -90,6 +90,16 @@ export const Table = styled(AntdTable)`
       font: ${props => props.theme.text.subtitle};
     }
   }
+  .ant-pagination-jump-next.ant-pagination-jump-next-custom-icon
+    .ant-pagination-item-link
+    .ant-pagination-item-container
+    .ant-pagination-item-ellipsis,
+  .ant-pagination-jump-prev.ant-pagination-jump-prev-custom-icon
+    .ant-pagination-item-link
+    .ant-pagination-item-container
+    .ant-pagination-item-ellipsis {
+    color: #fff;
+  }
   .ant-pagination-item.ant-pagination-item-active {
     background-color: ${props => props.theme.colors.primary100};
     box-shadow: 0 4px 10px rgba(230, 194, 39, 0.25);

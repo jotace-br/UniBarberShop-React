@@ -15,10 +15,11 @@ import Select from '../../../components/Select'
 import SmallCard from '../../../components/SmallCards'
 import { SmallCardContainer } from '../../../components/SmallCards/style'
 
-import { ExportContainer } from '../../Dashboard/style'
+import { ExportContainer, FilterContainer } from './style'
 
 import { FaRegCheckCircle, FaRegTrashAlt } from 'react-icons/fa'
 import { MdBlock } from 'react-icons/md'
+import { Rangepicker } from '../../../components/Datepicker'
 
 // import { Container } from './styles';
 const { Option } = Select
@@ -57,6 +58,10 @@ const ProductsResume: React.FC = () => {
             </CardSubTitle>
           </div>
           <div />
+          <FilterContainer>
+            <p>Fitrar:</p>
+            <Rangepicker />
+          </FilterContainer>
         </CardHeader>
         <CardContent>
           <DualAxes />

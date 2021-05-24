@@ -1,27 +1,20 @@
-import { Bar } from "@ant-design/charts";
-import React from "react";
+import { Progress } from 'antd'
+import React from 'react'
+import { ContainerBar, WrapperProgress } from './style'
 
 const DemoBar: React.FC = () => {
-  var data = [
-    {
-      year: "Cartão de crédito",
-      value: 38,
-    },
-    {
-      year: "Boleto",
-      value: 52,
-    },
-  ];
-  var config = {
-    data: data,
-    autoSize: false,
-    height: 200,
-    xField: "value",
-    yField: "year",
-    seriesField: "year",
-    legend: { position: "top-left" } as const,
-  };
-  return <Bar {...config} />;
-};
+  return (
+    <WrapperProgress>
+      <ContainerBar>
+        <p>Cartão de crédito</p>
+        <Progress percent={75} status="active" />
+      </ContainerBar>
+      <ContainerBar>
+        <p>Boleto</p>
+        <Progress percent={25} status="active" />
+      </ContainerBar>
+    </WrapperProgress>
+  )
+}
 
-export default DemoBar;
+export default DemoBar

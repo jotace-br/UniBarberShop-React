@@ -36,7 +36,7 @@ export const CardIcon = styled.div`
   }
 `
 export const SmallCardText = styled.div`
-  width: auto;
+  width: 70%;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -101,25 +101,28 @@ export const SmallCardContainer = styled.div`
 `
 export const InfoCardContainer = styled.div`
   display: flex;
+  width: 100%;
 `
 
 interface ProgressBarProps extends ProgressProps {
   color: string
 }
 export const ProgressBar = styled(Progress)<ProgressBarProps>`
-  top: 38px;
-  right: 54px;
+  /* top: 38px;
+  right: 54px; */
+  width: 85%;
   .ant-progress-text {
     font: ${props => props.theme.text.subtitle};
     color: ${props => props.theme.colors.black20};
     float: right;
-    right: -32px;
+    right: 24px;
     position: relative;
+    width: 0px;
   }
   .ant-progress-outer {
     padding-right: 0;
     display: flex;
-    width: 200px;
+    width: 100%;
   }
   .ant-progress-outer .ant-progress-inner {
     overflow: visible;
