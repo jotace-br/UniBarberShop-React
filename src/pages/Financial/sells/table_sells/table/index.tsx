@@ -13,7 +13,7 @@ import { Space } from 'antd'
 import { FaEllipsisV } from 'react-icons/fa'
 
 interface Props {
-  filter?: string
+  filter?: string | null
 }
 
 const TableSells: React.FC<Props> = ({ filter }) => {
@@ -21,7 +21,7 @@ const TableSells: React.FC<Props> = ({ filter }) => {
   const [pageSize, setPageSize] = useState(5)
 
   const { data: dataTable, mutate } = useFetch(
-    `/latest-sales?&payment_status=${filter}`,
+    `/latest-sales?page_index=${pageIndex}&page_size=${pageSize}&payment_status=${filter}`,
   )
 
   // `/latest-sales?page_index=${pageIndex}&page_size=${pageSize}&payment_status=${paymentFilter}`;
@@ -78,11 +78,11 @@ const TableSells: React.FC<Props> = ({ filter }) => {
 
   const selectInstallmentsValue = (installment: number) => {
     if (installment > 1) return `${installment}x`
-    return '-'
+    return 'À vista'
   }
 
   const handleDropdownMenu = (record: any) => {
-    console.log(record)
+    // console.log(record)
 
     return (
       <MenuDropdown>
@@ -161,10 +161,12 @@ const TableSells: React.FC<Props> = ({ filter }) => {
     },
     {
       title: 'Parcelas',
-      dataIndex: 'number_installments',
-      key: 'number_installments',
-      render: (installment: number) => (
-        <span>{selectInstallmentsValue(installment)}</span>
+      dataIndex: 'installments',
+      key: 'installments',
+      render: (installment: any) => (
+        <>
+          <span>{selectInstallmentsValue(installment)}</span>
+        </>
       ),
     },
     {
@@ -223,13 +225,14 @@ const TableSells: React.FC<Props> = ({ filter }) => {
           columns={columns}
           dataSource={dataTable?.records}
           pagination={{
+            total: dataTable?.total_records,
             showTotal: showTotal,
             showSizeChanger: false,
             // pageSizeOptions: ["5", "10", "25", "50", "100"],
-            pageSize: pageSize,
-            current: pageIndex + 1,
-            total: dataTable?.records.total_pages,
+            pageSize: dataTable?.page_size,
+            current: dataTable?.page_index + 1,
           }}
+          loading={!dataTable}
           onChange={pagination => handleChange(pagination)}
           // scroll={{ x: "calc(900px + 50%)" }}
         />

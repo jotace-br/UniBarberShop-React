@@ -17,7 +17,7 @@ import {
 const FinancialResume: React.FC = () => {
   return (
     <>
-      <Tabs defaultActiveKey="1">
+      <Tabs defaultActiveKey="2">
         <TabsPane
           tab={
             <IconTab>

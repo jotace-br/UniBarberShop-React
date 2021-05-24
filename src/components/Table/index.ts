@@ -189,6 +189,7 @@ export const MenuDropdown = styled(Menu)`
   color: ${props => props.theme.colors.black20};
   border-radius: 6px;
   padding: 10px 0;
+
   .ant-dropdown-menu-item.ant-dropdown-menu-item-only-child {
     a,
     p {
