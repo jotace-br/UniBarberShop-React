@@ -16,7 +16,6 @@ import DualAxes from './graphs/DualAxesGraph'
 import LineFillGraph from './graphs/LineFillGraph'
 import ProgressBar from './graphs/ProgressBar'
 
-import Modal from '../../../components/Modal'
 import Select from '../../../components/Select'
 import SmallCard from '../../../components/SmallCards'
 import { SmallCardContainer } from '../../../components/SmallCards/style'

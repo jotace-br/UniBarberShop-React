@@ -13,7 +13,7 @@ import { Space } from 'antd'
 import { FaEllipsisV } from 'react-icons/fa'
 
 interface Props {
-  filter?: string
+  filter?: string | null
 }
 
 const TableSells: React.FC<Props> = ({ filter }) => {
@@ -21,11 +21,10 @@ const TableSells: React.FC<Props> = ({ filter }) => {
   const [pageSize, setPageSize] = useState(5)
 
   const { data: dataTable, mutate } = useFetch(
-    `/latest-sales?page_index=${pageIndex}&payment_status=${filter}`,
+    `/latest-sales?page_index=${pageIndex}&page_size=${pageSize}&payment_status=${filter}`,
   )
 
   // `/latest-sales?page_index=${pageIndex}&page_size=${pageSize}&payment_status=${paymentFilter}`;
-
   //`/latest-sales?orderColunm=${colunm}&order=${order}&page_index=${page}&page_size=${rowsPerPage}&produto=${produto}&costume=${comprador}&payment_method=${method}&payment_status=${status}&id=${id}`
 
   const setStatusType = (status: string) => {
@@ -79,39 +78,48 @@ const TableSells: React.FC<Props> = ({ filter }) => {
 
   const selectInstallmentsValue = (installment: number) => {
     if (installment > 1) return `${installment}x`
-    return '-'
+    return 'À vista'
   }
-  const menu = (
-    <MenuDropdown>
-      <MenuDropdown.Item>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-        >
-          1st menu item
-        </a>
-      </MenuDropdown.Item>
-      <MenuDropdown.Item>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.aliyun.com"
-        >
-          2nd menu item
-        </a>
-      </MenuDropdown.Item>
-      <MenuDropdown.Item>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
-        >
-          3rd menu item
-        </a>
-      </MenuDropdown.Item>
-    </MenuDropdown>
-  )
+
+  const handleDropdownMenu = (record: any) => {
+    // console.log(record)
+
+    return (
+      <MenuDropdown>
+        <MenuDropdown.Item>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.antgroup.com"
+          >
+            Detalhar
+          </a>
+        </MenuDropdown.Item>
+
+        <MenuDropdown.Item>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.aliyun.com"
+          >
+            Estornar pagamento
+          </a>
+        </MenuDropdown.Item>
+        <MenuDropdown.Item>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`https://wa.me/+55${record.lead_cel_phone
+              .replace(/[^A-Z0-9]/gi, '')
+              .trim()}`}
+          >
+            Entrar em contato
+          </a>
+        </MenuDropdown.Item>
+      </MenuDropdown>
+    )
+  }
+
   const columns = [
     {
       title: 'ID Venda',
@@ -153,18 +161,20 @@ const TableSells: React.FC<Props> = ({ filter }) => {
     },
     {
       title: 'Parcelas',
-      dataIndex: 'number_installments',
-      key: 'number_installments',
-      render: (installment: number) => (
-        <span>{selectInstallmentsValue(installment)}</span>
+      dataIndex: 'installments',
+      key: 'installments',
+      render: (installment: any) => (
+        <>
+          <span>{selectInstallmentsValue(installment)}</span>
+        </>
       ),
     },
     {
       title: 'Opções',
-      key: 'options',
-      render: (text: string, record: any) => (
+      key: 'action',
+      render: (record: any) => (
         <Space size="middle">
-          <TableDropdownButton overlay={menu}>
+          <TableDropdownButton overlay={() => handleDropdownMenu(record)}>
             <FaEllipsisV />
           </TableDropdownButton>
         </Space>
@@ -202,8 +212,8 @@ const TableSells: React.FC<Props> = ({ filter }) => {
       )
     },
     getCheckboxProps: (record: any) => ({
-      disabled: record.endpoint === 'Disabled User', // Column configuration not to be checked
-      endpoint: record.endpoint,
+      disabled: record.lead_name === 'Disabled User', // Column configuration not to be checked
+      lead_name: record.lead_name,
     }),
   }
 
@@ -215,13 +225,14 @@ const TableSells: React.FC<Props> = ({ filter }) => {
           columns={columns}
           dataSource={dataTable?.records}
           pagination={{
+            total: dataTable?.total_records,
             showTotal: showTotal,
             showSizeChanger: false,
             // pageSizeOptions: ["5", "10", "25", "50", "100"],
-            pageSize: pageSize,
-            current: pageIndex + 1,
-            total: dataTable?.records.total_pages,
+            pageSize: dataTable?.page_size,
+            current: dataTable?.page_index + 1,
           }}
+          loading={!dataTable}
           onChange={pagination => handleChange(pagination)}
           // scroll={{ x: "calc(900px + 50%)" }}
         />

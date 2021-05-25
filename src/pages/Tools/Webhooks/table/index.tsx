@@ -79,26 +79,19 @@ const TableWebhooks: React.FC<Props> = ({ filter }) => {
   }
 
   const handleEdit = async (body: any) => {
-    const editWebhook = {
-      active: bodyToEdit?.active,
-      id: bodyToEdit?.id,
-      method: body.method,
-      trigger: body.method,
-      url_webhook: body.url_webhook,
-    }
-
     try {
-      console.log(editWebhook)
+      const { data } = await api.put(
+        `/edit_webhook_endpoint/${bodyToEdit?.id}`,
+        body,
+      )
+      successNotification(data.message)
 
-      // falta criar a rota para isso
-      // const { data } = await api.put(`/edit_webhook_endpoint${editWebhook.id}`, editWebhook)
-      // successNotification(data.message)
+      form.resetFields()
+      setIsEditingMode(false)
     } catch (error) {
       errorNotification(error.response.data.message)
     } finally {
-      // mutate()
-      form.resetFields()
-      setIsEditingMode(false)
+      mutate()
     }
   }
 

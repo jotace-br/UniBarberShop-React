@@ -1,13 +1,7 @@
-import menuOpen from "@iconify/icons-mdi/menu-open";
-import { Icon } from "@iconify/react";
-import { Dropdown, Menu } from "antd";
-import React, { useEffect, useState } from "react";
-import { FaEllipsisV } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
-import Pxpaylogo from "../../../assets/logo_principal.svg";
-import UserImg from "../../../assets/user.jpg";
-import { logout } from "../../../services/login"; // import { Container } from './styles';
-import SidebarItems from "./SidebarItems";
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+
+import { Dropdown, Menu } from 'antd'
 import {
   Divider,
   Logo,
@@ -15,20 +9,30 @@ import {
   StyledSider,
   StyledSubMenu,
   UserInfo,
-} from "./style";
+} from './style'
+import SidebarItems from './SidebarItems'
 
+import { logout } from '../../../services/login'
+
+import { FaEllipsisV } from 'react-icons/fa'
+
+import { Icon } from '@iconify/react'
+import menuIcon from '@iconify/icons-mdi/menu'
+import menuOpen from '@iconify/icons-mdi/menu-open'
+
+import Pxpaylogo from '../../../assets/logo_principal.svg'
+import UserImg from '../../../assets/user-circle.svg'
 interface SidenavProps {
-  userInfo?: any;
+  userInfo?: any
 }
 
 const Sidenav = ({ userInfo: { user } }: SidenavProps) => {
-  const location = useLocation();
-  const [index] = useState<string>(location.pathname);
-  const [selectedKey] = useState<string>(
-    index.slice(0, index.lastIndexOf("/"))
-  );
+  const location = useLocation()
+  const [index] = useState<string>(location.pathname)
+  const [selectedKey] = useState<string>(index.slice(0, index.lastIndexOf('/')))
+  const [isCollapsed, setIsCollapsed] = useState(false)
 
-  useEffect(() => {}, [location.pathname, selectedKey]);
+  useEffect(() => {}, [location.pathname, selectedKey])
 
   const ThreeDotMenu = (
     <Menu>
@@ -36,17 +40,22 @@ const Sidenav = ({ userInfo: { user } }: SidenavProps) => {
         Sair
       </Menu.Item>
     </Menu>
-  );
+  )
 
   return (
-    <StyledSider collapsedWidth="80">
+    <StyledSider collapsed={isCollapsed} collapsedWidth="80">
       <Logo src={Pxpaylogo} alt="" />
       <StyledMenu
         defaultSelectedKeys={[`${index}`]}
         defaultOpenKeys={[`${selectedKey}`]}
         mode="inline"
       >
-        <StyledMenu.Item icon={<Icon icon={menuOpen} />}>Menu</StyledMenu.Item>
+        <StyledMenu.Item
+          icon={<Icon icon={isCollapsed ? menuIcon : menuOpen} />}
+          onClick={() => setIsCollapsed(!isCollapsed)}
+        >
+          Menu
+        </StyledMenu.Item>
         {SidebarItems.map(({ isDrop, route, icon, name, labels }) => {
           return isDrop ? (
             <StyledSubMenu key={route} icon={icon} title={name}>
@@ -60,7 +69,7 @@ const Sidenav = ({ userInfo: { user } }: SidenavProps) => {
             <StyledMenu.Item key={route} icon={icon}>
               <Link to={route}>{name}</Link>
             </StyledMenu.Item>
-          );
+          )
         })}
       </StyledMenu>
       {/* <UpgradeButton>
@@ -76,20 +85,22 @@ const Sidenav = ({ userInfo: { user } }: SidenavProps) => {
         <img
           src={user.avatar || UserImg}
           alt="user"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: 'cover' }}
         />
-        <div className="text-container">
-          <p>
-            {user.name} {user.last_name}
-          </p>
-          <p>{user.email}</p>
-        </div>
+        {!isCollapsed && (
+          <div className="text-container">
+            <p>
+              {user.name} {user.last_name}
+            </p>
+            <p>{user.email}</p>
+          </div>
+        )}
         <Dropdown placement="bottomRight" overlay={ThreeDotMenu}>
           <FaEllipsisV />
         </Dropdown>
       </UserInfo>
     </StyledSider>
-  );
-};
+  )
+}
 
-export default Sidenav;
+export default Sidenav
