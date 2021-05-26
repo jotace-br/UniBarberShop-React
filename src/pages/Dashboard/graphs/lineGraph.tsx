@@ -18,7 +18,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
   const [isDateReady, setIsDateReady] = useState(false)
 
   const { data: graphicData } = useFetch(
-    `financial-chart/${
+    `/charts/dashboard/financial/${
       isDateReady ? allRangePickerDate[0] : RPChoosenDate[0]
     }/${isDateReady ? allRangePickerDate[1] : RPChoosenDate[1]}`,
   )

@@ -14,7 +14,7 @@ const OneLineGraph: React.FC = () => {
   const currentDate = new Date().toDateString()
 
   const { data: salesData } = useFetch(
-    `/financial-chart-sales/${firstDayOfTheYear}/${currentDate}`,
+    `charts/dashboard/sales/${firstDayOfTheYear}/${currentDate}`,
   )
 
   if (!salesData) return <p>Carregando visão geral de vendas...</p>
