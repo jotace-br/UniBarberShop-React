@@ -1,5 +1,5 @@
-import { Area } from '@ant-design/charts'
 import React, { useEffect, useState } from 'react'
+import { Area } from '@ant-design/charts'
 
 const LineFillGraph: React.FC = () => {
   const [data, setData] = useState([])

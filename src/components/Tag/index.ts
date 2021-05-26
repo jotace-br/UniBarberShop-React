@@ -1,14 +1,14 @@
-import styled from 'styled-components';
-import { Tag as AntdTag } from 'antd';
-import { TagProps } from 'antd/lib/tag';
+import { Tag as AntdTag } from 'antd'
+import { TagProps } from 'antd/lib/tag'
 
+import styled from 'styled-components'
 interface ITagProps extends TagProps {
-  status: string;
+  status: string
 }
 
 export const Tag = styled(AntdTag)<ITagProps>`
   border: none;
-  font: ${(props) => props.theme.text.subtitle_small_bold};
+  font: ${props => props.theme.text.subtitle_small_bold};
   padding: 1px 17px;
   border-radius: 50px;
   width: fit-content;
@@ -31,4 +31,4 @@ export const Tag = styled(AntdTag)<ITagProps>`
     color: #f26372;
     text-shadow: 0px 0px 8px #f26372;
   }
-`;
+`

@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-import api from '../../../services/api';
+import api from 'services/api'
 
-import { GoogleLogin } from 'react-google-login';
-import { login } from '../../../services/login';
+import { GoogleLogin } from 'react-google-login'
+import { login } from 'services/login'
 
-import { Form } from 'antd';
+import { Form } from 'antd'
 
 import {
   AuthButton,
@@ -22,39 +22,39 @@ import {
   Logo,
   RedirectLabel,
   SubButtonContainer,
-} from '../style';
+} from '../style'
 
-import { FormItem, Input, PasswordInput } from '../../../components/Input';
-import Checkbox from '../../../components/Checkbox';
-import { Link } from '../../../components/Link';
+import { FormItem, Input, PasswordInput } from 'components/Input'
+import Checkbox from 'components/Checkbox'
+import { Link } from 'components/Link'
 
-import { ButtonGoogle } from '../../../components/SocialButton';
+import { ButtonGoogle } from 'components/SocialButton'
+import { errorNotification } from 'components/Notification'
 
-import IllustrationLogin from '../../../assets/login.svg';
-import { errorNotification } from '../../../components/Notification';
+import IllustrationLogin from 'assets/login.svg'
 
 const Login: React.FC = () => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
   const onFinish = async (body: object) => {
     try {
-      const { data } = await api.post('/login', body);
-      await login(data.token, data.user);
+      const { data } = await api.post('/login', body)
+      await login(data.token, data.user)
     } catch (err) {
-      errorNotification(err.response.data.message);
+      errorNotification(err.response.data.message)
     }
-  };
+  }
 
   const handleLogin = async () => {
     window.open(
       `${process.env.REACT_APP_API_LINK}/google_auth`,
       'mywindow',
-      'location=1,status=1,scrollbars=1, width=800,height=800'
-    );
+      'location=1,status=1,scrollbars=1, width=800,height=800',
+    )
     window.addEventListener('message', ({ data }) => {
-      login(data.token, data.user);
-    });
-  };
+      login(data.token, data.user)
+    })
+  }
 
   return (
     <Container>
@@ -79,10 +79,10 @@ const Login: React.FC = () => {
               cadastro.
             </p>
           </HeadingForm>
-          <Form form={form} layout='vertical' onFinish={onFinish}>
+          <Form form={form} layout="vertical" onFinish={onFinish}>
             <FormItem
-              name='email'
-              label='Email'
+              name="email"
+              label="Email"
               required
               rules={[
                 {
@@ -97,13 +97,13 @@ const Login: React.FC = () => {
               hasFeedback
             >
               <Input
-                placeholder='Digite seu email de acesso...'
+                placeholder="Digite seu email de acesso..."
                 maxLength={100}
               />
             </FormItem>
             <FormItem
-              name='password'
-              label='Senha'
+              name="password"
+              label="Senha"
               rules={[
                 {
                   required: true,
@@ -117,22 +117,22 @@ const Login: React.FC = () => {
               hasFeedback
             >
               <PasswordInput
-                placeholder='Digite sua senha de acesso...'
+                placeholder="Digite sua senha de acesso..."
                 maxLength={150}
               />
             </FormItem>
             <FormItem>
-              <AuthButton htmlType='submit'>Entrar</AuthButton>
+              <AuthButton htmlType="submit">Entrar</AuthButton>
               <SubButtonContainer>
-                <FormItem name='remember_me' valuePropName='checked'>
+                <FormItem name="remember_me" valuePropName="checked">
                   <Checkbox>Lembrar de mim</Checkbox>
                 </FormItem>
                 <FormItem>
-                  <Link to='/forgot-password'>Esqueci minha senha</Link>
+                  <Link to="/forgot-password">Esqueci minha senha</Link>
                 </FormItem>
               </SubButtonContainer>
               <RedirectLabel>
-                Você é novo por aqui? <Link to='/register'>Cadastre-se</Link>
+                Você é novo por aqui? <Link to="/register">Cadastre-se</Link>
               </RedirectLabel>
               <DividerOr>
                 <hr />
@@ -145,13 +145,13 @@ const Login: React.FC = () => {
                   clientId={
                     '947403029672-8ge84a6mssj1puagr3dkn6i98mk6bdmk.apps.googleusercontent.com'
                   }
-                  render={(renderProps) => (
+                  render={renderProps => (
                     <ButtonGoogle
                       onClick={renderProps.onClick}
                       disabled={renderProps.disabled}
                     />
                   )}
-                  buttonText='Login'
+                  buttonText="Login"
                   onSuccess={handleLogin}
                   onFailure={handleLogin}
                   cookiePolicy={'single_host_origin'}
@@ -165,7 +165,7 @@ const Login: React.FC = () => {
         </ContainerForm>
       </FormAuth>
     </Container>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

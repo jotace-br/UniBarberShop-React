@@ -1,17 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-import api from '../../../services/api';
-import history from '../../../routes/history';
+import api from 'services/api'
+import history from 'routes/history'
 
-import { Form } from 'antd';
+import { Form } from 'antd'
 
-import IllustrationForgot from '../../../assets/forgot.svg';
-import { FormItem, Input } from '../../../components/Input';
-import {
-  errorNotification,
-  successNotification,
-} from '../../../components/Notification';
-
+import { FormItem, Input } from 'components/Input'
 import {
   AuthButton,
   Background,
@@ -23,23 +17,27 @@ import {
   Illustration,
   InfoFooter,
   Logo,
-} from '../style';
+} from '../style'
+
+import { errorNotification, successNotification } from 'components/Notification'
+
+import IllustrationForgot from 'assets/forgot.svg'
 
 const ForgotPassword: React.FC = () => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
   const onFinish = async (body: object) => {
     try {
-      await api.post('/forgot-password', body);
+      await api.post('/forgot-password', body)
       successNotification(
         'Geramos uma nova senha para você!',
-        'Verifique o seu email, caso não esteja na caixa de entrada verifique o spam.'
-      );
-      history.push('/login');
+        'Verifique o seu email, caso não esteja na caixa de entrada verifique o spam.',
+      )
+      history.push('/login')
     } catch (err) {
-      errorNotification(err.response.data.message);
+      errorNotification(err.response.data.message)
     }
-  };
+  }
 
   return (
     <Container>
@@ -62,13 +60,13 @@ const ForgotPassword: React.FC = () => {
           </HeadingForm>
           <Form
             form={form}
-            layout='vertical'
+            layout="vertical"
             onFinish={onFinish}
             scrollToFirstError
           >
             <FormItem
-              name='email'
-              label='Email'
+              name="email"
+              label="Email"
               rules={[
                 {
                   type: 'email',
@@ -82,12 +80,12 @@ const ForgotPassword: React.FC = () => {
               hasFeedback
             >
               <Input
-                placeholder='Digite seu email de acesso...'
+                placeholder="Digite seu email de acesso..."
                 maxLength={100}
               />
             </FormItem>
             <FormItem>
-              <AuthButton htmlType='submit'>Enviar</AuthButton>
+              <AuthButton htmlType="submit">Enviar</AuthButton>
             </FormItem>
           </Form>
         </ContainerForm>
@@ -96,7 +94,7 @@ const ForgotPassword: React.FC = () => {
         </InfoFooter>
       </FormAuth>
     </Container>
-  );
-};
+  )
+}
 
-export default ForgotPassword;
+export default ForgotPassword

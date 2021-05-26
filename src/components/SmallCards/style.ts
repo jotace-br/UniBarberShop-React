@@ -36,7 +36,7 @@ export const CardIcon = styled.div`
   }
 `
 export const SmallCardText = styled.div`
-  width: 70%;
+  /* width: 70%; */
   flex-shrink: 0;
   display: flex;
   flex-direction: column;

@@ -1,6 +1,6 @@
-import { Line } from '@ant-design/charts'
 import React, { useEffect, useState } from 'react'
-import { useFetch } from '../../../hooks/useFetch'
+import { useFetch } from 'hooks/useFetch'
+import { Line } from '@ant-design/charts'
 
 interface LineGraphProps {
   rangePickerDate?: any
@@ -18,7 +18,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
   const [isDateReady, setIsDateReady] = useState(false)
 
   const { data: graphicData } = useFetch(
-    `/financial-chart/${
+    `financial-chart/${
       isDateReady ? allRangePickerDate[0] : RPChoosenDate[0]
     }/${isDateReady ? allRangePickerDate[1] : RPChoosenDate[1]}`,
   )

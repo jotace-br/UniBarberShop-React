@@ -43,6 +43,7 @@ import {
 // import { Container } from './styles';
 const { Option } = Select
 const Sells: React.FC = () => {
+  // All sells cards (Saldo disponível, saldo a receber, total de transações)
   const {
     data: { user },
   } = useUser()
@@ -52,6 +53,21 @@ const Sells: React.FC = () => {
       shouldRetryOnError: false,
     },
   ])
+
+  // Transactions per period
+
+  //Payment methods
+  const { data: paymentPercentages } = useFetch(`/charts/sales/payment-method/`)
+
+  console.log(paymentPercentages)
+
+  // `/charts/sales/payment-method/:fromDate?/:toDate?`
+  // Quando tiver o datepicker, basta colocar esses dois parametros
+  // (Do jeito atual )
+
+  // Status per sell
+
+  // Sells per period
 
   return (
     <>

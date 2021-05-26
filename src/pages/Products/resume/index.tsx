@@ -6,20 +6,20 @@ import {
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from '../../../components/Card'
+} from 'components/Card'
 
 import TableProducts from './table_products'
 import DualAxes from './graphs/DualAxesGraph'
 
-import Select from '../../../components/Select'
-import SmallCard from '../../../components/SmallCards'
-import { SmallCardContainer } from '../../../components/SmallCards/style'
+import Select from 'components/Select'
+import SmallCard from 'components/SmallCards'
+import { SmallCardContainer } from 'components/SmallCards/style'
 
 import { ExportContainer, FilterContainer } from './style'
 
 import { FaRegCheckCircle, FaRegTrashAlt } from 'react-icons/fa'
 import { MdBlock } from 'react-icons/md'
-import { Rangepicker } from '../../../components/Datepicker'
+import { Rangepicker } from 'components/Datepicker'
 
 // import { Container } from './styles';
 const { Option } = Select

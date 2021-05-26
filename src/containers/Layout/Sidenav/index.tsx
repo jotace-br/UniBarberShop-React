@@ -12,7 +12,7 @@ import {
 } from './style'
 import SidebarItems from './SidebarItems'
 
-import { logout } from '../../../services/login'
+import { logout } from 'services/login'
 
 import { FaEllipsisV } from 'react-icons/fa'
 
@@ -20,8 +20,8 @@ import { Icon } from '@iconify/react'
 import menuIcon from '@iconify/icons-mdi/menu'
 import menuOpen from '@iconify/icons-mdi/menu-open'
 
-import Pxpaylogo from '../../../assets/logo_principal.svg'
-import UserImg from '../../../assets/user-circle.svg'
+import Pxpaylogo from 'assets/logo_principal.svg'
+import UserImg from 'assets/user-circle.svg'
 interface SidenavProps {
   userInfo?: any
 }

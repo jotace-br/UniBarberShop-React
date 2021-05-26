@@ -4,7 +4,7 @@ import Financial from './financial'
 import Recurrences from './recurrences'
 import Sells from './sells'
 
-import { IconTab, Tabs, TabsPane } from '../../components/Tabs'
+import { IconTab, Tabs, TabsPane } from 'components/Tabs'
 
 import {
   MdAccountBalance,

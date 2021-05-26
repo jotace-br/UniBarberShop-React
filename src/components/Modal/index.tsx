@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
 
-// import Title from "antd/lib/typography/Title";
-
 import { ContainerButtons, Illustration, StyledModal } from './style'
-import { ButtonPrimary, ButtonSecondary } from '../Button'
+import { ButtonPrimary, ButtonSecondary } from 'components/Button'
 
-import CheckIllustration from '../../assets/modal_illustrations/check_modal.svg'
-import FormIllustration from '../../assets/modal_illustrations/form_modal.svg'
-import QuestionIllustration from '../../assets/modal_illustrations/question_modal.svg'
-import WarningIllustration from '../../assets/modal_illustrations/warning_modal.svg'
-
-// import { Container } from './styles';
+import CheckIllustration from 'assets/modal_illustrations/check_modal.svg'
+import FormIllustration from 'assets/modal_illustrations/form_modal.svg'
+import QuestionIllustration from 'assets/modal_illustrations/question_modal.svg'
+import WarningIllustration from 'assets/modal_illustrations/warning_modal.svg'
 interface Props {
   title: string
   visible: boolean
@@ -62,7 +58,7 @@ const Modal: React.FC<Props> = ({
       visible={visi}
       title={[
         <>
-          {getImage() ? <Illustration src={getImage()} alt="img" /> : null}
+          {getImage() && <Illustration src={getImage()} alt="img" />}
           <p>{title}</p>
         </>,
       ]}

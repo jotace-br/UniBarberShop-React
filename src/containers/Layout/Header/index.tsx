@@ -1,32 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router'
 
-import { IconButton } from "../../../components/IconButton";
-import { NotificationsBadge, StyledHeader, Title } from "./style";
+import { IconButton } from 'components/IconButton'
+import { NotificationsBadge, StyledHeader, Title } from './style'
 
-import { Icon } from "@iconify/react";
-import cogOutline from "@iconify/icons-mdi/cog-outline";
-import bellOutline from "@iconify/icons-mdi/bell-outline";
-import magnifyIcon from "@iconify/icons-mdi/magnify";
-import { useLocation } from "react-router";
+import { Icon } from '@iconify/react'
+import cogOutline from '@iconify/icons-mdi/cog-outline'
+import bellOutline from '@iconify/icons-mdi/bell-outline'
+import magnifyIcon from '@iconify/icons-mdi/magnify'
 
 // import { Container } from './styles';
 
 const Header: React.FC = () => {
-  const location = useLocation();
-  var [index, setIndex] = useState<string>(location.pathname);
+  const location = useLocation()
+  var [index, setIndex] = useState<string>(location.pathname)
   var [selectedKey, setSelectedKey] = useState<string>(
-    index.slice(1, index.length)
-  );
+    index.slice(1, index.length),
+  )
 
   useEffect(() => {
     const handleTitle = () => {
       setIndex(location.pathname)
-      let selected = index.slice(1, index.length).replace("/", " > ");
-      setSelectedKey(selected);
-     
-    };
-    handleTitle();
-  }, [index, selectedKey, location.pathname]);
+      let selected = index.slice(1, index.length).replace('/', ' > ')
+      setSelectedKey(selected)
+    }
+    handleTitle()
+  }, [index, selectedKey, location.pathname])
   return (
     <StyledHeader>
       <Title>{selectedKey}</Title>
@@ -44,7 +43,7 @@ const Header: React.FC = () => {
         </IconButton>
       </div>
     </StyledHeader>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

@@ -1,22 +1,19 @@
 import React, { useState } from 'react'
 
-import { useFetch } from '../../../../hooks/useFetch'
-import api from '../../../../services/api'
+import { useFetch } from 'hooks/useFetch'
+import api from 'services/api'
 
-import Table, { TableAddForm, TableButton } from '../../../../components/Table'
+import Table, { TableAddForm, TableButton } from 'components/Table'
 
 import { Form, Space, Tooltip } from 'antd'
 
-import { FormItem, Input } from '../../../../components/Input'
-import { ButtonPrimary } from '../../../../components/Button'
-import Select from '../../../../components/Select'
+import { FormItem, Input } from 'components/Input'
+import { ButtonPrimary } from 'components/Button'
+import Select from 'components/Select'
 
-import { Tag } from '../../../../components/Tag'
+import { Tag } from 'components/Tag'
 
-import {
-  errorNotification,
-  successNotification,
-} from '../../../../components/Notification'
+import { errorNotification, successNotification } from 'components/Notification'
 
 import { FaEdit, FaTrash } from 'react-icons/fa'
 import { FcEmptyTrash } from 'react-icons/fc'

@@ -1,14 +1,16 @@
-import { Pie } from '@ant-design/charts';
-import React from 'react';
-import { useFetch } from '../../../hooks/useFetch';
-export { GraphText } from '../style';
+import React from 'react'
+
+import { useFetch } from 'hooks/useFetch'
+
+import { Pie } from '@ant-design/charts'
+export { GraphText } from '../style'
 
 const BarGraph: React.FC = () => {
-  const { data: allProducts } = useFetch('/list-all-by-producer-products');
-  const { data: activeProducts } = useFetch('/list-active-products');
+  const { data: allProducts } = useFetch('/list-all-by-producer-products')
+  const { data: activeProducts } = useFetch('/list-active-products')
 
-  if (!allProducts) return <p>Carregando...</p>;
-  if (!activeProducts) return <p>Carregando...</p>;
+  if (!allProducts) return <p>Carregando...</p>
+  if (!activeProducts) return <p>Carregando...</p>
 
   var data = [
     {
@@ -19,7 +21,7 @@ const BarGraph: React.FC = () => {
       country: 'Inativos',
       value: allProducts.total_records - activeProducts.length,
     },
-  ];
+  ]
   var config = {
     height: 240,
     autoFit: true,
@@ -38,15 +40,15 @@ const BarGraph: React.FC = () => {
       title: false,
       content: {
         customHtml: (container: any, view: any, datum: any, data: any) => {
-          var total = 0;
+          var total = 0
           for (var i = 0; i < data.length; i++) {
-            total += data[i].value;
+            total += data[i].value
           }
           return (
             "<GraphText style='color: #ffa'><p style='font-size: 20px'>" +
             total +
             "</p><br /><p style='font-size: 10px; margin-top: -28px; font-weight: 300'>Total de produtos</p></GraphText>"
-          );
+          )
         },
       },
     },
@@ -91,8 +93,8 @@ const BarGraph: React.FC = () => {
       { type: 'pie-statistic-active' },
     ],
     color: ['#C284F3', '#7836AC'],
-  };
-  return <Pie {...config} />;
-};
+  }
+  return <Pie {...config} />
+}
 
-export default BarGraph;
+export default BarGraph

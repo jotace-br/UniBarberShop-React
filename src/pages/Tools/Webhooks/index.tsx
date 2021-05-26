@@ -1,14 +1,14 @@
-import React from "react";
-import { ButtonPrimary } from "../../../components/Button";
+import React from 'react'
+import { ButtonPrimary } from 'components/Button'
 import {
   Card,
   CardContent,
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from "../../../components/Card";
-import { TabCard, TabsPane } from "../../../components/Tabs";
-import TableWebhooks from "./table";
+} from 'components/Card'
+import { TabCard, TabsPane } from 'components/Tabs'
+import TableWebhooks from './table'
 
 const Webhooks: React.FC = () => {
   return (
@@ -39,7 +39,7 @@ const Webhooks: React.FC = () => {
         </TabCard>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default Webhooks;
+export default Webhooks

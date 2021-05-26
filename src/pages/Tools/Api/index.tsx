@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import { useFetchWithNoRefresh } from '../../../hooks/useFetchWithNoRefresh';
-import api from '../../../services/api';
+import { useFetchWithNoRefresh } from 'hooks/useFetchWithNoRefresh'
+import api from 'services/api'
 
 import {
   Card,
@@ -9,27 +9,27 @@ import {
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from '../../../components/Card';
+} from 'components/Card'
 
-import { ButtonPrimary } from '../../../components/Button';
+import { ButtonPrimary } from 'components/Button'
 
-import { TabCard, TabsPane } from '../../../components/Tabs';
-import { TextWithIcon } from '../../../components/TextWithIcon';
+import { TabCard, TabsPane } from 'components/Tabs'
+import { TextWithIcon } from 'components/TextWithIcon'
 
-import { Typography } from 'antd';
+import { Typography } from 'antd'
 
-import { FaFileAlt } from 'react-icons/fa';
-import { IoReload } from 'react-icons/io5';
+import { FaFileAlt } from 'react-icons/fa'
+import { IoReload } from 'react-icons/io5'
 
-const { Text } = Typography;
+const { Text } = Typography
 
 const Api: React.FC = () => {
-  const { data: keys, mutate } = useFetchWithNoRefresh('/get-key');
+  const { data: keys, mutate } = useFetchWithNoRefresh('/get-key')
 
   const generateNewKeys = async () => {
-    const { data: newKeys } = await api.get('/get-key');
-    mutate(newKeys);
-  };
+    const { data: newKeys } = await api.get('/get-key')
+    mutate(newKeys)
+  }
 
   const noTokenYetMessage = () => {
     if (keys) {
@@ -47,10 +47,10 @@ const Api: React.FC = () => {
 
           <Text>
             <FaFileAlt />A documentação da API está disponível em:{' '}
-            <a href='http://pudim.com.br'>www.link.com.br</a>
+            <a href="http://pudim.com.br">www.link.com.br</a>
           </Text>
         </>
-      );
+      )
     } else {
       return (
         <div
@@ -68,7 +68,7 @@ const Api: React.FC = () => {
 
           <ButtonPrimary
             onClick={() => {
-              generateNewKeys();
+              generateNewKeys()
             }}
             disabled={keys}
           >
@@ -78,9 +78,9 @@ const Api: React.FC = () => {
             </TextWithIcon>
           </ButtonPrimary>
         </div>
-      );
+      )
     }
-  };
+  }
 
   return (
     <Card>
@@ -91,7 +91,7 @@ const Api: React.FC = () => {
         </div>
         <ButtonPrimary
           onClick={() => {
-            generateNewKeys();
+            generateNewKeys()
           }}
           disabled={keys}
         >
@@ -104,13 +104,13 @@ const Api: React.FC = () => {
 
       <CardContent>
         <TabCard>
-          <TabsPane tab='Token de acesso' key='1'>
+          <TabsPane tab="Token de acesso" key="1">
             {noTokenYetMessage()}
           </TabsPane>
         </TabCard>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default Api;
+export default Api

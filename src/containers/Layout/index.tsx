@@ -1,16 +1,19 @@
-import React from "react";
-import { useUser } from "../../services/user";
-import Header from "./Header";
-import Sidenav from "./Sidenav";
-import { MainContainer, StyledContent, Wrapper } from "./style";
+import React from 'react'
+
+import { useUser } from 'services/user'
+
+import Header from './Header'
+import Sidenav from './Sidenav'
+
+import { MainContainer, StyledContent, Wrapper } from './style'
 
 interface Props {
-  children?: unknown;
+  children?: unknown
 }
 const LayoutDefault: React.FC<Props> = ({ children }) => {
-  const { data } = useUser();
+  const { data } = useUser()
 
-  if (!data) return <p>Carregando...</p>;
+  if (!data) return <p>Carregando...</p>
 
   return (
     <>
@@ -22,7 +25,7 @@ const LayoutDefault: React.FC<Props> = ({ children }) => {
         </Wrapper>
       </MainContainer>
     </>
-  );
-};
+  )
+}
 
-export default LayoutDefault;
+export default LayoutDefault

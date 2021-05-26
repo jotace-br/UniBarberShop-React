@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Table from './table'
-import { TabCard, TabsPane } from '../../../../components/Tabs'
+import { TabCard, TabsPane } from 'components/Tabs'
 
 const TableSells: React.FC = () => {
   return (

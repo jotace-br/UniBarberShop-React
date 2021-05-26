@@ -1,6 +1,6 @@
 import React from 'react'
-import { FaChevronRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+
 import {
   CardIcon,
   InfoCardContainer,
@@ -9,8 +9,8 @@ import {
   SmallCardText,
   ProgressBar,
 } from './style'
-// import { Container } from './styles';
 
+import { FaChevronRight } from 'react-icons/fa'
 interface Props {
   color: string
   icon: React.ReactNode

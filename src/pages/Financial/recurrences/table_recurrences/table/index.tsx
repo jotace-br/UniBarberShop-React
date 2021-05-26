@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 
-import { useFetch } from '../../../../../hooks/useFetch'
+import { useFetch } from 'hooks/useFetch'
 
-import Table, {
-  MenuDropdown,
-  TableDropdownButton,
-} from '../../../../../components/Table'
+import Table, { MenuDropdown, TableDropdownButton } from 'components/Table'
 
-import { Tag } from '../../../../../components/Tag'
+import { Tag } from 'components/Tag'
 import { Space } from 'antd'
 
 import { FaEllipsisV } from 'react-icons/fa'

@@ -1,13 +1,14 @@
-import React from "react";
-import { ReactComponent as GoogleLogo } from "../../assets/google.svg";
-import { SocialBtn } from "./style";
+import React from 'react'
+
+import { SocialBtn } from './style'
+import { ReactComponent as GoogleLogo } from 'assets/google.svg'
 
 // import { Container } from './styles';
 interface Props {
-  logo?: any;
-  brandName?: string;
-  onClick?: (e: any) => void;
-  disabled?: boolean;
+  logo?: any
+  brandName?: string
+  onClick?: (e: any) => void
+  disabled?: boolean
 }
 const SocialButton: React.FC<Props> = ({
   brandName,
@@ -20,10 +21,10 @@ const SocialButton: React.FC<Props> = ({
       {logo}
       Continue com {brandName}
     </SocialBtn>
-  );
-};
+  )
+}
 
-export default SocialButton;
+export default SocialButton
 
 export const ButtonGoogle: React.FC<Props> = ({ onClick, disabled }) => {
   return (
@@ -31,5 +32,5 @@ export const ButtonGoogle: React.FC<Props> = ({ onClick, disabled }) => {
       <GoogleLogo />
       Continue com Google
     </SocialBtn>
-  );
-};
+  )
+}

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-import { useFetch } from '../../hooks/useFetch';
-import { useUser } from '../../services/user';
+import { useFetch } from 'hooks/useFetch'
+import { useUser } from 'services/user'
 
-import moment from 'moment';
+import moment from 'moment'
 
 import {
   Card,
@@ -11,20 +11,20 @@ import {
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from '../../components/Card';
+} from 'components/Card'
 
-import OneLineGraph from './graphs//oneLineGraph';
-import BarGraph from './graphs/barGraph';
-import LineGraph from './graphs/lineGraph';
+import OneLineGraph from './graphs//oneLineGraph'
+import BarGraph from './graphs/barGraph'
+import LineGraph from './graphs/lineGraph'
 
-import { Rangepicker } from '../../components/Datepicker';
-import Select from '../../components/Select';
+import { Rangepicker } from 'components/Datepicker'
+import Select from 'components/Select'
 import {
   SmallCard,
   SmallCardAction,
   SmallCardContainer,
   SmallCardText,
-} from '../../components/SmallCards/style';
+} from 'components/SmallCards/style'
 
 import {
   CardIcon,
@@ -32,55 +32,55 @@ import {
   FilterContainer,
   InfoCardContainer,
   TwoCardContainer,
-} from './style';
+} from './style'
 
-import cartArrowDown from '@iconify/icons-mdi/cart-arrow-down';
-import currencyUsd from '@iconify/icons-mdi/currency-usd';
-import walletOutline from '@iconify/icons-mdi/wallet-outline';
-import { Icon } from '@iconify/react';
-import { FaChevronRight } from 'react-icons/fa';
+import cartArrowDown from '@iconify/icons-mdi/cart-arrow-down'
+import currencyUsd from '@iconify/icons-mdi/currency-usd'
+import walletOutline from '@iconify/icons-mdi/wallet-outline'
+import { Icon } from '@iconify/react'
+import { FaChevronRight } from 'react-icons/fa'
 
-const { Option } = Select;
+const { Option } = Select
 
 const Dashboard: React.FC = () => {
-  const dateFormat = 'DD/MM/YY';
+  const dateFormat = 'DD/MM/YY'
 
-  const [rangePickerValue, setRangePickerValue] = useState();
+  const [rangePickerValue, setRangePickerValue] = useState()
   const [rangePickerDates, setRangePickerDates] = useState<any>([
     moment(moment().add(-1, 'months'), dateFormat).toDate(),
     moment(moment(), dateFormat).toDate(),
-  ]);
-  const [rangePickerHackValue, setRangePickerHackValue] = useState<any>();
-  const [isRangePickerOpen, setIsRangePickerOpen] = useState(false);
+  ])
+  const [rangePickerHackValue, setRangePickerHackValue] = useState<any>()
+  const [isRangePickerOpen, setIsRangePickerOpen] = useState(false)
 
   const {
     data: { user },
-  } = useUser();
-  const { data: financial_summary } = useFetch('financial-summary');
+  } = useUser()
+  const { data: financial_summary } = useFetch('financial-summary')
   const { data: balance } = useFetch(`/check-balance/${user.seller_id}`, [
     {
       shouldRetryOnError: false,
     },
-  ]);
+  ])
 
   const onChangeRangePicker = (e: any) => {
-    setRangePickerValue(e);
-  };
+    setRangePickerValue(e)
+  }
 
   const onCalendarChangeRangePicker = (e: any) => {
-    setRangePickerDates(e);
-  };
+    setRangePickerDates(e)
+  }
 
   const onOpenChangeRangePicker = (open: boolean) => {
     if (open) {
-      setIsRangePickerOpen(true);
-      setRangePickerHackValue([]);
-      setRangePickerDates([]);
+      setIsRangePickerOpen(true)
+      setRangePickerHackValue([])
+      setRangePickerDates([])
     } else {
-      setRangePickerHackValue(undefined);
-      setIsRangePickerOpen(false);
+      setRangePickerHackValue(undefined)
+      setIsRangePickerOpen(false)
     }
-  };
+  }
 
   return (
     <>
@@ -114,10 +114,10 @@ const Dashboard: React.FC = () => {
         <ExportContainer>
           <p>Exportar em:</p>
           <Select defaultValue={'pdf'}>
-            <Option value='pdf'>PDF</Option>
-            <Option value='excel'>XLS</Option>
-            <Option value='excel'>DOC.X</Option>
-            <Option value='odf'>TXT</Option>
+            <Option value="pdf">PDF</Option>
+            <Option value="excel">XLS</Option>
+            <Option value="excel">DOC.X</Option>
+            <Option value="odf">TXT</Option>
           </Select>
         </ExportContainer>
       </Card>
@@ -135,7 +135,7 @@ const Dashboard: React.FC = () => {
           <SmallCardContainer>
             <SmallCard>
               <InfoCardContainer>
-                <CardIcon color='#F9C96E'>
+                <CardIcon color="#F9C96E">
                   <Icon icon={cartArrowDown} />
                 </CardIcon>
                 <SmallCardText>
@@ -152,7 +152,7 @@ const Dashboard: React.FC = () => {
               </SmallCardAction>
             </SmallCard>
             <SmallCard>
-              <CardIcon color='#71E083'>
+              <CardIcon color="#71E083">
                 <Icon icon={currencyUsd} />
               </CardIcon>
               <SmallCardText>
@@ -161,7 +161,7 @@ const Dashboard: React.FC = () => {
                     ? '...'
                     : financial_summary.financial_summary.net_value.toLocaleString(
                         'pt-BR',
-                        { style: 'currency', currency: 'BRL' }
+                        { style: 'currency', currency: 'BRL' },
                       )}
                 </p>
                 <p>Valor líquido</p>
@@ -172,7 +172,7 @@ const Dashboard: React.FC = () => {
               </SmallCardAction>
             </SmallCard>
             <SmallCard>
-              <CardIcon color='#7197E0'>
+              <CardIcon color="#7197E0">
                 <Icon icon={walletOutline} />
               </CardIcon>
               <SmallCardText>
@@ -208,10 +208,10 @@ const Dashboard: React.FC = () => {
           <ExportContainer>
             <p>Exportar em:</p>
             <Select defaultValue={'pdf'}>
-              <Option value='pdf'>PDF</Option>
-              <Option value='excel'>XLS</Option>
-              <Option value='excel'>DOC.X</Option>
-              <Option value='odf'>TXT</Option>
+              <Option value="pdf">PDF</Option>
+              <Option value="excel">XLS</Option>
+              <Option value="excel">DOC.X</Option>
+              <Option value="odf">TXT</Option>
             </Select>
           </ExportContainer>
         </Card>
@@ -229,16 +229,16 @@ const Dashboard: React.FC = () => {
           <ExportContainer>
             <p>Exportar em:</p>
             <Select defaultValue={'pdf'}>
-              <Option value='pdf'>PDF</Option>
-              <Option value='excel'>XLS</Option>
-              <Option value='excel'>DOC.X</Option>
-              <Option value='odf'>TXT</Option>
+              <Option value="pdf">PDF</Option>
+              <Option value="excel">XLS</Option>
+              <Option value="excel">DOC.X</Option>
+              <Option value="odf">TXT</Option>
             </Select>
           </ExportContainer>
         </Card>
       </TwoCardContainer>
     </>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

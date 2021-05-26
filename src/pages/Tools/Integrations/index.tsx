@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import {
   Card,
@@ -6,14 +6,14 @@ import {
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from '../../../components/Card';
+} from 'components/Card'
 
-import { TabCard, TabsPane } from '../../../components/Tabs';
+import { TabCard, TabsPane } from 'components/Tabs'
 
-import { ButtonPrimary } from '../../../components/Button';
+import { ButtonPrimary } from 'components/Button'
 
-import { FaFacebook } from 'react-icons/fa';
-import { RiLayoutGridFill } from 'react-icons/ri';
+import { FaFacebook } from 'react-icons/fa'
+import { RiLayoutGridFill } from 'react-icons/ri'
 // import { Container } from './styles';
 
 const Integrations: React.FC = () => {
@@ -33,7 +33,7 @@ const Integrations: React.FC = () => {
 
       <CardContent>
         <TabCard>
-          <TabsPane tab='Disponíveis' key='1'>
+          <TabsPane tab="Disponíveis" key="1">
             <h3>Plataformas ativas</h3>
             <h4>
               <RiLayoutGridFill /> 3 plataformas
@@ -51,7 +51,7 @@ const Integrations: React.FC = () => {
                     alignItems: 'center',
                   }}
                 >
-                  <FaFacebook size='50px' />
+                  <FaFacebook size="50px" />
                 </div>
                 <div
                   style={{
@@ -67,7 +67,7 @@ const Integrations: React.FC = () => {
               </section>
             </Card>
           </TabsPane>
-          <TabsPane tab='Ativos' key='2'>
+          <TabsPane tab="Ativos" key="2">
             <h3>Plataformas disponíveis</h3>
             <h4>
               <RiLayoutGridFill /> 12 plataformas
@@ -85,7 +85,7 @@ const Integrations: React.FC = () => {
                     alignItems: 'center',
                   }}
                 >
-                  <FaFacebook size='50px' />
+                  <FaFacebook size="50px" />
                 </div>
                 <div
                   style={{
@@ -104,7 +104,7 @@ const Integrations: React.FC = () => {
         </TabCard>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default Integrations;
+export default Integrations

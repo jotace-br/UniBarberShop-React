@@ -1,26 +1,24 @@
 const theme = {
-  text:{
-    h1:'300 52px/160% Poppins, sans-serif',
-    h2:'600 40px/160% Poppins, sans-serif',
-    h3:'700 32px/160% Poppins, sans-serif',
-    h4:'700 26px/160% Poppins, sans-serif',
-    h5:'700 22px/160% Poppins, sans-serif',
+  text: {
+    h1: '300 52px/160% Poppins, sans-serif',
+    h2: '600 40px/160% Poppins, sans-serif',
+    h3: '700 32px/160% Poppins, sans-serif',
+    h4: '700 26px/160% Poppins, sans-serif',
+    h5: '700 22px/160% Poppins, sans-serif',
     //
-    text_large:'400 20px/160% Poppins, sans-serif',
-    text_large_bold:'700 20px/160% Poppins, sans-serif',
+    text_large: '400 20px/160% Poppins, sans-serif',
+    text_large_bold: '700 20px/160% Poppins, sans-serif',
     //
-    text_medium:'400 16px/160% Poppins, sans-serif',
-    text_medium_bold:'700 16px/160% Poppins, sans-serif',
+    text_medium: '400 16px/160% Poppins, sans-serif',
+    text_medium_bold: '700 16px/160% Poppins, sans-serif',
     //
-    text_small:'400 14px/160% Poppins, sans-serif',
-    text_small_bold:'700 14px/160% Poppins, sans-serif',
+    text_small: '400 14px/160% Poppins, sans-serif',
+    text_small_bold: '700 14px/160% Poppins, sans-serif',
     //
-    subtitle:'400 12px/160% Poppins, sans-serif',
-    subtitle_bold:'700 12px/160% Poppins, sans-serif',
-    subtitle_small:'400 10px/160% Poppins, sans-serif',
-    subtitle_small_bold:'700 10px/160% Poppins, sans-serif',
-   
-
+    subtitle: '400 12px/160% Poppins, sans-serif',
+    subtitle_bold: '700 12px/160% Poppins, sans-serif',
+    subtitle_small: '400 10px/160% Poppins, sans-serif',
+    subtitle_small_bold: '700 10px/160% Poppins, sans-serif',
   },
   colors: {
     //Primaria
@@ -48,7 +46,6 @@ const theme = {
     //Sistema
     error: '#FF7070',
     white: '#FFFFFF',
-  }
-
+  },
 }
 export default theme

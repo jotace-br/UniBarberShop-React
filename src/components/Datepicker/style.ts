@@ -1,6 +1,7 @@
-import { DatePicker } from "antd";
-import styled from "styled-components";
-const { RangePicker } = DatePicker;
+import styled from 'styled-components'
+
+import { DatePicker } from 'antd'
+const { RangePicker } = DatePicker
 
 export const StyledDatepicker = styled(DatePicker)`
   width: 191px;
@@ -8,19 +9,19 @@ export const StyledDatepicker = styled(DatePicker)`
   background-color: ${props => props.theme.colors.black70};
   border-radius: 6px;
   border: none;
-  &>.ant-picker-input > input::placeholder{
-    color:  ${props => props.theme.colors.black10} !important;
+  & > .ant-picker-input > input::placeholder {
+    color: ${props => props.theme.colors.black10} !important;
     opacity: 1;
   }
-  .ant-picker-suffix{
-    color:  ${props => props.theme.colors.black10} !important;
+  .ant-picker-suffix {
+    color: ${props => props.theme.colors.black10} !important;
   }
-  &>.ant-picker-input > input{
-    color:  ${props => props.theme.colors.black10} !important;
+  & > .ant-picker-input > input {
+    color: ${props => props.theme.colors.black10} !important;
   }
-  .ant-picker-clear{
+  .ant-picker-clear {
     background-color: ${props => props.theme.colors.black70};
-    color:  ${props => props.theme.colors.black10} !important;
+    color: ${props => props.theme.colors.black10} !important;
   }
 `
 export const StyledRangePicker = styled(RangePicker)`
@@ -30,30 +31,30 @@ export const StyledRangePicker = styled(RangePicker)`
   background-color: ${props => props.theme.colors.black70};
   border-radius: 6px;
   border: none;
-  &>.ant-picker-input > input::placeholder{
-    color:  ${props => props.theme.colors.black10} !important;
+  & > .ant-picker-input > input::placeholder {
+    color: ${props => props.theme.colors.black10} !important;
     opacity: 1;
   }
-  .ant-picker-suffix{
-    color:  ${props => props.theme.colors.black10} !important;
+  .ant-picker-suffix {
+    color: ${props => props.theme.colors.black10} !important;
   }
-  &>.ant-picker-input > input{
-    color:  ${props => props.theme.colors.black10} !important;
+  & > .ant-picker-input > input {
+    color: ${props => props.theme.colors.black10} !important;
   }
-  .ant-picker-clear{
+  .ant-picker-clear {
     background-color: ${props => props.theme.colors.black70};
-    color:  ${props => props.theme.colors.black10} !important;
+    color: ${props => props.theme.colors.black10} !important;
   }
-  .ant-picker .ant-picker-range{
-    &:last-of-type(.ant-input>input){
-      margin-left: -4px
+  .ant-picker .ant-picker-range {
+    &:last-of-type(.ant-input > input) {
+      margin-left: -4px;
     }
   }
-  .ant-picker-range-separator{
+  .ant-picker-range-separator {
     margin-left: -16px;
-    color: #FFF;
+    color: #fff;
   }
-  .ant-picker-active-bar{
+  .ant-picker-active-bar {
     display: none;
   }
 `

@@ -1,27 +1,27 @@
-import React from 'react';
+import React from 'react'
 
-import { useFetch } from '../../../hooks/useFetch';
+import { useFetch } from 'hooks/useFetch'
 
-import { Line } from '@ant-design/charts';
+import { Line } from '@ant-design/charts'
 
 const OneLineGraph: React.FC = () => {
   const firstDayOfTheYear = new Date(
     new Date().getFullYear(),
     0,
-    1
-  ).toDateString();
+    1,
+  ).toDateString()
 
-  const currentDate = new Date().toDateString();
+  const currentDate = new Date().toDateString()
 
   const { data: salesData } = useFetch(
-    `/financial-chart-sales/${firstDayOfTheYear}/${currentDate}`
-  );
+    `/financial-chart-sales/${firstDayOfTheYear}/${currentDate}`,
+  )
 
-  if (!salesData) return <p>Carregando visão geral de vendas...</p>;
+  if (!salesData) return <p>Carregando visão geral de vendas...</p>
 
   const getData = () => {
-    return salesData.sales;
-  };
+    return salesData.sales
+  }
 
   const config = {
     data: getData(),
@@ -85,7 +85,7 @@ const OneLineGraph: React.FC = () => {
       },
     },
     interactions: [{ type: 'marker-active' }],
-  };
+  }
   // data: data,
   //   xField: 'year',
   //   yField: 'value',
@@ -127,7 +127,7 @@ const OneLineGraph: React.FC = () => {
   //   },
   //   interactions: [{ type: 'marker-active' }],
 
-  return <Line {...config} />;
-};
+  return <Line {...config} />
+}
 
-export default OneLineGraph;
+export default OneLineGraph

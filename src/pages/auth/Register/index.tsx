@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-import history from '../../../routes/history';
-import api from '../../../services/api';
+import history from 'routes/history'
+import api from 'services/api'
 
-import { Form } from 'antd';
+import { Form } from 'antd'
 
-import MaskedInput from 'antd-mask-input';
-import ReCAPTCHA from 'react-google-recaptcha';
+import MaskedInput from 'antd-mask-input'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 import {
   AuthButton,
@@ -23,41 +23,38 @@ import {
   Logo,
   RedirectLabel,
   WrapperRecaptcha,
-} from '../style';
+} from '../style'
 
-import { FormItem, Input, PasswordInput } from '../../../components/Input';
-import { Link } from '../../../components/Link';
+import { FormItem, Input, PasswordInput } from 'components/Input'
+import { Link } from 'components/Link'
 
-import {
-  errorNotification,
-  successNotification,
-} from '../../../components/Notification';
+import { errorNotification, successNotification } from 'components/Notification'
 
-import { IoIosLogIn /* IoMdBusiness */ } from 'react-icons/io';
-import { RiAccountBoxLine } from 'react-icons/ri';
-import IllustrationRegister from '../../../assets/register.svg';
+import { IoIosLogIn /* IoMdBusiness */ } from 'react-icons/io'
+import { RiAccountBoxLine } from 'react-icons/ri'
+import IllustrationRegister from 'assets/register.svg'
 
-// import Select from "../../../components/Select";
+// import Select from "components/Select";
 
 // const { Option } = Select;
 
 const Register: React.FC = () => {
-  const [token, setToken] = useState(null);
-  const [form] = Form.useForm();
+  const [token, setToken] = useState(null)
+  const [form] = Form.useForm()
 
   const onFinish = async (body: object) => {
     try {
       if (!token)
-        errorNotification('Por favor, verifique se você não é um robô.');
+        errorNotification('Por favor, verifique se você não é um robô.')
 
-      await api.post('/register', body);
-      successNotification('Usuário cadastrado com sucesso!');
+      await api.post('/register', body)
+      successNotification('Usuário cadastrado com sucesso!')
 
-      history.push('/login');
+      history.push('/login')
     } catch (err) {
-      errorNotification(err.response.data.message);
+      errorNotification(err.response.data.message)
     }
-  };
+  }
 
   return (
     <Container>
@@ -80,7 +77,7 @@ const Register: React.FC = () => {
           </HeadingForm>
           <Form
             form={form}
-            layout='vertical'
+            layout="vertical"
             onFinish={onFinish}
             scrollToFirstError
           >
@@ -91,8 +88,8 @@ const Register: React.FC = () => {
               <hr />
             </DividerIcon>
             <FormItem
-              name='name'
-              label='Nome completo'
+              name="name"
+              label="Nome completo"
               rules={[
                 {
                   required: true,
@@ -106,13 +103,13 @@ const Register: React.FC = () => {
               hasFeedback
             >
               <Input
-                placeholder='Digite seu nome completo...'
+                placeholder="Digite seu nome completo..."
                 maxLength={100}
               />
             </FormItem>
             <FormItem
-              name='cell_phone'
-              label='Telefone'
+              name="cell_phone"
+              label="Telefone"
               rules={[
                 {
                   required: true,
@@ -122,9 +119,9 @@ const Register: React.FC = () => {
               hasFeedback
             >
               <MaskedInput
-                mask='(11) 11111-1111'
+                mask="(11) 11111-1111"
                 maxLength={11}
-                placeholder='Digite seu número de telefone...'
+                placeholder="Digite seu número de telefone..."
                 style={{
                   width: '100%',
                   height: '36px',
@@ -142,8 +139,8 @@ const Register: React.FC = () => {
               <hr />
             </DividerIcon>
             <FormItem
-              name='email'
-              label='E-mail'
+              name="email"
+              label="E-mail"
               rules={[
                 {
                   type: 'email',
@@ -156,12 +153,12 @@ const Register: React.FC = () => {
               ]}
               hasFeedback
             >
-              <Input placeholder='Digite seu e-mail...' />
+              <Input placeholder="Digite seu e-mail..." />
             </FormItem>
             <FormItem
-              name='password'
-              label='Senha'
-              tooltip='Mínimo de 8 caracteres.'
+              name="password"
+              label="Senha"
+              tooltip="Mínimo de 8 caracteres."
               rules={[
                 {
                   required: true,
@@ -175,13 +172,13 @@ const Register: React.FC = () => {
               hasFeedback
             >
               <PasswordInput
-                placeholder='Digite sua senha...'
+                placeholder="Digite sua senha..."
                 maxLength={150}
               />
             </FormItem>
             <FormItem
-              name='password_check'
-              label='Confirme sua senha'
+              name="password_check"
+              label="Confirme sua senha"
               dependencies={['password']}
               hasFeedback
               rules={[
@@ -196,17 +193,17 @@ const Register: React.FC = () => {
                 ({ getFieldValue }) => ({
                   validator(_, value) {
                     if (!value || getFieldValue('password') === value) {
-                      return Promise.resolve();
+                      return Promise.resolve()
                     }
                     return Promise.reject(
-                      new Error('As duas senhas digitadas não conferem.')
-                    );
+                      new Error('As duas senhas digitadas não conferem.'),
+                    )
                   },
                 }),
               ]}
             >
               <PasswordInput
-                placeholder='Digite sua senha...'
+                placeholder="Digite sua senha..."
                 maxLength={150}
               />
             </FormItem>
@@ -269,24 +266,24 @@ const Register: React.FC = () => {
             <Divider />
             <WrapperRecaptcha>
               <ReCAPTCHA
-                sitekey='6Ldn0NQaAAAAAPMwZPGhiDodUC8P0FCGf_7SMa3G'
+                sitekey="6Ldn0NQaAAAAAPMwZPGhiDodUC8P0FCGf_7SMa3G"
                 onChange={(token: any) => setToken(token)}
                 onExpired={() =>
                   errorNotification(
                     'A verificação expirou.',
-                    'Por favor, confirme que não é um robô.'
+                    'Por favor, confirme que não é um robô.',
                   )
                 }
-                theme='dark'
-                size='normal'
-                hl='pt-BR'
+                theme="dark"
+                size="normal"
+                hl="pt-BR"
               />
             </WrapperRecaptcha>
             <RedirectLabel>
               Ao se cadastrar, você concorda com os{' '}
-              <Link to=''>Termos de Uso</Link> da PXPay.
+              <Link to="">Termos de Uso</Link> da PXPay.
             </RedirectLabel>
-            <AuthButton htmlType='submit'>Cadastrar</AuthButton>
+            <AuthButton htmlType="submit">Cadastrar</AuthButton>
           </Form>
         </ContainerForm>
         <InfoFooter>
@@ -294,7 +291,7 @@ const Register: React.FC = () => {
         </InfoFooter>
       </FormAuth>
     </Container>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

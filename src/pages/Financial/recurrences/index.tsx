@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { useFetch } from '../../../hooks/useFetch'
-import { useUser } from '../../../services/user'
+import { useFetch } from 'hooks/useFetch'
+import { useUser } from 'services/user'
 
 import {
   Card,
@@ -9,15 +9,15 @@ import {
   CardHeader,
   CardSubTitle,
   CardTitle,
-} from '../../../components/Card'
+} from 'components/Card'
 
 import TableRecurrences from './table_recurrences'
 import ColumnBarRecurrences from './graphs/ColumnBarRecurrences'
-import Select from '../../../components/Select'
-import SmallCard from '../../../components/SmallCards'
-import { SmallCardContainer } from '../../../components/SmallCards/style'
+import Select from 'components/Select'
+import SmallCard from 'components/SmallCards'
+import { SmallCardContainer } from 'components/SmallCards/style'
 
-import { ExportContainer } from '../../Dashboard/style'
+import { ExportContainer } from 'pages/Dashboard/style'
 
 import {
   StatusLabel,

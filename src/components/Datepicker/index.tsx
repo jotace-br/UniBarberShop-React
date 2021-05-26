@@ -1,10 +1,14 @@
-import React from "react";
-import { StyledDatepicker, StyledRangePicker } from "./style";
-import "moment/locale/pt-br";
-import moment from "moment";
-import locale from "antd/lib/locale/pt_BR";
-import { Space } from "antd";
-import { ConfigProvider } from "antd";
+import React from 'react'
+
+import { StyledDatepicker, StyledRangePicker } from './style'
+
+import 'moment/locale/pt-br'
+import moment from 'moment'
+
+import locale from 'antd/lib/locale/pt_BR'
+
+import { Space } from 'antd'
+import { ConfigProvider } from 'antd'
 // import { Container } from './styles';
 
 const Datepicker: React.FC = () => {
@@ -12,20 +16,20 @@ const Datepicker: React.FC = () => {
     <ConfigProvider locale={locale}>
       <StyledDatepicker placeholder="Insira a data" format="DD/MM/YY" />
     </ConfigProvider>
-  );
-};
+  )
+}
 
-export default Datepicker;
+export default Datepicker
 
-const dateFormat = "DD/MM/YY";
+const dateFormat = 'DD/MM/YY'
 
 interface RangePickerProps {
-  hackValue?: any;
-  dates?: never[];
-  value?: any;
-  onChangeRP?: (e: any) => void;
-  onCalendarChangeRP?: (e: any) => void;
-  onOpenChangeRP?: (e: any) => void;
+  hackValue?: any
+  dates?: never[]
+  value?: any
+  onChangeRP?: (e: any) => void
+  onCalendarChangeRP?: (e: any) => void
+  onOpenChangeRP?: (e: any) => void
 }
 
 export const Rangepicker = ({
@@ -40,9 +44,9 @@ export const Rangepicker = ({
     <ConfigProvider locale={locale}>
       <Space direction="vertical" size={12}>
         <StyledRangePicker
-          placeholder={["Dt. Início", "Dt. Final"]}
+          placeholder={['Dt. Início', 'Dt. Final']}
           defaultValue={[
-            moment(moment().add(-1, "months"), dateFormat),
+            moment(moment().add(-1, 'months'), dateFormat),
             moment(moment(), dateFormat),
           ]}
           value={hackValue || value}
@@ -54,5 +58,5 @@ export const Rangepicker = ({
         />
       </Space>
     </ConfigProvider>
-  );
-};
+  )
+}

@@ -1,6 +1,8 @@
 import React from 'react'
+
 import ProductsResume from './resume'
-import { IconTab, Tabs, TabsPane } from '../../components/Tabs'
+import { IconTab, Tabs, TabsPane } from 'components/Tabs'
+
 import { MdAttachMoney, MdMonetizationOn } from 'react-icons/md'
 
 // import { Container } from './styles';

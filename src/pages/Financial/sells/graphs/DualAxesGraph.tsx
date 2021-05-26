@@ -139,7 +139,7 @@ const DualAxes: React.FC = () => {
         geometry: 'line',
         seriesField: 'name',
         lineStyle: (data: any, fill: any) => {
-          console.log(data, fill)
+          // console.log(data, fill)
         },
         color: ['#E04AED', '#51D5FF', '#FEF756'],
       },
