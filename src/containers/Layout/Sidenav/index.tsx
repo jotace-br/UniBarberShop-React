@@ -22,6 +22,7 @@ import menuOpen from '@iconify/icons-mdi/menu-open'
 
 import Pxpaylogo from 'assets/logo_principal.svg'
 import UserImg from 'assets/user-circle.svg'
+
 interface SidenavProps {
   userInfo?: any
 }
@@ -33,6 +34,10 @@ const Sidenav = ({ userInfo: { user } }: SidenavProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false)
 
   useEffect(() => {}, [location.pathname, selectedKey])
+
+  const dropdownPhoto = () => {
+    console.log('dropdown')
+  }
 
   const ThreeDotMenu = (
     <Menu>
@@ -82,11 +87,13 @@ const Sidenav = ({ userInfo: { user } }: SidenavProps) => {
       <Divider />
 
       <UserInfo>
-        <img
-          src={user.avatar || UserImg}
-          alt="user"
-          style={{ objectFit: 'cover' }}
-        />
+        <div onClick={() => dropdownPhoto()}>
+          <img
+            src={user.avatar || UserImg}
+            alt="user"
+            style={{ objectFit: 'cover' }}
+          />
+        </div>
         {!isCollapsed && (
           <div className="text-container">
             <p>

@@ -98,6 +98,13 @@ export const UserInfo = styled.div`
   }
 `
 export const StyledMenu = styled(Menu)`
+  .ant-menu-submenu.ant-menu-submenu-vertical
+    > .ant-menu-submenu-title
+    > span:nth-child(2) {
+    display: inline-block;
+    opacity: 0;
+  }
+
   .ant-menu-item,
   .ant-menu-submenu-title {
     height: 54px !important;
@@ -165,7 +172,34 @@ export const StyledMenu = styled(Menu)`
   }
 `
 export const StyledSubMenu = styled(SubMenu)`
+  span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), margin 0.3s,
+      color 0.3s;
+    box-sizing: border-box;
+  }
+
   svg {
-    margin-right: 12px;
+    margin-right: 10px;
+  }
+`
+
+export const SubmenuIcon = styled.span`
+  flex: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: inherit;
+  display: inline-block;
+  font-style: normal;
+  line-height: 0;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -0.125em;
+
+  svg:hover {
+    color: #e6be27;
   }
 `

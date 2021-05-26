@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   RiBarChartBoxFill,
   RiDashboardFill,
@@ -6,6 +7,8 @@ import {
   RiMailFill,
   RiShoppingCart2Fill,
 } from 'react-icons/ri'
+
+import { SubmenuIcon } from './style'
 
 const SidebarItems = [
   {
@@ -29,7 +32,11 @@ const SidebarItems = [
   {
     name: 'Clientes',
     isDrop: true,
-    icon: <RiGroupFill />,
+    icon: (
+      <SubmenuIcon>
+        <RiGroupFill />
+      </SubmenuIcon>
+    ),
     route: '/clientes',
     labels: [
       { name: 'Página 1', route: '/clientes/page1' },
@@ -46,7 +53,11 @@ const SidebarItems = [
   {
     name: 'Ferramentas',
     isDrop: true,
-    icon: <RiGridFill />,
+    icon: (
+      <SubmenuIcon>
+        <RiGridFill />
+      </SubmenuIcon>
+    ),
     route: '/ferramentas',
     labels: [
       { name: 'Integrações', route: '/ferramentas/integracoes' },
