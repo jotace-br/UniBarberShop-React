@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import history from 'routes/history'
+import { PushHistory } from 'routes/history'
 import api from 'services/api'
 
 import { Form } from 'antd'
@@ -33,14 +33,28 @@ import { errorNotification, successNotification } from 'components/Notification'
 import { IoIosLogIn /* IoMdBusiness */ } from 'react-icons/io'
 import { RiAccountBoxLine } from 'react-icons/ri'
 import IllustrationRegister from 'assets/register.svg'
+import Modal from 'components/Modal'
 
 // import Select from "components/Select";
 
 // const { Option } = Select;
 
 const Register: React.FC = () => {
-  const [token, setToken] = useState(null)
   const [form] = Form.useForm()
+  const [token, setToken] = useState(null)
+  const [modalVisibility, setModalVisibility] = useState(false)
+  const [modalLoading, setModalLoading] = useState(false)
+
+  const handleOk = () => {
+    setModalLoading(true)
+
+    setTimeout(() => {
+      setModalVisibility(false)
+      setModalLoading(false)
+
+      PushHistory('/login')
+    }, 500)
+  }
 
   const onFinish = async (body: object) => {
     try {
@@ -48,9 +62,7 @@ const Register: React.FC = () => {
         errorNotification('Por favor, verifique se você não é um robô.')
 
       await api.post('/register', body)
-      successNotification('Usuário cadastrado com sucesso!')
-
-      history.push('/login')
+      setModalVisibility(true)
     } catch (err) {
       errorNotification(err.response.data.message)
     }
@@ -290,6 +302,17 @@ const Register: React.FC = () => {
           <p>Pxpay © 2021 by XGrow - Todos os Direitos Reservados</p>
         </InfoFooter>
       </FormAuth>
+
+      <Modal
+        title="Cadastro realizado!"
+        visible={modalVisibility}
+        loading={modalLoading}
+        type="success"
+        singleButton={true}
+        onOkClick={handleOk}
+      >
+        Você vai receber um um link de confirmação de cadastro, em seu e-mail.
+      </Modal>
     </Container>
   )
 }

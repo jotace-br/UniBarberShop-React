@@ -19,10 +19,10 @@ import {
   Logo,
 } from '../style'
 
+import Modal from 'components/Modal'
 import { errorNotification } from 'components/Notification'
 
 import IllustrationForgot from 'assets/forgot.svg'
-import Modal from 'components/Modal'
 
 const ForgotPassword: React.FC = () => {
   const [form] = Form.useForm()
