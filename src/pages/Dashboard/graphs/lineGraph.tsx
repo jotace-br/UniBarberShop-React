@@ -130,7 +130,6 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
             shadowColor: '#FEF756',
             ...props,
           }
-
         default:
           return {
             stroke: '#' + Math.floor(Math.random() * 16777215).toString(16),

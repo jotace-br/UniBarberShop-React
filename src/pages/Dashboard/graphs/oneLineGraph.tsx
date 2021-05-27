@@ -19,6 +19,24 @@ const OneLineGraph: React.FC = () => {
 
   if (!salesData) return <p>Carregando visão geral de vendas...</p>
 
+  const setMonthName = (month: number) => {
+    const months = [
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembro',
+      'Outubro',
+      'Novembro',
+      'Dezembro',
+    ]
+    return months[month]
+  }
+
   const getData = () => {
     return salesData.sales
   }
@@ -59,7 +77,11 @@ const OneLineGraph: React.FC = () => {
       },
     },
     tooltip: {
+      showTitle: false,
       showMarkers: false,
+      formatter: ({ month, amount }: any) => {
+        return { name: setMonthName(month), value: amount }
+      },
     },
     state: {
       active: {
