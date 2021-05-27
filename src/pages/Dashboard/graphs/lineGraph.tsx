@@ -23,6 +23,8 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
     }/${isDateReady ? allRangePickerDate[1] : RPChoosenDate[1]}`,
   )
 
+  console.log(graphicData)
+
   useEffect(() => {
     const filterByGivenDate = () => {
       if (!isRangePickerOpen && rangePickerDate?.length !== 0) {
@@ -71,9 +73,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
           fontSize: 12,
         },
         formatter: function formatter(v: any) {
-          let date = new Date(v)
-          let dateFormat = date.getDate() + '/' + (date.getMonth() + 1)
-          return dateFormat
+          return v
         },
       },
       grid: {
@@ -110,39 +110,41 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
     },
     smooth: true,
     lineStyle: (data: any) => {
-      if (data.name === 'Cartão de Crédito') {
-        return {
-          stroke: '#FEF756',
-          lineWidth: 6,
-          strokeOpacity: 1,
-          shadowColor: '#FEF756',
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowOffsetY: 0,
-          cursor: 'pointer',
-        }
-      } else if (data.name === 'Boleto') {
-        return {
-          stroke: '#66FFE3',
-          lineWidth: 6,
-          strokeOpacity: 1,
-          shadowColor: '#66FFE3',
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowOffsetY: 0,
-          cursor: 'pointer',
-        }
-      } else {
-        return {
-          stroke: '#fff',
-          lineWidth: 6,
-          strokeOpacity: 1,
-          shadowColor: '#fff',
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowOffsetY: 0,
-          cursor: 'pointer',
-        }
+      switch (data.name) {
+        case 'Cartão de Crédito':
+          return {
+            stroke: '#FEF756',
+            lineWidth: 6,
+            strokeOpacity: 1,
+            shadowColor: '#FEF756',
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowOffsetY: 0,
+            cursor: 'pointer',
+          }
+        case 'Boleto':
+          return {
+            stroke: '#66FFE3',
+            lineWidth: 6,
+            strokeOpacity: 1,
+            shadowColor: '#66FFE3',
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowOffsetY: 0,
+            cursor: 'pointer',
+          }
+        default:
+          return {
+            stroke: '#' + Math.floor(Math.random() * 16777215).toString(16),
+            lineWidth: 6,
+            strokeOpacity: 1,
+            shadowColor:
+              '#' + Math.floor(Math.random() * 16777215).toString(16),
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowOffsetY: 0,
+            cursor: 'pointer',
+          }
       }
     },
     legend: {

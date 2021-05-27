@@ -68,7 +68,7 @@ const Api: React.FC = () => {
                   <DivFlex>
                     <Input
                       value={keys?.keys.api_key || '...'}
-                      style={{ width: 'auto', marginRight: '12px' }}
+                      style={{ marginRight: '12px' }}
                     />
 
                     <Tooltip placement="right" title={tooltipTexts.key_tooltip}>
@@ -89,7 +89,7 @@ const Api: React.FC = () => {
                   <DivFlex>
                     <Input
                       value={keys?.keys.api_password || '...'}
-                      style={{ width: 'auto', marginRight: '12px' }}
+                      style={{ marginRight: '12px' }}
                     />
 
                     <Tooltip

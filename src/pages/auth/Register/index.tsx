@@ -28,7 +28,7 @@ import {
 import { FormItem, Input, PasswordInput } from 'components/Input'
 import { Link } from 'components/Link'
 
-import { errorNotification, successNotification } from 'components/Notification'
+import { errorNotification } from 'components/Notification'
 
 import { IoIosLogIn /* IoMdBusiness */ } from 'react-icons/io'
 import { RiAccountBoxLine } from 'react-icons/ri'
