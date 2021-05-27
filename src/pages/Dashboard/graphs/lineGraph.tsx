@@ -23,8 +23,6 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
     }/${isDateReady ? allRangePickerDate[1] : RPChoosenDate[1]}`,
   )
 
-  console.log(graphicData)
-
   useEffect(() => {
     const filterByGivenDate = () => {
       if (!isRangePickerOpen && rangePickerDate?.length !== 0) {
@@ -109,43 +107,43 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
       },
     },
     smooth: true,
-    lineStyle: (data: any) => {
-      switch (data.name) {
-        case 'Cartão de Crédito':
-          return {
-            stroke: '#FEF756',
-            lineWidth: 6,
-            strokeOpacity: 1,
-            shadowColor: '#FEF756',
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowOffsetY: 0,
-            cursor: 'pointer',
-          }
+    lineStyle: ({ name }: any) => {
+      const props = {
+        lineWidth: 6,
+        strokeOpacity: 1,
+        shadowBlur: 10,
+        shadowOffsetX: 0,
+        shadowOffsetY: 0,
+        cursor: 'pointer',
+      }
+
+      switch (name) {
         case 'Boleto':
           return {
             stroke: '#66FFE3',
-            lineWidth: 6,
-            strokeOpacity: 1,
             shadowColor: '#66FFE3',
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowOffsetY: 0,
-            cursor: 'pointer',
+            ...props,
           }
+        case 'Cartão de Crédito':
+          return {
+            stroke: '#FEF756',
+            shadowColor: '#FEF756',
+            ...props,
+          }
+
         default:
           return {
             stroke: '#' + Math.floor(Math.random() * 16777215).toString(16),
-            lineWidth: 6,
-            strokeOpacity: 1,
             shadowColor:
               '#' + Math.floor(Math.random() * 16777215).toString(16),
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowOffsetY: 0,
-            cursor: 'pointer',
+            ...props,
           }
       }
+    },
+    tooltip: {
+      formatter: ({ name, amount }: any) => {
+        return { name: name, value: amount }
+      },
     },
     legend: {
       position: 'top-left',
@@ -170,7 +168,17 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
         duration: 2000,
       },
     },
-    color: ['#66FFE3', '#FEF756'],
+    colorField: 'type',
+    color: ({ name }: any) => {
+      switch (name) {
+        case 'Boleto':
+          return '#66FFE3'
+        case 'Cartão de Crédito':
+          return '#FEF756'
+        default:
+          return '#' + Math.floor(Math.random() * 16777215).toString(16)
+      }
+    },
   }
 
   return <Line {...config} />
