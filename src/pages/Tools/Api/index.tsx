@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useFetchWithNoRefresh } from 'hooks/useFetchWithNoRefresh'
 import api from 'services/api'
@@ -11,19 +11,35 @@ import {
   CardTitle,
 } from 'components/Card'
 
-import { ButtonPrimary } from 'components/Button'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import Form from 'antd/lib/form/Form'
+import { FormItem, Input } from 'components/Input'
+import { ButtonForIcons, ButtonPrimary } from 'components/Button'
 
-import { TabCard, TabsPane } from 'components/Tabs'
-import { TextWithIcon } from 'components/TextWithIcon'
+import { TabCard, TabsPane, TabsPaneBody } from 'components/Tabs'
 
-import { Typography } from 'antd'
+import { Row, Col } from 'antd'
 
-import { FaFileAlt } from 'react-icons/fa'
+import { DocumentationText, TextWithIcon } from 'components/Text'
+
+import { Tooltip } from 'antd'
+
+import { FaFileAlt, FaCopy } from 'react-icons/fa'
+import { MdDone } from 'react-icons/md'
 import { IoReload } from 'react-icons/io5'
-
-const { Text } = Typography
+import { DivFlex, DivFlexColumnCenter } from 'components/Div'
 
 const Api: React.FC = () => {
+  const [copyIcon, setCopyIcon] = useState({
+    key_tooltip: <FaCopy />,
+    key_password: <FaCopy />,
+  })
+
+  const [tooltipTexts, setTooltipTexts] = useState({
+    key_tooltip: 'Copiar',
+    key_password: 'Copiar',
+  })
+
   const { data: keys, mutate } = useFetchWithNoRefresh('/get-key')
 
   const generateNewKeys = async () => {
@@ -31,36 +47,89 @@ const Api: React.FC = () => {
     mutate(newKeys)
   }
 
+  const changeTextAndIconOnCopy = ({ target: { name } }: any) => {
+    setCopyIcon({ ...copyIcon, [name]: <MdDone color="green" /> })
+    setTooltipTexts({ ...tooltipTexts, [name]: 'Copiado!' })
+
+    setTimeout(() => {
+      setTooltipTexts({ ...tooltipTexts, [name]: 'Copiar' })
+      setCopyIcon({ ...copyIcon, [name]: <FaCopy /> })
+    }, 5000)
+  }
+
   const noTokenYetMessage = () => {
     if (keys) {
       return (
         <>
-          <div>
-            <p>API Key</p>
-            <Text copyable>{keys ? keys.keys.api_key : '...'}</Text>
-          </div>
+          <Form layout="vertical">
+            <Row gutter={[16, 16]}>
+              <Col flex="1 0 50%">
+                <FormItem name="key" label="API Key">
+                  <DivFlex>
+                    <Input
+                      value={keys?.keys.api_key || '...'}
+                      style={{ width: 'auto', marginRight: '12px' }}
+                    />
 
-          <div>
-            <p>API Password</p>
-            <Text copyable>{keys ? keys.keys.api_password : '...'}</Text>
-          </div>
+                    <Tooltip placement="right" title={tooltipTexts.key_tooltip}>
+                      <CopyToClipboard text={keys?.keys.api_key}>
+                        <ButtonForIcons
+                          name="key_tooltip"
+                          onClick={changeTextAndIconOnCopy}
+                        >
+                          {copyIcon.key_tooltip}
+                        </ButtonForIcons>
+                      </CopyToClipboard>
+                    </Tooltip>
+                  </DivFlex>
+                </FormItem>
+              </Col>
+              <Col flex="1 0 50%">
+                <FormItem name="password" label="API Password">
+                  <DivFlex>
+                    <Input
+                      value={keys?.keys.api_password || '...'}
+                      style={{ width: 'auto', marginRight: '12px' }}
+                    />
 
-          <Text>
-            <FaFileAlt />A documentação da API está disponível em:{' '}
-            <a href="http://pudim.com.br">www.link.com.br</a>
-          </Text>
+                    <Tooltip
+                      placement="right"
+                      title={tooltipTexts.key_password}
+                    >
+                      <CopyToClipboard text={keys?.keys.api_password}>
+                        <ButtonForIcons
+                          name="key_password"
+                          onClick={changeTextAndIconOnCopy}
+                        >
+                          {copyIcon.key_password}
+                        </ButtonForIcons>
+                      </CopyToClipboard>
+                    </Tooltip>
+                  </DivFlex>
+                </FormItem>
+              </Col>
+            </Row>
+          </Form>
+
+          <DocumentationText>
+            <FaFileAlt /> A documentação da API está disponível em:{' '}
+            <a
+              href="http://pudim.com.br"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                color: '#e6be27',
+                textDecoration: 'underline',
+              }}
+            >
+              www.link.com.br
+            </a>
+          </DocumentationText>
         </>
       )
     } else {
       return (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <DivFlexColumnCenter>
           <p>
             <b>Por enquanto, não há tokens de acesso :(</b>
           </p>
@@ -77,7 +146,7 @@ const Api: React.FC = () => {
               <IoReload />
             </TextWithIcon>
           </ButtonPrimary>
-        </div>
+        </DivFlexColumnCenter>
       )
     }
   }
@@ -105,7 +174,7 @@ const Api: React.FC = () => {
       <CardContent>
         <TabCard>
           <TabsPane tab="Token de acesso" key="1">
-            {noTokenYetMessage()}
+            <TabsPaneBody>{noTokenYetMessage()}</TabsPaneBody>
           </TabsPane>
         </TabCard>
       </CardContent>
