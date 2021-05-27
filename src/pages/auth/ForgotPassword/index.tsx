@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import api from 'services/api'
-import history from 'routes/history'
+import { PushHistory } from 'routes/history'
 
 import { Form } from 'antd'
 
@@ -19,21 +19,31 @@ import {
   Logo,
 } from '../style'
 
-import { errorNotification, successNotification } from 'components/Notification'
+import { errorNotification } from 'components/Notification'
 
 import IllustrationForgot from 'assets/forgot.svg'
+import Modal from 'components/Modal'
 
 const ForgotPassword: React.FC = () => {
   const [form] = Form.useForm()
+  const [modalVisibility, setModalVisibility] = useState(false)
+  const [modalLoading, setModalLoading] = useState(false)
+
+  const handleOk = () => {
+    setModalLoading(true)
+
+    setTimeout(() => {
+      setModalVisibility(false)
+      setModalLoading(false)
+
+      PushHistory('/login')
+    }, 500)
+  }
 
   const onFinish = async (body: object) => {
     try {
       await api.post('/forgot-password', body)
-      successNotification(
-        'Geramos uma nova senha para você!',
-        'Verifique o seu email, caso não esteja na caixa de entrada verifique o spam.',
-      )
-      history.push('/login')
+      setModalVisibility(true)
     } catch (err) {
       errorNotification(err.response.data.message)
     }
@@ -93,6 +103,17 @@ const ForgotPassword: React.FC = () => {
           <p>Pxpay © 2021 by XGrow - Todos os Direitos Reservados</p>
         </InfoFooter>
       </FormAuth>
+
+      <Modal
+        title="Solicitação enviada!"
+        visible={modalVisibility}
+        loading={modalLoading}
+        type="success"
+        singleButton={true}
+        onOkClick={handleOk}
+      >
+        Você vai receber um um link para redefinição de senha em seu e-mail.
+      </Modal>
     </Container>
   )
 }

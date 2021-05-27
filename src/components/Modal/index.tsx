@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { ContainerButtons, Illustration, StyledModal } from './style'
 import { ButtonPrimary, ButtonSecondary } from 'components/Button'
@@ -8,35 +8,36 @@ import FormIllustration from 'assets/modal_illustrations/form_modal.svg'
 import QuestionIllustration from 'assets/modal_illustrations/question_modal.svg'
 import WarningIllustration from 'assets/modal_illustrations/warning_modal.svg'
 interface Props {
+  type: string
   title: string
   visible: boolean
   loading: boolean
-  type?: string
+  onOkClick?: (e: any) => void
+  onCancel?: (e: any) => void
   singleButton?: boolean
   children?: React.ReactNode
 }
 
 const Modal: React.FC<Props> = ({
-  loading,
-  visible,
-  children,
   type,
-  singleButton,
   title,
+  visible,
+  loading,
+  onOkClick,
+  onCancel,
+  singleButton,
+  children,
 }) => {
-  const [load, setLoading] = useState(loading)
-  const [visi, setVisible] = useState(visible)
-
   const handleOk = () => {
-    setLoading(true)
+    loading = true
     setTimeout(() => {
-      setLoading(false)
-      setVisible(false)
-    }, 3000)
+      loading = false
+      visible = false
+    }, 500)
   }
 
   const handleCancel = () => {
-    setVisible(false)
+    visible = false
   }
 
   const getImage = () => {
@@ -55,29 +56,37 @@ const Modal: React.FC<Props> = ({
   }
   return (
     <StyledModal
-      visible={visi}
+      visible={visible}
       title={[
         <>
           {getImage() && <Illustration src={getImage()} alt="img" />}
           <p>{title}</p>
         </>,
       ]}
-      onOk={handleOk}
-      onCancel={handleCancel}
+      onOk={onOkClick || handleOk}
+      onCancel={onCancel || handleCancel}
       footer={
         singleButton
           ? [
               <ContainerButtons>
-                <ButtonPrimary key="submit" loading={load} onClick={handleOk}>
+                <ButtonPrimary
+                  key="submit"
+                  loading={loading}
+                  onClick={onOkClick || handleOk}
+                >
                   Ok
                 </ButtonPrimary>
               </ContainerButtons>,
             ]
           : [
-              <ButtonPrimary key="submit" loading={load} onClick={handleOk}>
+              <ButtonPrimary
+                key="submit"
+                loading={loading}
+                onClick={onOkClick || handleOk}
+              >
                 Confimar
               </ButtonPrimary>,
-              <ButtonSecondary key="back" onClick={handleCancel}>
+              <ButtonSecondary key="back" onClick={onCancel || handleCancel}>
                 Cancelar
               </ButtonSecondary>,
             ]

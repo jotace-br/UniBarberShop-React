@@ -47,7 +47,7 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     window.open(
-      `${process.env.REACT_APP_API_LINK}/google_auth`,
+      `https://pxpay-api-zhi4y.ondigitalocean.app/google_auth`,
       'mywindow',
       'location=1,status=1,scrollbars=1, width=800,height=800',
     )
@@ -153,7 +153,6 @@ const Login: React.FC = () => {
                   )}
                   buttonText="Login"
                   onSuccess={handleLogin}
-                  onFailure={handleLogin}
                   cookiePolicy={'single_host_origin'}
                 />
               </ContainerSocial>

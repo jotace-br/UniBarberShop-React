@@ -105,6 +105,10 @@ export const StyledMenu = styled(Menu)`
     opacity: 0;
   }
 
+  .ant-menu-inline .ant-menu-item::after {
+    border-right: 3px solid #e6be27;
+  }
+
   .ant-menu-item,
   .ant-menu-submenu-title {
     height: 54px !important;
