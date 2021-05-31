@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useFetch } from '../../../hooks/useFetch'
 import { useUser } from '../../../services/user'
+
+import moment from 'moment'
 
 import {
   Card,
@@ -36,6 +38,7 @@ import {
   FaCheck,
   FaChevronDown,
   FaChevronUp,
+  FaEquals,
   FaDollarSign,
   FaExclamation,
 } from 'react-icons/fa'
@@ -43,12 +46,17 @@ import {
 // import { Container } from './styles';
 const { Option } = Select
 const Sells: React.FC = () => {
+  const [rangePickerDates] = useState<any>([
+    moment(moment().add(-1, 'months'), 'DD/MM/YY').toDate().toDateString(),
+    moment(moment(), 'DD/MM/YY').toDate().toDateString(),
+  ])
+
   // All sells cards (Saldo disponível, saldo a receber, total de transações)
   const {
     data: { user },
   } = useUser()
   const { data: financialResume } = useFetch('/financial-summary')
-  const { data: balance } = useFetch(`/check-balance/${user.seller_id}`, [
+  const { data: balance } = useFetch(`/check-balance/${user?.seller_id}`, [
     {
       shouldRetryOnError: false,
     },
@@ -57,15 +65,69 @@ const Sells: React.FC = () => {
   // Transactions per period
 
   //Payment methods
-  const { data: paymentPercentages } = useFetch(`/charts/sales/payment-method/`)
-
-  console.log(paymentPercentages)
-
-  // `/charts/sales/payment-method/:fromDate?/:toDate?`
-  // Quando tiver o datepicker, basta colocar esses dois parametros
-  // (Do jeito atual )
+  const { data: paymentPercentages } = useFetch(
+    `/charts/sales/payment-method/${rangePickerDates[0]}/${rangePickerDates[1]}`,
+  )
 
   // Status per sell
+  const { data: sellsPerStatuses } = useFetch(
+    `charts/sales/by-status/${rangePickerDates[0]}/${rangePickerDates[1]}`,
+  )
+
+  console.log(sellsPerStatuses)
+
+  const handleStatusPerSellGrowth = (variant: number, value: any) => {
+    switch (variant) {
+      case 1:
+        return (
+          <StatusValue color="#71E083">
+            <p>
+              {value?.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }) || 'R$ 0,00'}
+            </p>
+            <FaChevronUp />
+          </StatusValue>
+        )
+      case 0:
+        return (
+          <StatusValue color="#A4A4A4">
+            <p>
+              {value?.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }) || 'R$ 0,00'}
+            </p>
+            <FaEquals />
+          </StatusValue>
+        )
+      case -1:
+        return (
+          <StatusValue color="#FF7070">
+            <p>
+              {value?.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }) || 'R$ 0,00'}
+            </p>
+            <FaChevronDown />
+          </StatusValue>
+        )
+      default:
+        return (
+          <StatusValue color="#A4A4A4">
+            <p>
+              {value?.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }) || 'R$ 0,00'}
+            </p>
+            <FaEquals />
+          </StatusValue>
+        )
+    }
+  }
 
   // Sells per period
 
@@ -127,6 +189,7 @@ const Sells: React.FC = () => {
           </Select>
         </ExportContainer>
       </Card>
+
       <TwoCardContainer>
         <Card>
           <CardHeader>
@@ -139,7 +202,7 @@ const Sells: React.FC = () => {
             <div />
           </CardHeader>
           <CardContent>
-            <ProgressBar />
+            <ProgressBar data={paymentPercentages} />
           </CardContent>
           <ExportContainer>
             <p>Exportar em:</p>
@@ -167,51 +230,52 @@ const Sells: React.FC = () => {
                   <FaCheck />
                   <p>Aprovado</p>
                 </StatusLabel>
-                <StatusValue color="#71E083">
-                  <p>R$12.000,00</p>
-                  <FaChevronUp />
-                </StatusValue>
+                {handleStatusPerSellGrowth(
+                  sellsPerStatuses?.paid.variant,
+                  sellsPerStatuses?.paid.amount,
+                )}
               </StatusListItem>
 
               {/* não aprovado */}
               <StatusListItem>
                 <StatusLabel color="#FF7070">
                   <FaExclamation />
-                  <p>Não aprovado</p>
+                  <p>Expirado</p>
                 </StatusLabel>
-                <StatusValue color="#71E083">
-                  <p>R$12.000,00</p>
-                  <FaChevronUp />
-                </StatusValue>
+                {handleStatusPerSellGrowth(
+                  sellsPerStatuses?.expired.variant,
+                  sellsPerStatuses?.expired.amount,
+                )}
               </StatusListItem>
 
               {/* cancelados */}
               <StatusListItem>
                 <StatusLabel color="#A4A4A4">
                   <MdBlock />
-                  <p>Cancelados</p>
+                  <p>Estornado</p>
                 </StatusLabel>
-                <StatusValue color="#FF7070">
-                  <p>R$12.000,00</p>
-                  <FaChevronDown />
-                </StatusValue>
+                {handleStatusPerSellGrowth(
+                  sellsPerStatuses?.refund.variant,
+                  sellsPerStatuses?.refund.amount,
+                )}
               </StatusListItem>
 
               {/* pendente */}
               <StatusListItem>
                 <StatusLabel color="#D6C52E">
                   <MdLoop />
-                  <p>Aprovado</p>
+                  <p>Pendente</p>
                 </StatusLabel>
-                <StatusValue color="#71E083">
-                  <p>R$12.000,00</p>
-                  <FaChevronUp />
-                </StatusValue>
+                {handleStatusPerSellGrowth(
+                  sellsPerStatuses?.pending.variant,
+                  sellsPerStatuses?.pending.amount,
+                )}
               </StatusListItem>
             </StatusList>
           </CardContent>
         </Card>
       </TwoCardContainer>
+
       <Card>
         <CardHeader>
           <div>

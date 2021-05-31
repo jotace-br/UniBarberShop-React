@@ -89,7 +89,7 @@ const Sidenav = ({ userInfo: { user } }: SidenavProps) => {
       <UserInfo>
         <div onClick={() => dropdownPhoto()}>
           <img
-            src={user.avatar || UserImg}
+            src={user?.avatar || UserImg}
             alt="user"
             style={{ objectFit: 'cover' }}
           />
@@ -97,9 +97,9 @@ const Sidenav = ({ userInfo: { user } }: SidenavProps) => {
         {!isCollapsed && (
           <div className="text-container">
             <p>
-              {user.name} {user.last_name}
+              {user?.name} {user?.last_name}
             </p>
-            <p>{user.email}</p>
+            <p>{user?.email}</p>
           </div>
         )}
         <Dropdown placement="bottomRight" overlay={ThreeDotMenu}>
