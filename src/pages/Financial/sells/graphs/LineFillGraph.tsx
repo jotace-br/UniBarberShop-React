@@ -1,26 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Area } from '@ant-design/charts'
 
-const LineFillGraph: React.FC = () => {
-  const [data, setData] = useState([])
-  useEffect(() => {
-    const asyncFetch = () => {
-      fetch(
-        'https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json',
-      )
-        .then(response => response.json())
-        .then(json => setData(json))
-        .catch(error => {
-          console.log('fetch data failed', error)
-        })
-    }
-    asyncFetch()
-  }, [])
+interface GraphProps {
+  data: any
+}
+
+const LineFillGraph: React.FC<GraphProps> = ({ data }) => {
+  const getData = () => {
+    const rows: any = []
+
+    data?.forEach((data: any) => {
+      const convertToDate = new Date(data.date).toLocaleString('us', {
+        dateStyle: 'short',
+      })
+
+      rows.push({
+        date: convertToDate,
+        amount: Number(data.amount),
+      })
+    })
+
+    return rows
+  }
 
   var config = {
-    data: data,
-    xField: 'Date',
-    yField: 'scales',
+    data: getData(),
+    xField: 'date',
+    yField: 'amount',
     xAxis: { tickCount: 5 },
     yAxis: {
       grid: {

@@ -62,8 +62,6 @@ const Sells: React.FC = () => {
     },
   ])
 
-  // Transactions per period
-
   //Payment methods
   const { data: paymentPercentages } = useFetch(
     `/charts/sales/payment-method/${rangePickerDates[0]}/${rangePickerDates[1]}`,
@@ -74,15 +72,20 @@ const Sells: React.FC = () => {
     `charts/sales/by-status/${rangePickerDates[0]}/${rangePickerDates[1]}`,
   )
 
-  console.log(sellsPerStatuses)
+  // Transactions per period
+  // Sells per period
 
-  const handleStatusPerSellGrowth = (variant: number, value: any) => {
+  const { data: salesPerPeriod } = useFetch(
+    `charts/sales/per-period/${rangePickerDates[0]}/${rangePickerDates[1]}`,
+  )
+
+  const handleStatusPerSellGrowth = (variant: number, amount: number) => {
     switch (variant) {
       case 1:
         return (
           <StatusValue color="#71E083">
             <p>
-              {value?.toLocaleString('pt-BR', {
+              {amount?.toLocaleString('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
               }) || 'R$ 0,00'}
@@ -90,23 +93,11 @@ const Sells: React.FC = () => {
             <FaChevronUp />
           </StatusValue>
         )
-      case 0:
-        return (
-          <StatusValue color="#A4A4A4">
-            <p>
-              {value?.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              }) || 'R$ 0,00'}
-            </p>
-            <FaEquals />
-          </StatusValue>
-        )
       case -1:
         return (
           <StatusValue color="#FF7070">
             <p>
-              {value?.toLocaleString('pt-BR', {
+              {amount?.toLocaleString('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
               }) || 'R$ 0,00'}
@@ -118,7 +109,7 @@ const Sells: React.FC = () => {
         return (
           <StatusValue color="#A4A4A4">
             <p>
-              {value?.toLocaleString('pt-BR', {
+              {amount?.toLocaleString('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
               }) || 'R$ 0,00'}
@@ -128,8 +119,6 @@ const Sells: React.FC = () => {
         )
     }
   }
-
-  // Sells per period
 
   return (
     <>
@@ -287,7 +276,7 @@ const Sells: React.FC = () => {
           <div />
         </CardHeader>
         <CardContent>
-          <LineFillGraph />
+          <LineFillGraph data={salesPerPeriod} />
         </CardContent>
       </Card>
       <Card>

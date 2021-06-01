@@ -41,7 +41,10 @@ const Login: React.FC = () => {
       const { data } = await api.post('/login', body)
       await login(data.token, data.user)
     } catch (err) {
-      errorNotification(err.response.data.message)
+      errorNotification(
+        err.response.data.message,
+        'Por favor, tente novamente.',
+      )
     }
   }
 
