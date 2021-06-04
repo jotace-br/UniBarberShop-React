@@ -45,6 +45,9 @@ const OneLineGraph: React.FC = () => {
     data: getData(),
     xField: 'month',
     yField: 'amount',
+    xAxis: {
+      range: [0, 1],
+    },
     width: 500,
     height: 224,
     autoFit: true,

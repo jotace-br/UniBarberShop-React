@@ -64,6 +64,7 @@ const LineGraph = ({ rangePickerDate, isRangePickerOpen }: LineGraphProps) => {
     yField: 'amount',
     seriesField: 'name',
     xAxis: {
+      range: [0, 1],
       label: {
         style: {
           fill: '#aaa',
