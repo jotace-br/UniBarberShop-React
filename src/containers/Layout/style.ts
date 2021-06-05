@@ -8,7 +8,8 @@ const { Footer, Content } = Layout
 export const MainContainer = styled(Layout)`
   min-width: 100vw;
   min-height: 100vh;
-  background: url(${background});
+  background: #323232;
+  /* background: url(${background}); */
   background-repeat: no-repeat;
   background-size: cover;
 `
@@ -19,5 +20,5 @@ export const StyledFooter = styled(Footer)`
   background: none;
 `
 export const StyledContent = styled(Content)`
-  margin: 0 70px;
+  margin: 0;
 `

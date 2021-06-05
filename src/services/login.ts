@@ -1,28 +1,29 @@
 import history from 'routes/history'
 import api from './api'
 
-export const TOKEN_KEY = '@pxpay:jwt'
-export const TOKEN_USER = '@pxpay:user'
+export const TOKEN_KEY = '@barbershop:jwt'
 
-export const login = (token: string, user: string) => {
+export const login = (token: string) => {
   localStorage.setItem(TOKEN_KEY, token)
-  localStorage.setItem(TOKEN_USER, JSON.stringify(user))
 
   window.location.reload()
   history.push('/dashboard')
 }
 
-export const logout = () => {
-  localStorage.removeItem(TOKEN_KEY)
-  localStorage.removeItem(TOKEN_USER)
-  clearAllCookies()
+export const logout = async () => {
+  try {
+    await api.post('/api/auth/logout')
+  } catch (error) {
+    localStorage.removeItem(TOKEN_KEY)
+    clearAllCookies()
 
-  window.location.reload()
-  history.push('/login')
+    window.location.reload()
+    history.push('/login')
+  }
 }
 
 export const authTest = async () => {
-  const response = await api.get('/isAuth')
+  const response = await api.get('/api/auth/profile')
   if (!response.data) {
     localStorage.removeItem(TOKEN_KEY)
     window.location.reload()
@@ -32,7 +33,7 @@ export const authTest = async () => {
 }
 
 export const authTestWithoutLogout = async () => {
-  const response = await api.get('/isAuth')
+  const response = await api.get('/api/auth/profile')
   if (!response.data) {
     return 'Oops! Login não autorizado.'
   }

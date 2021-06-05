@@ -12,7 +12,6 @@ export function useFetch<Data = any, Error = any>(
       return response.data
     },
     {
-      refreshInterval: 1000 * 60 * 30,
       ...params,
     },
   )

@@ -2,9 +2,7 @@ import axios from 'axios'
 import { getToken, logout } from './login'
 
 const api = axios.create({
-  baseURL: 'https://pxpay-api-zhi4y.ondigitalocean.app/',
-  // baseURL: 'https://3945351fe3c0.ngrok.io/',
-  // baseURL: "https://api.pxpay.com.br/",
+  baseURL: 'http://localhost:8000/',
 })
 
 api.interceptors.request.use(config => {
