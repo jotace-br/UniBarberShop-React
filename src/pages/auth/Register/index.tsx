@@ -11,14 +11,13 @@ import {
   RedirectLabel,
   Link,
 } from '../style'
+
 import { Form } from 'antd'
+import { FormItem, Input, PasswordInput } from 'components/Input'
+import MaskedInput from 'antd-mask-input'
 
 import history from 'routes/history'
 import api from 'services/api'
-
-import MaskedInput from 'antd-mask-input'
-
-import { FormItem, Input, PasswordInput } from 'components/Input'
 
 import { errorNotification } from 'components/Notification'
 

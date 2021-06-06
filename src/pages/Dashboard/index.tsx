@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { useFetch } from 'hooks/useFetch'
-
 import { Container } from './style'
 
 import { FiScissors } from 'react-icons/fi'
@@ -10,9 +8,6 @@ import KaiqueBarbosa from 'assets/professionals/KaiqueBarbosa.jpeg'
 import Alexandre from 'assets/professionals/Alexandre.jpeg'
 
 const Dashboard: React.FC = () => {
-  const { data: profile } = useFetch('/api/auth/profile')
-  console.log(profile)
-
   return (
     <Container>
       <header className="splash">

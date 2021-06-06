@@ -12,12 +12,13 @@ import {
   InfoFooter,
   RedirectLabel,
 } from '../style'
+
 import { Form } from 'antd'
+import { FormItem, Input, PasswordInput } from 'components/Input'
 
 import api from 'services/api'
 import { login } from 'services/login'
 
-import { FormItem, Input, PasswordInput } from 'components/Input'
 import { Link } from 'components/Link'
 
 import { errorNotification } from 'components/Notification'
